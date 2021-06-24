@@ -182,7 +182,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13784731}
-  m_LocalRotation: {x: 0.008149178, y: -0.0004999793, z: 0.0000040745563, w: 0.9999667}
+  m_LocalRotation: {x: 0.008149194, y: -0.0005000001, z: 0.000004074733, w: 0.9999667}
   m_LocalPosition: {x: 2.93, y: 1.98, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -913,7 +913,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0.008149178, y: -0.0004999793, z: 0.0000040745563, w: 0.9999667}
+  m_LocalRotation: {x: 0.008149194, y: -0.0005000001, z: 0.000004074733, w: 0.9999667}
   m_LocalPosition: {x: 2.93, y: 1.98, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -26555,6 +26555,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _controller: {fileID: 733093812}
+  IsLeft: 0
+  IsMoving: 0
 --- !u!58 &733093818
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -26585,6 +26587,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _fireSocket: {fileID: 1706751044}
   _bulletPrefab: {fileID: 3820354584533016542, guid: 55337c5621ebc544795445a911ae90b6, type: 3}
+  _fireRate: 0.2
   _damage: 1
 --- !u!114 &733093821
 MonoBehaviour:

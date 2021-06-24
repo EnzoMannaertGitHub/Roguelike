@@ -3,10 +3,11 @@ public class PrimaryWeapon : MonoBehaviour
 {
     [SerializeField] private GameObject _fireSocket;
     [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private float _fireRate = 0.5f;
+
 
     private bool _CanShoot = true;
     private float _elapsedShootSec = 0f;
-    private float _fireRate = 0.5f;
     private float _range = 1.5f;
     private float _speed = 2f;
     public float _damage = 1f;
@@ -40,9 +41,19 @@ public class PrimaryWeapon : MonoBehaviour
             var fireSocketTransform = _fireSocket.transform;
             _bulletPrefab.GetComponent<RegularBullet>().SetRange(_range);
             _bulletPrefab.GetComponent<RegularBullet>().SetSpeed(_speed);
-            Instantiate(_bulletPrefab, fireSocketTransform.position, Quaternion.identity);
+            GameObject newBullet = Instantiate(_bulletPrefab, fireSocketTransform.position, Quaternion.identity);
+
+            Vector2 direction;
+            if (gameObject.GetComponent<PlayerMovement>().IsLeft)
+                direction = new Vector2(-1, 0);
+            else
+                direction = new Vector2(1, 0);
+
+            newBullet.GetComponent<RegularBullet>().SetDirection(direction, !gameObject.GetComponent<PlayerMovement>().IsMoving);
+
 
             _CanShoot = false;
+
         }
     }
     void HandleFireRate()

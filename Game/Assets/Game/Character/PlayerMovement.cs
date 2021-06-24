@@ -7,12 +7,31 @@ public class PlayerMovement : MonoBehaviour
     private float _runSpeed = 5f;
     bool _IsJumping = false;
 
+    public bool IsLeft;
+    public bool IsMoving;
+
+
     // Update is called once per frame
     void Update()
     {
         _horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeed;
 
-        if(Input.GetButtonDown("Jump"))
+
+
+
+        //left check
+        if (_horizontalMove > 0)
+            IsLeft = false;
+        else
+            IsLeft = true;
+
+        //move check
+        if (Mathf.Abs(_horizontalMove) > 0)
+            IsMoving = true;
+        else
+            IsMoving = false;
+
+        if (Input.GetButtonDown("Jump"))
         {
             _IsJumping = true;
         }
