@@ -1,7 +1,8 @@
 using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
-    public CharacterController2D _controller;
+    [SerializeField] private CharacterController2D _controller;
+    [SerializeField] private Animator _animator;
 
     private float _horizontalMove = 0f;
     private float _runSpeed = 5f;
@@ -13,12 +14,13 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         _horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeed;
+        float inputLength = Mathf.Abs(_horizontalMove);
 
         // Left check
         IsLeft = (_horizontalMove > 0);
 
         // Move check
-        IsMoving = (Mathf.Abs(_horizontalMove) > 0);
+        IsMoving = (inputLength > 0);
 
         // Jump check
         if (Input.GetButtonDown("Jump"))
@@ -29,6 +31,14 @@ public class PlayerMovement : MonoBehaviour
         {
             _IsJumping = false;
         }
+
+        // Animations
+        UpdateAnimations(inputLength);
+    }
+
+    private void UpdateAnimations(float horizontalSpeed)
+    {
+        _animator.SetFloat("SpeedX", horizontalSpeed);
     }
 
     void FixedUpdate()
