@@ -17,7 +17,14 @@ public class PlayerMovement : MonoBehaviour
         float inputLength = Mathf.Abs(_horizontalMove);
 
         // Left check
-        IsLeft = (_horizontalMove > 0);
+        if (_horizontalMove < 0)
+        {
+            IsLeft = true;
+        }
+        else if (_horizontalMove > 0)
+        {
+            IsLeft = false;
+        }
 
         // Move check
         IsMoving = (inputLength > 0);

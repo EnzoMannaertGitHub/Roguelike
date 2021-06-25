@@ -160,7 +160,6 @@ public abstract class Projectile : MonoBehaviour
             Vector2 point = new Vector2(mousePos.x, mousePos.y);
             _startPos = new Vector2(transform.position.x, transform.position.y);
             _direction = (point - _startPos).normalized;
-
         }
         else
         {
