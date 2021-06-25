@@ -11,10 +11,10 @@ public class WeaponAttachments : Item
     {
         Debug.Log("using " + name);
        var primaryWeapon = FindObjectOfType<PrimaryWeapon>();
-       primaryWeapon.AdjustDamage(_damage);
-       primaryWeapon.AdjustFirerate(_fireRate);
-       primaryWeapon.AdjustRange(_range);
-       primaryWeapon.AdjustSpeed(_bulletSpeed);
+       //primaryWeapon.ChangeDamage(_damage);
+       //primaryWeapon.ChangeFirerate(-_fireRate);
+       //primaryWeapon.ChangeRange(_range);
+       //primaryWeapon.ChangeSpeed(_bulletSpeed);
        base.Use();
     }
 
@@ -22,10 +22,10 @@ public class WeaponAttachments : Item
     {
         Debug.Log("Clearing " + name);
         var primaryWeapon = FindObjectOfType<PrimaryWeapon>();
-        primaryWeapon.AdjustDamage(-_damage);
-        primaryWeapon.AdjustFirerate(-_fireRate);
-        primaryWeapon.AdjustRange(-_range);
-        primaryWeapon.AdjustSpeed(-_bulletSpeed);
+        //primaryWeapon.ChangeDamage(-_damage);
+        //primaryWeapon.ChangeFireRate(_fireRate);
+        //primaryWeapon.ChangeRange(-_range);
+        //primaryWeapon.ChangeSpeed(-_bulletSpeed);
         base.Use();
     }
 }

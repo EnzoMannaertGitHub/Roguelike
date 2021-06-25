@@ -1,4 +1,4 @@
-public class RegularBullet : Bullet
+public class RegularArrow : Projectile
 {
     protected override void Shoot()
     {

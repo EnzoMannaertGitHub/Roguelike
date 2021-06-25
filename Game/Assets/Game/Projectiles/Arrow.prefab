@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5461420714425843795}
   - component: {fileID: 2613952803688650112}
   - component: {fileID: 6791942424758780581}
-  - component: {fileID: 8930955408762038731}
+  - component: {fileID: 2893554967340039582}
   - component: {fileID: 947697434181907711}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: f4e17262a295e454a82ad31f72df4882, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e42c96f8da7238449b468267ecf9ac6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,8 +106,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &8930955408762038731
-CircleCollider2D:
+--- !u!61 &2893554967340039582
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -119,9 +119,19 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.005, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.4, y: 0.05}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.03
+  m_Size: {x: 0.31, y: 0.04}
+  m_EdgeRadius: 0
 --- !u!114 &947697434181907711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,5 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4fed0e9493a694fb3e9fc97ce8d45d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
+  _damage: 1
+  _speed: 5
+  _range: -1
+  _timeToLive: 10
   _rigidBody: {fileID: 6791942424758780581}

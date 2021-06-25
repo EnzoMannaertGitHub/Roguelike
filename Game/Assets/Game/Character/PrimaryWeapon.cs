@@ -5,12 +5,8 @@ public class PrimaryWeapon : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private float _fireRate = 0.5f;
 
-
     private bool _CanShoot = true;
     private float _elapsedShootSec = 0f;
-    private float _range = 1.5f;
-    private float _speed = 2f;
-    public float _damage = 1f;
 
     private bool _shoot = false;
 
@@ -39,21 +35,16 @@ public class PrimaryWeapon : MonoBehaviour
         if(_CanShoot)
         {
             var fireSocketTransform = _fireSocket.transform;
-            _bulletPrefab.GetComponent<RegularBullet>().SetRange(_range);
-            _bulletPrefab.GetComponent<RegularBullet>().SetSpeed(_speed);
-            GameObject newBullet = Instantiate(_bulletPrefab, fireSocketTransform.position, Quaternion.identity);
+            GameObject newArrow = Instantiate(_bulletPrefab, fireSocketTransform.position, Quaternion.identity);
 
-            Vector2 direction;
-            if (gameObject.GetComponent<PlayerMovement>().IsLeft)
-                direction = new Vector2(-1, 0);
-            else
-                direction = new Vector2(1, 0);
-
-            newBullet.GetComponent<RegularBullet>().SetDirection(direction, !gameObject.GetComponent<PlayerMovement>().IsMoving);
-
+            Projectile projectileScript = newArrow.GetComponent<Projectile>();
+            if (projectileScript != null)
+            {
+                Vector2 direction = gameObject.GetComponent<PlayerMovement>().IsLeft ? new Vector2(-1, 0) : new Vector2(1, 0);
+                projectileScript.InitProjectile(direction, !gameObject.GetComponent<PlayerMovement>().IsMoving);
+            }
 
             _CanShoot = false;
-
         }
     }
     void HandleFireRate()
@@ -66,20 +57,22 @@ public class PrimaryWeapon : MonoBehaviour
         }
     }
 
-    public void AdjustDamage(float damage)
-    {
-        _damage += damage;
-    }
-    public void AdjustFirerate(float fireRate)
-    {
-        _fireRate -= fireRate;
-    }
-    public void AdjustRange(float range)
-    {
-        _range += range;
-    }
-    public void AdjustSpeed(float speed)
-    {
-        _speed += speed;
-    }
+    //public void ChangeDamage(float damage)
+    //{
+    //    _damage += damage;
+    //}
+
+    //public void ChangeDamage(float fireRate)
+    //{
+    //    _fireRate += fireRate;
+    //}
+
+    //public void ChangeDamage(float range)
+    //{
+    //    _range += range;
+    //}
+    //public void ChangeDamage(float speed)
+    //{
+    //    _speed += speed;
+    //}
 }

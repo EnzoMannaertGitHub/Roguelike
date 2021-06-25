@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TripleShots : Bullet
+public class TripleShots : Projectile
 {
     [SerializeReference] protected Rigidbody2D _rigidBodyUp;
     [SerializeReference] protected Rigidbody2D _rigidBodyDown;

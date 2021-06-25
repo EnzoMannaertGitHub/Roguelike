@@ -10,27 +10,17 @@ public class PlayerMovement : MonoBehaviour
     public bool IsLeft;
     public bool IsMoving;
 
-
-    // Update is called once per frame
     void Update()
     {
         _horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeed;
 
+        // Left check
+        IsLeft = (_horizontalMove > 0);
 
+        // Move check
+        IsMoving = (Mathf.Abs(_horizontalMove) > 0);
 
-
-        //left check
-        if (_horizontalMove > 0)
-            IsLeft = false;
-        else
-            IsLeft = true;
-
-        //move check
-        if (Mathf.Abs(_horizontalMove) > 0)
-            IsMoving = true;
-        else
-            IsMoving = false;
-
+        // Jump check
         if (Input.GetButtonDown("Jump"))
         {
             _IsJumping = true;
