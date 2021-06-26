@@ -52,7 +52,7 @@ public abstract class Projectile : MonoBehaviour
         }
     }
 
-    public void InitProjectile(Vector2 direction, bool isMousePointer, float damage = 0f, float speed = 0f, float range = 0f, float timeToLive = 0f)
+    public void InitProjectile(Vector2 direction, bool isMousePointer = false, float damage = 0f, float speed = 0f, float range = 0f, float timeToLive = 0f)
     {
         SetDirection(direction, isMousePointer);
 

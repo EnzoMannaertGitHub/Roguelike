@@ -10,9 +10,25 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsLeft;
     public bool IsMoving;
+    private bool canMove = true;
+    public void SetCanMove(bool state)
+    {
+        canMove = state;
+
+        if (state == false)
+        {
+            _IsJumping = false;
+        }
+    }
 
     void Update()
     {
+        if (!canMove)
+        {
+            _horizontalMove = 0f;
+            return;
+        }
+
         _horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeed;
         float inputLength = Mathf.Abs(_horizontalMove);
 

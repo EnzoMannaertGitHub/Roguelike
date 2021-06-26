@@ -10,7 +10,7 @@ public class WeaponAttachments : Item
     public override void Use()
     {
         Debug.Log("using " + name);
-       var primaryWeapon = FindObjectOfType<PrimaryWeapon>();
+       var primaryWeapon = FindObjectOfType<PlayerAttack>();
        //primaryWeapon.ChangeDamage(_damage);
        //primaryWeapon.ChangeFirerate(-_fireRate);
        //primaryWeapon.ChangeRange(_range);
@@ -21,7 +21,7 @@ public class WeaponAttachments : Item
     public override void OnClear()
     {
         Debug.Log("Clearing " + name);
-        var primaryWeapon = FindObjectOfType<PrimaryWeapon>();
+        var primaryWeapon = FindObjectOfType<PlayerAttack>();
         //primaryWeapon.ChangeDamage(-_damage);
         //primaryWeapon.ChangeFireRate(_fireRate);
         //primaryWeapon.ChangeRange(-_range);
