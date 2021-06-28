@@ -12,12 +12,15 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
 
     const float k_GroundedRadius = .2f;             // Radius of the overlap circle to determine if grounded
-    private bool m_Grounded = true;                 // Whether or not the player is grounded.
+    public bool m_Grounded = true;                 // Whether or not the player is grounded.
     const float k_CeilingRadius = .2f;              // Radius of the overlap circle to determine if the player can stand up
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;              // For determining which way the player is currently facing.
 
+    private int _jumpCount = 0;
+
     private bool _isJumping = false;
+    private bool _isDoubleJumping = false;
     int _jumpframes = 0;
 
     [Header("Events")]
@@ -54,7 +57,7 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    public void Move(float move, bool crouch, bool jump)
+    public void Move(float move, bool crouch, bool jump, bool doubleJump)
     {
         _isJumping = jump;
         // Only control the player if grounded or airControl is turned on
@@ -82,7 +85,14 @@ public class CharacterController2D : MonoBehaviour
         }
 
         if (m_Grounded)
+        {
+            _isDoubleJumping = false;
             HandleJump(jump);
+        }
+        else
+        {
+            HandleDoubleJump(doubleJump);
+        }
     }
 
     void HandleJump(bool jump)
@@ -93,6 +103,21 @@ public class CharacterController2D : MonoBehaviour
             m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
             m_Grounded = false;
             m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+        }
+    }
+    void HandleDoubleJump(bool jump)
+    {
+        // If the player should jump...
+        if (jump)
+        {
+            if (_isDoubleJumping)
+                return;
+
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
+            m_Grounded = false;
+            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+            _isDoubleJumping = true;
+            Debug.Log("Double jumping");
         }
     }
 

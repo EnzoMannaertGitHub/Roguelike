@@ -7,7 +7,8 @@ public class PlayerMovement : MonoBehaviour
     private float _horizontalMove = 0f;
     private float _runSpeed = 5f;
     bool _IsJumping = false;
-
+    bool _IsDoubleJumping = false;
+    bool _canDoubleJump = false;
     public bool IsLeft;
     public bool IsMoving;
     private bool canMove = true;
@@ -45,16 +46,29 @@ public class PlayerMovement : MonoBehaviour
         // Move check
         IsMoving = (inputLength > 0);
 
+        if (_controller.m_Grounded)
+        {
+            _canDoubleJump = false;
+        }
+
         // Jump check
         if (Input.GetButtonDown("Jump"))
         {
+
             _IsJumping = true;
+            if (_IsJumping && _canDoubleJump)
+            {
+                _IsDoubleJumping = true;
+                _canDoubleJump = false;
+            }
+           
         }
         else if(Input.GetButtonUp("Jump"))
         {
             _IsJumping = false;
+            _IsDoubleJumping = false;
+            _canDoubleJump = true;
         }
-
         // Animations
         UpdateAnimations(inputLength);
     }
@@ -66,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        _controller.Move(_horizontalMove * Time.fixedDeltaTime, false, _IsJumping);
+        _controller.Move(_horizontalMove * Time.fixedDeltaTime, false, _IsJumping, _IsDoubleJumping);
     }
 
     public void HandleKnockBack(Vector2 direction)
