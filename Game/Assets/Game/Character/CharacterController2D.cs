@@ -4,7 +4,7 @@ public class CharacterController2D : MonoBehaviour
 {
     [SerializeField] private float m_MovementSpeed = 10f;                       // Speed at which the player moves horizontally
     [SerializeField] private float m_Jumpacceleration = 50f;                    // Amount of force added when the player jumps.
-    [SerializeField] private float m_JumpForce = 0f;                            // Amount of force added when the player jumps.
+    [SerializeField] private float m_JumpForce = 10f;                            // Amount of force added when the player jumps.
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
@@ -17,13 +17,8 @@ public class CharacterController2D : MonoBehaviour
     private Rigidbody2D m_Rigidbody2D;
     private bool m_FacingRight = true;              // For determining which way the player is currently facing.
 
-    private float m_JumpMeterMax = 2.5f;            //How long the player can jump
-    private float m_CurrentJumpMeter = 2.5f;        //Current jump energy
-
-    bool _StartCooldown = false;
-    float _StartCooldownSec = 1.5f;
-    float _ElapsedStartCooldownSec = 0f;
-    bool _isJumping = false;
+    private bool _isJumping = false;
+    int _jumpframes = 0;
 
     [Header("Events")]
     [Space]
@@ -36,26 +31,6 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
-    }
-
-    private void Update()
-    {
-        if (!_isJumping)
-        {
-            _ElapsedStartCooldownSec += Time.deltaTime;
-            if (_ElapsedStartCooldownSec > _StartCooldownSec)
-                _StartCooldown = true;
-        }
-        else
-        {
-            _ElapsedStartCooldownSec = 0;
-            _StartCooldown = false;
-        }
-
-        if (_StartCooldown && m_CurrentJumpMeter < m_JumpMeterMax)
-        {
-            m_CurrentJumpMeter += Time.deltaTime / 2f;
-        }
     }
 
     private void FixedUpdate()
@@ -82,7 +57,6 @@ public class CharacterController2D : MonoBehaviour
     public void Move(float move, bool crouch, bool jump)
     {
         _isJumping = jump;
-
         // Only control the player if grounded or airControl is turned on
         if (m_Grounded || m_AirControl)
         {
@@ -107,7 +81,8 @@ public class CharacterController2D : MonoBehaviour
             }
         }
 
-        HandleJump(jump);
+        if (m_Grounded)
+            HandleJump(jump);
     }
 
     void HandleJump(bool jump)
@@ -115,19 +90,9 @@ public class CharacterController2D : MonoBehaviour
         // If the player should jump...
         if (jump)
         {
-            if (m_CurrentJumpMeter > 0)
-            {
-                _isJumping = true;
-                _StartCooldown = false;
-
-                m_CurrentJumpMeter -= Time.fixedDeltaTime;
-
-                m_Grounded = false;
-                // Add a vertical force to the player.
-                float jumpstrength = 7f;
-                m_JumpForce = jumpstrength + m_Jumpacceleration * Time.fixedDeltaTime;
-                m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
-            }
+            m_Rigidbody2D.velocity = new Vector2(m_Rigidbody2D.velocity.x, 0);
+            m_Grounded = false;
+            m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
         }
     }
 
