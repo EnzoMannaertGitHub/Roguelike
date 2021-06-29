@@ -136,4 +136,16 @@ public class CharacterController2D : MonoBehaviour
     {
         m_Rigidbody2D.AddForce(direction * 40);
     }
+
+    public void Roll(bool isleft)
+    {
+        if (isleft)
+        {
+            m_Rigidbody2D.AddForce(new Vector2(-75, 0));
+        }
+        else
+        {
+            m_Rigidbody2D.AddForce(new Vector2(75, 0));
+        }
+    }
 }

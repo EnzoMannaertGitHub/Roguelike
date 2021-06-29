@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
     private float _horizontalMove = 0f;
     private float _runSpeed = 5f;
     private bool _isRolling = false;
+    private float _elapsedRollSec = 0;
     bool _IsJumping = false;
     bool _IsDoubleJumping = false;
     bool _canDoubleJump = false;
@@ -73,8 +74,9 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Roll check
-        if (Input.GetButtonDown("Roll"))
+        if (Input.GetButtonDown("Roll") && !_isRolling)
         {
+            _controller.Roll(IsLeft);
             _isRolling = true;
             _animator.SetTrigger("Roll");
         }
@@ -90,7 +92,17 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        _controller.Move(_horizontalMove * Time.fixedDeltaTime, false, _IsJumping, _IsDoubleJumping);
+        if (_isRolling)
+        {
+            _elapsedRollSec += Time.deltaTime;
+            if (_elapsedRollSec >= 0.5f)
+            {
+                _isRolling = false;
+                _elapsedRollSec = 0;
+            }
+        }
+        else
+            _controller.Move(_horizontalMove * Time.fixedDeltaTime, false, _IsJumping, _IsDoubleJumping);
     }
 
     public void HandleKnockBack(Vector2 direction)
