@@ -6,12 +6,14 @@ public class PlayerMovement : MonoBehaviour
 
     private float _horizontalMove = 0f;
     private float _runSpeed = 5f;
+    private bool _isRolling = false;
     bool _IsJumping = false;
     bool _IsDoubleJumping = false;
     bool _canDoubleJump = false;
     public bool IsLeft;
     public bool IsMoving;
     private bool canMove = true;
+
     public void SetCanMove(bool state)
     {
         canMove = state;
@@ -69,6 +71,14 @@ public class PlayerMovement : MonoBehaviour
             _IsDoubleJumping = false;
             _canDoubleJump = true;
         }
+
+        //Roll check
+        if (Input.GetButtonDown("Roll"))
+        {
+            _isRolling = true;
+            _animator.SetTrigger("Roll");
+        }
+
         // Animations
         UpdateAnimations(inputLength);
     }
