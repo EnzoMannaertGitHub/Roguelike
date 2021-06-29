@@ -5,7 +5,7 @@ public class Bat : Breed
     private Transform _targetTransform;
     private bool _istargetSet = false;
     private bool _hasCharged = false;
-    public Bat(float health, float damage) : base(health, damage)
+    public Bat(float damage) : base(damage)
     {}
 
     public override void UpdateBehavior()

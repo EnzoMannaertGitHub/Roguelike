@@ -9,12 +9,10 @@ public class Breed : MonoBehaviour
     #region constructors
     public Breed()
     {
-        _health = 0;
         _damage = 0;
     }
-   public Breed(float health, float damage)
+   public Breed(float damage)
     {
-        _health = health;
         _damage = damage;
     }
     #endregion
@@ -25,12 +23,6 @@ public class Breed : MonoBehaviour
     {
         get { return _movementState; }
         set { _movementState = value; }
-    }
-    private float _health;
-    public float Health
-    {
-        get { return _health; }
-        set { _health = value;}
     }
 
     private float _damage;

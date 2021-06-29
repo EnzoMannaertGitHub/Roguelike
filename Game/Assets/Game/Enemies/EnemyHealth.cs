@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private float _maxHealth = 100f;
-    [SerializeField] private PlayerMovement _movement;
+    [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private float _minKnockbackHeight = 2f;
     [SerializeField] private float _maxKnockbackHeight = 5f;
 
@@ -33,8 +33,9 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log("arrow hit");
         if (other.CompareTag("Projectile"))
         {
             Projectile proj = other.GetComponent<Projectile>();
@@ -44,8 +45,10 @@ public class EnemyHealth : MonoBehaviour
                 Vector2 projVelocity = proj.GetVelocity();
                 float knockbackHeight = Random.Range(_minKnockbackHeight, _maxKnockbackHeight);
 
-                GetHit(proj.GetDamage(), new Vector2(projVelocity.x, knockbackHeight));
+                TakeDamage(proj.GetDamage(), new Vector2(projVelocity.x, knockbackHeight));
             }
+
+            proj.DestroyProjectile();
         }
     }
 
@@ -53,24 +56,28 @@ public class EnemyHealth : MonoBehaviour
     {
         if (!_isImmune)
         {
-            TakeDamage(damage);
-            _movement.HandleKnockBack(knockbackDir);
-            _isImmune = true;
+            TakeDamage(damage, knockbackDir);
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, Vector2 knockbackDir)
     {
         _currentHealth = Mathf.Clamp(_currentHealth - damage, 0f, _maxHealth);
 
+        if (damage > 0)
+        {
+            _isImmune = true;
+        }
+
         if (_currentHealth == 0 && !_isDead)
         {
-            Die();
+            KillEnemy();
         }
     }
 
-    private void Die()
+    public void KillEnemy()
     {
         _isDead = true;
+        Destroy(gameObject);
     }
 }
