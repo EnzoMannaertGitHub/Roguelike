@@ -52,6 +52,11 @@ public abstract class Projectile : MonoBehaviour
         }
     }
 
+    public Vector2 GetVelocity()
+    {
+        return _rigidBody.velocity;
+    }
+
     public void InitProjectile(Vector2 direction, bool isMousePointer = false, float damage = 0f, float speed = 0f, float range = 0f, float timeToLive = 0f)
     {
         SetDirection(direction, isMousePointer);
@@ -99,6 +104,11 @@ public abstract class Projectile : MonoBehaviour
     public void SetDamage(float damage)
     {
         _damage = damage;
+    }
+
+    public float GetDamage()
+    {
+        return _damage;
     }
 
     public void SetSpeed(float speed)
