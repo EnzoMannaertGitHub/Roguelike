@@ -4,7 +4,8 @@ public class Breed : MonoBehaviour
     public enum States
     {
         patrol,
-        attack
+        attack,
+        charging
     }
     #region constructors
     public Breed()
@@ -18,40 +19,21 @@ public class Breed : MonoBehaviour
     #endregion
 
     #region variables
-    private States _movementState = States.patrol;
-    public States MovementState
-    {
-        get { return _movementState; }
-        set { _movementState = value; }
-    }
+    protected States _movementState = States.patrol;
 
-    private float _damage;
-    public float Damage
-    {
-        get { return _damage; }
-        set { _damage = value; }
-    }
+    protected bool _istargetSet = false;
 
-    private Transform _playerTransform;
-    public Transform PlayerTransform
-    {
-        get { return _playerTransform; }
-        set { _playerTransform = value; }
-    }
+    protected float _damage;
+    public float Damage { set { _damage = value; } }
 
-    private Transform _monsterTransform;
-    public Transform MonsterTransform
-    {
-        get { return _monsterTransform; }
-        set { _monsterTransform = value; }
-    }
+    protected Transform _playerTransform;
+    public Transform PlayerTransform { set { _playerTransform = value; } }
 
-    private Rigidbody2D _rigidbody;
-    public Rigidbody2D Rigidbody
-    {
-        get { return _rigidbody; }
-        set { _rigidbody = value; }
-    }
+    protected Transform _monsterTransform;
+    public Transform MonsterTransform { set { _monsterTransform = value; } }
+
+    protected Rigidbody2D _rigidbody;
+    public Rigidbody2D Rigidbody { set { _rigidbody = value; } }
 
     #endregion
 

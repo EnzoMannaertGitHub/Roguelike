@@ -19,12 +19,14 @@ public class Monster : MonoBehaviour
 
     private void Update()
     {
-        //_breed.UpdateBehavior();
+        _breed.UpdateBehavior();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.tag == "Player")
+            _breed.OnPlayerHit(collision.gameObject);
+        else if (collision.tag == "Level")
             _breed.OnPlayerHit(collision.gameObject);
     }
 }
