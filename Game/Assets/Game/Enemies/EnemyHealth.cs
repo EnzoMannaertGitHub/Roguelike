@@ -7,7 +7,9 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private float _minKnockbackHeight = 2f;
     [SerializeField] private float _maxKnockbackHeight = 5f;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private Rigidbody2D _rigidbody;
 
+    
     private float _currentHealth = 0f;
     private bool _isDead = false;
 
@@ -84,6 +86,8 @@ public class EnemyHealth : MonoBehaviour
         {
             KillEnemy();
         }
+
+        _rigidbody.AddForce(knockbackDir * 40);
     }
 
     public void KillEnemy()

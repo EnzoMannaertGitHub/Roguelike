@@ -134,7 +134,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void Knockback(Vector2 direction)
     {
-        m_Rigidbody2D.AddForce(direction * 40);
+        m_Rigidbody2D.AddForce(direction * 200);
     }
 
     public void Roll(bool isleft)

@@ -80,7 +80,7 @@ public class Bat : Breed
     public override void OnPlayerHit(GameObject g)
     {
         if (g.tag == "Player" || g.tag == "Ground" || g.tag == "Projectile")
-        {
+        {         
             Vector2 dir = new Vector2();
             if (_monsterTransform.position.x <= _playerTransform.position.x)
                 dir.x = 1;
@@ -93,9 +93,8 @@ public class Bat : Breed
                 dir.y = -1;
 
             g.GetComponent<Health>().GetHit(_damage, dir);
-
         }
-            _hitSomething = true;
+        _hitSomething = true;
 
     }
 
