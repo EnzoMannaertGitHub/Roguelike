@@ -560,6 +560,7 @@ MonoBehaviour:
   _minKnockbackHeight: 2
   _maxKnockbackHeight: 5
   _spriteRenderer: {fileID: 1872371391}
+  _rigidbody: {fileID: 148242878}
 --- !u!1 &167394956
 GameObject:
   m_ObjectHideFlags: 0
