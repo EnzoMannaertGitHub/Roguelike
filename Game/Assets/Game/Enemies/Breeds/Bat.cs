@@ -51,7 +51,7 @@ public class Bat : Breed
         {
             if (_hitSomething)
             {
-                _rigidbody.velocity = new Vector2(0, 0.25f);
+                _rigidbody.velocity = new Vector2(0, 0.4f);
 
                 _elapsedHitTime += Time.deltaTime;
                 if (_elapsedHitTime >= _recoverTime)
@@ -71,7 +71,7 @@ public class Bat : Breed
 
         Vector2 direction = (_targetTransform.position - _monsterTransform.position).normalized;
 
-        float speed = 4f;
+        float speed = 2f;
         _rigidbody.velocity = direction * speed;
 
         _hasAttacked = true;
