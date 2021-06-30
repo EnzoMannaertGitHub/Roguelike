@@ -71,7 +71,7 @@ public class Bat : Breed
 
         Vector2 direction = (_targetTransform.position - _monsterTransform.position).normalized;
 
-        float speed = 2f;
+        float speed = 1.25f;
         _rigidbody.velocity = direction * speed;
 
         _hasAttacked = true;
@@ -79,7 +79,7 @@ public class Bat : Breed
 
     public override void OnPlayerHit(GameObject g)
     {
-        if (g.tag == "Player")
+        if (g.tag == "Player" || g.tag == "Ground" || g.tag == "Projectile")
         {
             Vector2 dir = new Vector2();
             if (_monsterTransform.position.x <= _playerTransform.position.x)
@@ -94,12 +94,8 @@ public class Bat : Breed
 
             g.GetComponent<Health>().GetHit(_damage, dir);
 
-            _hitSomething = true;
         }
-        else if (g.tag == "Level" && !_hitSomething)
-        {
             _hitSomething = true;
-        }
 
     }
 
@@ -126,5 +122,4 @@ public class Bat : Breed
             _movementState = States.attack;
         }
     }
-
 }

@@ -6,12 +6,14 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private float _minKnockbackHeight = 2f;
     [SerializeField] private float _maxKnockbackHeight = 5f;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
     private float _currentHealth = 0f;
     private bool _isDead = false;
 
     private bool _isImmune = false;
     private float _imuneTime = 0f;
+    private float _flickerTime = 0f;
     private float _maxImuneTime = 2f;
 
     private void Start()
@@ -24,9 +26,18 @@ public class EnemyHealth : MonoBehaviour
         if (_isImmune)
         {
             _imuneTime += Time.deltaTime;
+            _flickerTime += Time.deltaTime;
+            if (_flickerTime > 0.1f)
+            {
+                _flickerTime = 0;
+                _spriteRenderer.enabled = !_spriteRenderer.isVisible;
+            }
 
             if (_imuneTime >= _maxImuneTime)
             {
+                _flickerTime = 0;
+                _spriteRenderer.enabled = true;
+
                 _isImmune = false;
                 _imuneTime = 0;
             }
