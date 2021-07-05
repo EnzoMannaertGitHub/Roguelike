@@ -3,7 +3,7 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private float _maxHealth = 100f;
-    [SerializeField] private PlayerMovement _playerMovement;
+    private PlayerMovement _playerMovement;
     [SerializeField] private float _minKnockbackHeight = 2f;
     [SerializeField] private float _maxKnockbackHeight = 5f;
     [SerializeField] private SpriteRenderer _spriteRenderer;
@@ -21,6 +21,21 @@ public class EnemyHealth : MonoBehaviour
     private void Start()
     {
         _currentHealth = _maxHealth;
+
+        if (_playerMovement == null)
+        {
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+            if (player != null)
+            {
+                PlayerMovement playerMovement = player.GetComponent<PlayerMovement>();
+
+                if (playerMovement != null)
+                {
+                    _playerMovement = playerMovement;
+                }
+            }
+        }
     }
 
     private void Update()
