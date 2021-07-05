@@ -57,14 +57,12 @@ public class PlayerMovement : MonoBehaviour
         // Jump check
         if (Input.GetButtonDown("Jump"))
         {
-
             _IsJumping = true;
             if (_IsJumping && _canDoubleJump)
             {
                 _IsDoubleJumping = true;
                 _canDoubleJump = false;
             }
-           
         }
         else if(Input.GetButtonUp("Jump"))
         {
