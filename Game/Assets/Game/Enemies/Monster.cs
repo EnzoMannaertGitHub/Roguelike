@@ -2,12 +2,15 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    [SerializeField] private Transform _playerTransform;
+    private Transform _playerTransform;
     [SerializeField] private float _damage;
 
     private Transform _monsterTransform;
     public void Awake()
     {
+        if (_playerTransform == null)
+            _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
         _breed.PlayerTransform = _playerTransform;
         _monsterTransform = gameObject.transform;
         _breed.MonsterTransform = _monsterTransform.transform;
