@@ -182,7 +182,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 13784731}
-  m_LocalRotation: {x: 0.016293459, y: -0.0009998478, z: 0.000016293146, w: 0.9998668}
+  m_LocalRotation: {x: 0.01629345, y: -0.0009998701, z: 0.000016293501, w: 0.9998668}
   m_LocalPosition: {x: 5.1029396, y: 1.0360956, z: -7.991336}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -399,6 +399,7 @@ GameObject:
   m_Component:
   - component: {fileID: 96874510}
   - component: {fileID: 96874509}
+  - component: {fileID: 96874511}
   m_Layer: 6
   m_Name: Deathbox
   m_TagString: Untagged
@@ -430,7 +431,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.5, y: 1}
   m_EdgeRadius: 0
 --- !u!4 &96874510
 Transform:
@@ -440,12 +441,24 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 96874508}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.01, y: -3.827, z: -163.7146}
-  m_LocalScale: {x: 1.3625, y: 1.5875, z: 1}
+  m_LocalPosition: {x: -2.02, y: -3.58, z: -163.7146}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &96874511
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96874508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51bc88f4578a85343bb730aa4f2419f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &148242873
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,7 +890,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_LocalRotation: {x: 0.016293459, y: -0.0009998478, z: 0.000016293146, w: 0.9998668}
+  m_LocalRotation: {x: 0.01629345, y: -0.0009998701, z: 0.000016293501, w: 0.9998668}
   m_LocalPosition: {x: 5.1029396, y: 1.0360956, z: -7.991336}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -26626,7 +26639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8942b72d61486458184a1a0e805486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: 100
+  _maxHealth: 100
   _movement: {fileID: 733093817}
   _playerSprite: {fileID: 616838218}
 --- !u!1 &758694251
