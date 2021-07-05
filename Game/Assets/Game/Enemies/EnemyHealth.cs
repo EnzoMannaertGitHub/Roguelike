@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private float _maxHealth = 100f;
