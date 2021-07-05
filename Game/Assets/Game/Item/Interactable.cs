@@ -13,6 +13,9 @@ public class Interactable : MonoBehaviour
 
     private void Update()
     {
+        if (_player == null)
+            return;
+
         float distance = Vector3.Distance(_player.position, _interactionTransform.position);
         if(distance <= _radius)
         {

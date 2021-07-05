@@ -99,6 +99,9 @@ public class Bat : Breed
     }
     private void HandleStates()
     {
+        if (_playerTransform == null)
+            return;
+
         if (Vector2.Distance(_playerTransform.position, _monsterTransform.position) < 2)
         {
             if (_hasCharged)
