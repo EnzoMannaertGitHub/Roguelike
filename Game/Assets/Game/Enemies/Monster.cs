@@ -2,26 +2,35 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    private Transform _playerTransform;
     [SerializeField] private float _damage;
-
+    private Breed _breed;
     private Transform _monsterTransform;
-    public void Awake()
+    private bool _initialised = false;
+
+    private Transform _playerTransform;
+
+    public void InitMonster(Breed breed, Transform playerTransform)
     {
-        if (_playerTransform == null)
-            _playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        _breed = breed;
+        _playerTransform = playerTransform;
 
         _breed.PlayerTransform = _playerTransform;
         _monsterTransform = gameObject.transform;
         _breed.MonsterTransform = _monsterTransform.transform;
         _breed.Rigidbody = GetComponent<Rigidbody2D>();
         _breed.Damage = _damage;
-    }
 
-    [SerializeField] private Breed _breed;
+        _initialised = true;
+    }
 
     private void Update()
     {
+        if (!_initialised)
+        {
+            Debug.LogError("Monster not initialised");
+            return;
+        }
+
         _breed.UpdateBehavior();
     }
 
