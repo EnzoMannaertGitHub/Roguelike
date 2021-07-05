@@ -63,6 +63,7 @@ public class Bat : Breed
             else
                 dir.y = -1;
 
+            _rigidbody.velocity = new Vector2(0, 0);
             g.GetComponent<Health>().GetHit(_damage, dir);
         }
         _hitSomething = true;
