@@ -11,8 +11,6 @@ public class Bat : Breed
     private bool _hitSomething = false;
     private float _elapsedFocusTime = 0f;
     private float _elapsedHitTime = 0f;
-    public Bat(float damage) : base(damage)
-    { }
 
     public override void UpdateBehavior()
     {
@@ -47,34 +45,7 @@ public class Bat : Breed
 
     protected override void Attack()
     {
-        if (_hasAttacked)
-        {
-            if (_hitSomething)
-            {
-                _rigidbody.velocity = new Vector2(0, 0.4f);
-
-                _elapsedHitTime += Time.deltaTime;
-                if (_elapsedHitTime >= _recoverTime)
-                {
-                    _elapsedHitTime = 0f;
-
-                    _hitSomething = false;
-                    _hasCharged = false;
-                    _hasAttacked = false;
-
-                    _movementState = States.patrol;
-                    _rigidbody.velocity = new Vector2(0, 0);
-                }
-            }
-            return;
-        }
-
-        Vector2 direction = (_targetTransform.position - _monsterTransform.position).normalized;
-
-        float speed = 1.25f;
-        _rigidbody.velocity = direction * speed;
-
-        _hasAttacked = true;
+        CustomAttack();
     }
 
     public override void OnPlayerHit(GameObject g)
@@ -121,5 +92,37 @@ public class Bat : Breed
             _hasCharged = true;
             _movementState = States.attack;
         }
+    }
+
+    virtual protected void CustomAttack()
+    {
+        if (_hasAttacked)
+        {
+            if (_hitSomething)
+            {
+                _rigidbody.velocity = new Vector2(0, 0.4f);
+
+                _elapsedHitTime += Time.deltaTime;
+                if (_elapsedHitTime >= _recoverTime)
+                {
+                    _elapsedHitTime = 0f;
+
+                    _hitSomething = false;
+                    _hasCharged = false;
+                    _hasAttacked = false;
+
+                    _movementState = States.patrol;
+                    _rigidbody.velocity = new Vector2(0, 0);
+                }
+            }
+            return;
+        }
+
+        Vector2 direction = (_targetTransform.position - _monsterTransform.position).normalized;
+
+        float speed = 1.25f;
+        _rigidbody.velocity = direction * speed;
+
+        _hasAttacked = true;
     }
 }
