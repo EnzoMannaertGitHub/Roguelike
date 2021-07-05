@@ -1,5 +1,5 @@
 using UnityEngine;
-public class Breed : MonoBehaviour
+abstract public class Breed : MonoBehaviour
 {
     public enum States
     {
@@ -37,22 +37,11 @@ public class Breed : MonoBehaviour
 
     #endregion
 
-    virtual public void UpdateBehavior()
-    {
-        //needs to be implemented
-    }
-    virtual protected void Attack()
-    {
-        //needs to be implemented
-    }
+    abstract public void UpdateBehavior();
 
-    virtual protected void Move()
-    {
-        //needs to be implemented
-    }
+    abstract protected void Attack();
 
-    virtual public void OnPlayerHit(GameObject g)
-    {
-        //needs to be implemented
-    }
+    abstract protected void Move();
+
+    abstract public void OnPlayerHit(GameObject g);
 }
