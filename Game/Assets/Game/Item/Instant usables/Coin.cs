@@ -13,6 +13,7 @@ public class Coin : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            collision.GetComponent<Wallet>().Total += _value;
             Destroy(gameObject);
         }
     }
