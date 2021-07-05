@@ -16,8 +16,8 @@ public class Bat : Breed
 
     public override void UpdateBehavior()
     {
-        Move();
         HandleStates();
+        Move();
     }
 
     protected override void Move()
@@ -25,8 +25,8 @@ public class Bat : Breed
         switch (_movementState)
         {
             case States.patrol:
+                
                 _istargetSet = false;
-
                 _monsterTransform.Translate(new Vector3((Mathf.Sin(Time.realtimeSinceStartup) * 0.6f) * Time.deltaTime,
                                                        0,
                                                        0));
@@ -97,7 +97,6 @@ public class Bat : Breed
         _hitSomething = true;
 
     }
-
     private void HandleStates()
     {
         if (Vector2.Distance(_playerTransform.position, _monsterTransform.position) < 2)
@@ -108,9 +107,11 @@ public class Bat : Breed
                 _movementState = States.charging;
         }
         else if(_movementState != States.charging)
+        {
+            _rigidbody.velocity = new Vector2(0, 0);
             _movementState = States.patrol;
+        }
     }
-
     private void Charge()
     {
         _elapsedFocusTime += Time.deltaTime;
