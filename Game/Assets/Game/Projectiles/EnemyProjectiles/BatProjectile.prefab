@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7378011810620804144}
   - component: {fileID: 4087868133176201020}
   - component: {fileID: -2314540056168994145}
+  - component: {fileID: 3086244120482289384}
   m_Layer: 0
   m_Name: BatProjectile
   m_TagString: Untagged
@@ -117,4 +118,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae80c7f27414bb43a075333036ed5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
+  _speed: 1.5
+--- !u!58 &3086244120482289384
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4191573963499883353}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
