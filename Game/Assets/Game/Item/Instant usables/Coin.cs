@@ -7,6 +7,7 @@ public class Coin : MonoBehaviour
     private void Awake()
     {
         _rigidBody = gameObject.GetComponent<Rigidbody2D>();
+        _rigidBody.gravityScale = Random.Range(0.15f, 0.30f);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

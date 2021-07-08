@@ -67,7 +67,6 @@ public class Bat : Breed
             g.GetComponent<Health>().GetHit(_damage, dir);
         }
         _hitSomething = true;
-
     }
     private void HandleStates()
     {

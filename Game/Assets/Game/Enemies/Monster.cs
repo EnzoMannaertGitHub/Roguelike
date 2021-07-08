@@ -3,6 +3,9 @@ using UnityEngine;
 public class Monster : MonoBehaviour
 {
     [SerializeField] private float _damage;
+    [SerializeField] private GameObject _gold;
+    [SerializeField] private int _nrOfGoldDrops;
+
     private Breed _breed;
     private Transform _monsterTransform;
     private bool _initialised = false;
@@ -36,6 +39,17 @@ public class Monster : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-       _breed.OnPlayerHit(collision.gameObject);
+        _breed.OnPlayerHit(collision.gameObject);
     }
+
+    public void CallOnDestroy()
+    {
+        for (int i = 0; i < _nrOfGoldDrops; i++)
+        {
+            Vector3 pos = _monsterTransform.position;
+            float randX = Random.Range(pos.x - 0.15f, pos.x + 0.15f);
+            Instantiate(_gold, new Vector3(randX, pos.y, 0), _monsterTransform.rotation);
+        }
+    }
+
 }

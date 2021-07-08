@@ -16,7 +16,7 @@ public class itemStand : MonoBehaviour
     private int _Stage = 1;
     private void Start()
     {
-        _cost = Random.Range(0, 15 * _Stage);
+        _cost = Random.Range(0, 5 * _Stage);
 
         _playerTransform = FindObjectOfType<PlayerMovement>().gameObject.transform;
 

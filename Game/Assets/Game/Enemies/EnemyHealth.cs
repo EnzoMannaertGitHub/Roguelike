@@ -94,6 +94,7 @@ public class EnemyHealth : MonoBehaviour
     public void KillEnemy()
     {
         _isDead = true;
+        GetComponent<Monster>().CallOnDestroy();
         Destroy(gameObject);
     }
 }

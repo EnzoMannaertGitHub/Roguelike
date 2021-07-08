@@ -48,6 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 0
+  _gold: {fileID: 6268903044061418940, guid: fdde6ede6aa50c940932fefcf7758257, type: 3}
+  _nrOfGoldDrops: 3
 --- !u!50 &5125700824765424749
 Rigidbody2D:
   serializedVersion: 4
