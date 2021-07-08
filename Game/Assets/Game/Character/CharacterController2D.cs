@@ -31,7 +31,6 @@ public class CharacterController2D : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
         m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
         if (OnLandEvent == null)
@@ -145,11 +144,11 @@ public class CharacterController2D : MonoBehaviour
     {
         if (isleft)
         {
-            m_Rigidbody2D.AddForce(new Vector2(-75, 0));
+            m_Rigidbody2D.AddForce(new Vector2(-50, 0));
         }
         else
         {
-            m_Rigidbody2D.AddForce(new Vector2(75, 0));
+            m_Rigidbody2D.AddForce(new Vector2(50, 0));
         }
     }
 }

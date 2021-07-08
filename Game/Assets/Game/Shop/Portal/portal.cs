@@ -1,16 +1,16 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class portal : MonoBehaviour
 {
     private GameObject _player;
+    [SerializeField] private Transform _spawn;
+
     private void Start()
     {
-        _player = FindObjectOfType<CharacterController2D>().gameObject;
+        _player = FindObjectOfType<PlayerMovement>().gameObject;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _player.transform.position = new Vector3(0,0,0);
-        SceneManager.LoadScene(1);
+        _player.transform.position = _spawn.position;
     }
 }
