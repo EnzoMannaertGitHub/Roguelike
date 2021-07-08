@@ -28277,23 +28277,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8303928442707012245, guid: 75079812f8e905744b83d2046d04f5c2, type: 3}
   m_PrefabInstance: {fileID: 436495271}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1493437759 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2919083305431026260, guid: febed53cd652e0f49bff9462972b4eec, type: 3}
-  m_PrefabInstance: {fileID: 2919083304923304266}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1493437760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1493437759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d635df20798d99448ce654f99fd8a71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1543357956
 GameObject:
   m_ObjectHideFlags: 0
@@ -29086,46 +29069,6 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 500668158}
-    - target: {fileID: 2919083304917944279, guid: febed53cd652e0f49bff9462972b4eec, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.1029396
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919083304917944279, guid: febed53cd652e0f49bff9462972b4eec, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.0360956
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919083304917944279, guid: febed53cd652e0f49bff9462972b4eec, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.016293459
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919083304917944279, guid: febed53cd652e0f49bff9462972b4eec, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.0009998478
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919083304917944279, guid: febed53cd652e0f49bff9462972b4eec, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.000016293146
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919083305352538570, guid: febed53cd652e0f49bff9462972b4eec, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.1029396
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919083305352538570, guid: febed53cd652e0f49bff9462972b4eec, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.0360956
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919083305352538570, guid: febed53cd652e0f49bff9462972b4eec, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.016293459
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919083305352538570, guid: febed53cd652e0f49bff9462972b4eec, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.0009998478
-      objectReference: {fileID: 0}
-    - target: {fileID: 2919083305352538570, guid: febed53cd652e0f49bff9462972b4eec, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.000016293146
-      objectReference: {fileID: 0}
     - target: {fileID: 2919083305431026260, guid: febed53cd652e0f49bff9462972b4eec, type: 3}
       propertyPath: m_Name
       value: Camera Setup
