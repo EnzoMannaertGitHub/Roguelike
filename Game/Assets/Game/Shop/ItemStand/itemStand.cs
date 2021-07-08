@@ -9,13 +9,14 @@ public class itemStand : MonoBehaviour
     [SerializeField] private Transform _itemLocation;
 
     private Transform _playerTransform;
-    private int _cost = 1;
+    private int _cost;
     private bool _isActive = true;
     private GameObject _item;
     private float _range = 1.5f;
-
+    private int _Stage = 1;
     private void Start()
     {
+        _cost = Random.Range(0, 15 * _Stage);
         _playerTransform = FindObjectOfType<PlayerMovement>().gameObject.transform;
 
         if (_cost == 0)

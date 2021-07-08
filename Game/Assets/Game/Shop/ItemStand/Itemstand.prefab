@@ -159,6 +159,9 @@ MonoBehaviour:
   _costText: {fileID: 8893802181272487578}
   _items:
   - {fileID: 6805169170376350651, guid: 8a2c3ee8390cde045bf78136e4c984f2, type: 3}
+  - {fileID: 6805169170376350651, guid: 18be53c1a12cb0a428a2a16a63a4b5ed, type: 3}
+  - {fileID: 6805169170376350651, guid: f7ea9a58e0545474eb1d5b47f66fb57f, type: 3}
+  - {fileID: 6805169170376350651, guid: 3aaa7e8dc63579241a8dc9fa2c21fbb2, type: 3}
   _itemLocation: {fileID: 2132408197973811675}
 --- !u!50 &3547378598071274554
 Rigidbody2D:
