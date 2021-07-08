@@ -1,26 +1,40 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-
+using TMPro;
 public class itemStand : MonoBehaviour
 {
-    [SerializeField] Text _costText;
-
-    private int _cost = 1;
-    private bool _isActive = true;
+    [SerializeField] private TextMeshPro _costText;
     [SerializeField] private List<GameObject> _items;
     [SerializeField] private Transform _itemLocation;
+
+    private Transform _playerTransform;
+    private int _cost = 1;
+    private bool _isActive = true;
     private GameObject _item;
+    private float _range = 1.5f;
+
     private void Start()
     {
+        _playerTransform = FindObjectOfType<PlayerMovement>().gameObject.transform;
+
         if (_cost == 0)
             _costText.text = "";
         else
-            _costText.text = $"{_cost}";
+            _costText.text = $"{_cost} $";
 
         int index = Random.Range(0, _items.Count);
         _item = Instantiate(_items[index], _itemLocation.position, _itemLocation.rotation);
     }
+    private void Update()
+    {
+        float distance = Vector2.Distance(transform.position, _playerTransform.position);
+        if (distance > _range)
+            _costText.alpha = 0;
+        else
+            _costText.alpha = _range - distance;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!_isActive)
@@ -33,6 +47,7 @@ public class itemStand : MonoBehaviour
             {
                 wallet.Total -= _cost;
                 _item.GetComponent<pickup>().enabled = true;
+                _costText.text = "";
 
                 _isActive = false;
             }
