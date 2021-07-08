@@ -4,8 +4,12 @@ public class Interactable : MonoBehaviour
 {
     [SerializeField] private float _radius = 3f;
     [SerializeField] private Transform _interactionTransform;
-    [SerializeField] private Transform _player;
+    private Transform _player;
 
+    private void Start()
+    {
+        _player = FindObjectOfType<PlayerMovement>().GetComponent<Transform>();
+    }
     public virtual void Interact()
     {
         //This method is meant to be overriden
