@@ -11,11 +11,11 @@ public class WeaponAttachments : Item
     {
         Debug.Log("using " + name);
        var primaryWeapon = FindObjectOfType<PlayerAttack>();
-       //primaryWeapon.ChangeDamage(_damage);
-       //primaryWeapon.ChangeFirerate(-_fireRate);
-       //primaryWeapon.ChangeRange(_range);
-       //primaryWeapon.ChangeSpeed(_bulletSpeed);
-       base.Use();
+        //primaryWeapon.ChangeDamage(_damage);
+        //primaryWeapon.ChangeFirerate(-_fireRate);
+        //primaryWeapon.ChangeRange(_range);
+        //primaryWeapon.ChangeSpeed(_bulletSpeed);
+        base.Use();
     }
 
     public override void OnClear()
