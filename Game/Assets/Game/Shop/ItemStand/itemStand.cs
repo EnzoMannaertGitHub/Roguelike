@@ -37,12 +37,12 @@ public class itemStand : MonoBehaviour
             _costText.alpha = _range - distance;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (!_isActive)
             return;
         
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && Input.GetAxis("Interact") > 0.5f)
         {
             Wallet wallet = collision.gameObject.GetComponent<Wallet>();
             if (wallet.Total >= _cost)
