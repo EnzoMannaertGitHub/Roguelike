@@ -19,6 +19,11 @@ public class EnemyHealth : MonoBehaviour
     private float _flickerTime = 0f;
     private float _maxImuneTime = 2f;
 
+    private void Start()
+    {
+        _currentHealth = _maxHealth;
+    }
+
     public void SetPlayerMovement(PlayerMovement movement)
     {
         _playerMovement = movement;
