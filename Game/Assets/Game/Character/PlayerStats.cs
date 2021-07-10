@@ -6,7 +6,6 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private CharacterController2D _playerController = null;
     [SerializeField] private Health _playerHealth = null;
     [SerializeField] private PlayerAttack _playerAttack = null;
-    [SerializeField] private Inventory _playerInventory = null;
 
     [Header("Base Stats")]
     [SerializeField] private float _baseMaxHealth = 100f;
