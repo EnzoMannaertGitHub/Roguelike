@@ -21,7 +21,7 @@ public class itemStand : MonoBehaviour
         _playerTransform = FindObjectOfType<PlayerMovement>().gameObject.transform;
 
         if (_cost == 0)
-            _costText.text = "";
+            _costText.text = "FREE";
         else
             _costText.text = $"{_cost} $";
 
