@@ -12,6 +12,7 @@ public class Health : MonoBehaviour
     private float _maxImuneTime = 2f;
     private float _drawTime = 0f;
     private bool _isDead = false;
+    private bool _godMode = false;
 
     public void SetMaxHealth(float newHealth)
     {
@@ -21,6 +22,11 @@ public class Health : MonoBehaviour
     public void SetHealth(float newHealth)
     {
         _health = newHealth;
+    }
+
+    public void SetGodMode(bool state)
+    {
+        _godMode = state;
     }
 
     private void Update()
@@ -44,10 +50,9 @@ public class Health : MonoBehaviour
             }
         }
     }
-
     public void GetHit(float damage, Vector2 knockbackDir)
     {
-        if (_isDead)
+        if (_isDead || _godMode)
             return;
 
         if(!_isImmune)
@@ -60,7 +65,7 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        if (_isDead)
+        if (_isDead || _godMode)
             return;
 
         _health = Mathf.Clamp(_health - amount, 0f, _maxHealth);

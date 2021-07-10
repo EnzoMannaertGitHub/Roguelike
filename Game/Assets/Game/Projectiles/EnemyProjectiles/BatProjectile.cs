@@ -15,7 +15,7 @@ public class BatProjectile : MonoBehaviour
             other.GetComponent<Health>().GetHit(5, gameObject.GetComponent<Rigidbody2D>().velocity);
             Destroy(gameObject);
         }
-        if (other.gameObject.layer != 7)
+        if (other.gameObject.layer != 7 && other.gameObject.layer != 11)
         {
             Destroy(gameObject);
         }

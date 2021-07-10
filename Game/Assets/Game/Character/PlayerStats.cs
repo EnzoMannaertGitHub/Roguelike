@@ -16,6 +16,9 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _baseDamage = 27f;
     [SerializeField] private float _baseProjectileSpeed = 5f;
 
+    [Header("Debug")]
+    [SerializeField] private bool _godMode = false;
+
     // Stat increases
     private float _healthIncrease = 0f;
     private float _healthPercent = 1f;
@@ -45,6 +48,7 @@ public class PlayerStats : MonoBehaviour
         UpdateStats();
 
         _playerHealth.SetHealth(_currentMaxHealth);
+        _playerHealth.SetGodMode(_godMode);
     }
 
     private void Update()
