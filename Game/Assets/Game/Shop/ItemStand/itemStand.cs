@@ -31,7 +31,7 @@ public class itemStand : MonoBehaviour
     }
     private void Update()
     {
-        if (!_isActive)
+        if (!_isActive || _playerTransform == null)
             return;
 
         float distance = Vector2.Distance(transform.position, _playerTransform.position);
