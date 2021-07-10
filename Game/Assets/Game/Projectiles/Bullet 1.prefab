@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3712818731730675846}
   - component: {fileID: 6312487924287698553}
   - component: {fileID: 9203797023895719624}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bullet 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 6791942424758780581}
   - component: {fileID: 8930955408762038731}
   - component: {fileID: 7541001008315388643}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bullet 1
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -276,7 +276,7 @@ GameObject:
   - component: {fileID: 8940777466298926153}
   - component: {fileID: 885250473318019392}
   - component: {fileID: 2537816815370786832}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bullet 1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

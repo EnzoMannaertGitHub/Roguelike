@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6791942424758780581}
   - component: {fileID: 2893554967340039582}
   - component: {fileID: 947697434181907711}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Arrow
   m_TagString: Projectile
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1604511291731906724}
   - component: {fileID: 8408034080440953715}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Visuals
   m_TagString: Untagged
   m_Icon: {fileID: 0}
