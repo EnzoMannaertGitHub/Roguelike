@@ -65,9 +65,9 @@ public class EnemyHealth : MonoBehaviour
                 float knockbackHeight = Random.Range(_minKnockbackHeight, _maxKnockbackHeight);
 
                 TakeDamage(proj.GetDamage(), new Vector2(projVelocity.x, knockbackHeight));
-            }
 
-            proj.DestroyProjectile();
+                proj.DestroyProjectile();
+            }
         }
     }
 
