@@ -56,6 +56,9 @@ public class Bat : Breed
 
     public override void OnPlayerHit(GameObject g)
     {
+        if (_elevating)
+            return;
+
         if (g.CompareTag("Player"))
         {         
             Vector2 dir = new Vector2();
