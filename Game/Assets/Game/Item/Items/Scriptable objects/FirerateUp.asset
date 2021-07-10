@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FirerateUp
   m_EditorClassIdentifier: 
   name: FireRate Up
-  icon: {fileID: 21300092, guid: 1a08f9bec49c04809b03ba62a218b140, type: 3}
+  icon: {fileID: 21300000, guid: 4e42c96f8da7238449b468267ecf9ac6, type: 3}
   _health: 0
   _healthPercent: 0
   _healthRegen: 0

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpeedBullets
   m_EditorClassIdentifier: 
   name: Damage Up
-  icon: {fileID: 21300000, guid: f590bf1777e384a8ea515e0197188aa9, type: 3}
+  icon: {fileID: 21300000, guid: a8a7141849b504fdf918e543db616a5d, type: 3}
   _health: 0
   _healthPercent: 0
   _healthRegen: 0
