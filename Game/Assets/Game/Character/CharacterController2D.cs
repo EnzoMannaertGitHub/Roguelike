@@ -2,9 +2,6 @@ using UnityEngine;
 using UnityEngine.Events;
 public class CharacterController2D : MonoBehaviour
 {
-    [SerializeField] private float m_MovementSpeed = 10f;                       // Speed at which the player moves horizontally
-    [SerializeField] private float m_Jumpacceleration = 50f;                    // Amount of force added when the player jumps.
-    [SerializeField] private float m_JumpForce = 10f;                            // Amount of force added when the player jumps.
     [SerializeField] private bool m_AirControl = false;                         // Whether or not a player can steer while jumping;
     [SerializeField] private LayerMask m_WhatIsGround;                          // A mask determining what is ground to the character
     [SerializeField] private Transform m_GroundCheck;                           // A position marking where to check if the player is grounded.
@@ -12,6 +9,10 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Collider2D m_CrouchDisableCollider;                // A collider that will be disabled when crouching
     [SerializeField] private Animator m_Animator;
 
+    private float m_MovementSpeed = 10f;                       // Speed at which the player moves horizontally
+    private float m_JumpForce = 10f;                            // Amount of force added when the player jumps.
+
+    const float m_rollForceMultiplier = 4f;
     const float k_GroundedRadius = .07f;             // Radius of the overlap circle to determine if grounded
     public bool m_Grounded = true;                 // Whether or not the player is grounded.
     const float k_CeilingRadius = .2f;              // Radius of the overlap circle to determine if the player can stand up
@@ -35,6 +36,16 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
+    }
+
+    public void SetMovementSpeed(float movementSpeed)
+    {
+        m_MovementSpeed = movementSpeed;
+    }
+
+    public void SetJumpSpeed(float jumpSpeed)
+    {
+        m_JumpForce = jumpSpeed;
     }
 
     private void FixedUpdate()
@@ -144,11 +155,11 @@ public class CharacterController2D : MonoBehaviour
     {
         if (isleft)
         {
-            m_Rigidbody2D.AddForce(new Vector2(-50, 0));
+            m_Rigidbody2D.AddForce(new Vector2(-m_MovementSpeed * m_rollForceMultiplier, 0));
         }
         else
         {
-            m_Rigidbody2D.AddForce(new Vector2(50, 0));
+            m_Rigidbody2D.AddForce(new Vector2(m_MovementSpeed * m_rollForceMultiplier, 0));
         }
     }
 }
