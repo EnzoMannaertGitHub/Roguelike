@@ -10,10 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f82a2ea01fef9344bcbdb0a73b91717, type: 3}
-  m_Name: DamagaUp
+  m_Name: DamageUp
   m_EditorClassIdentifier: 
   name: Damage Up
   icon: {fileID: 21300000, guid: 9d80066c44a244e11b4bcee1af3060bd, type: 3}
-  _damage: 1
-  _range: 0
-  _fireRate: 0
+  _health: 0
+  _healthPercent: 0
+  _healthRegen: 0
+  _healthRegenPercent: 0
+  _attackSpeed: 0
+  _movementSpeed: 0
+  _movementPercent: 0
+  _jumpForce: 0
+  _jumpPercent: 0
+  _damageIncrease: 10
+  _damagePercent: 0
+  _projectileSpeedIncrease: 0
+  _projectileSpeedPercent: 0

@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private float _maxHealth = 100f;
+    private float _maxHealth = 100f;
     private float _health;
+    
     [SerializeField] private PlayerMovement _movement;
     [SerializeField] private SpriteRenderer _playerSprite;
     private bool _isImmune = false;
@@ -12,9 +13,14 @@ public class Health : MonoBehaviour
     private float _drawTime = 0f;
     private bool _isDead = false;
 
-    private void Start()
+    public void SetMaxHealth(float newHealth)
     {
-        _health = _maxHealth;
+        _maxHealth = newHealth;
+    }
+
+    public void SetHealth(float newHealth)
+    {
+        _health = newHealth;
     }
 
     private void Update()
@@ -57,7 +63,7 @@ public class Health : MonoBehaviour
         if (_isDead)
             return;
 
-        _health = Mathf.Clamp(_health, 0f, _maxHealth);
+        _health = Mathf.Clamp(_health - amount, 0f, _maxHealth);
 
         if (_health == 0f)
         {

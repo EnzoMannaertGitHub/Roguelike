@@ -206,13 +206,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5917199648963861567}
-  - component: {fileID: 5917199648963861565}
   - component: {fileID: 5917199648963861553}
   - component: {fileID: 5917199648963861564}
+  - component: {fileID: 5917199648963861565}
   - component: {fileID: 5917199648963861552}
   - component: {fileID: 5917199648963861554}
   - component: {fileID: 5917199648963861556}
   - component: {fileID: 1041111549}
+  - component: {fileID: 1238721849222737897}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -239,33 +240,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5917199648963861565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5917199648963861562}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89a2fb2105140db4788f23dc5389af8e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MovementSpeed: 13
-  m_Jumpacceleration: 200
-  m_JumpForce: 100
-  m_AirControl: 1
-  m_WhatIsGround:
-    serializedVersion: 2
-    m_Bits: 8
-  m_GroundCheck: {fileID: 5917199649348857046}
-  m_CeilingCheck: {fileID: 5917199647840253774}
-  m_CrouchDisableCollider: {fileID: 0}
-  m_Animator: {fileID: 5917199649054701506}
-  m_Grounded: 1
-  OnLandEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!50 &5917199648963861553
 Rigidbody2D:
   serializedVersion: 4
@@ -303,6 +277,30 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.16, y: 0.32}
   m_Direction: 0
+--- !u!114 &5917199648963861565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917199648963861562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89a2fb2105140db4788f23dc5389af8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AirControl: 1
+  m_WhatIsGround:
+    serializedVersion: 2
+    m_Bits: 8
+  m_GroundCheck: {fileID: 5917199649348857046}
+  m_CeilingCheck: {fileID: 5917199647840253774}
+  m_CrouchDisableCollider: {fileID: 0}
+  m_Animator: {fileID: 5917199649054701506}
+  m_Grounded: 1
+  OnLandEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5917199648963861552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,8 +333,6 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 3820354584533016542, guid: 55337c5621ebc544795445a911ae90b6, type: 3}
   _playerMovement: {fileID: 5917199648963861552}
   _animator: {fileID: 5917199649054701506}
-  _fireRateDelay: 0.5
-  _chargeTime: 0.4
 --- !u!114 &5917199648963861556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,7 +345,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8942b72d61486458184a1a0e805486, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
   _movement: {fileID: 5917199648963861552}
   _playerSprite: {fileID: 5917199649054701507}
 --- !u!114 &1041111549
@@ -364,6 +359,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e94163911a5baa6459455630776d7c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1238721849222737897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917199648963861562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326989a900839b64da84ea80e0c28818, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerController: {fileID: 5917199648963861565}
+  _playerHealth: {fileID: 5917199648963861556}
+  _playerAttack: {fileID: 5917199648963861554}
+  _baseMaxHealth: 100
+  _basehealthRegen: 0
+  _baseAttackSpeed: 1
+  _baseMovementSpeed: 13
+  _baseJumpForce: 100
+  _baseDamage: 27
+  _baseProjectileSpeed: 5
 --- !u!1 &5917199648993302146
 GameObject:
   m_ObjectHideFlags: 0
@@ -407,6 +424,7 @@ GameObject:
   - component: {fileID: 5917199649054701504}
   - component: {fileID: 5917199649054701507}
   - component: {fileID: 5917199649054701506}
+  - component: {fileID: 5199098039516115139}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -498,6 +516,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5199098039516115139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5917199649054701505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb16b8aed04f62647874ceee56e9c059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerAttack: {fileID: 5917199648963861554}
 --- !u!1 &5917199649348857047
 GameObject:
   m_ObjectHideFlags: 0
