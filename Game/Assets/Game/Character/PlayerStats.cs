@@ -44,6 +44,11 @@ public class PlayerStats : MonoBehaviour
         _playerHealth.SetHealth(_currentMaxHealth);
     }
 
+    private void Update()
+    {
+        _playerHealth.TakeDamage(-_currentHealthRegen * Time.deltaTime);
+    }
+
     public void UpdateStats()
     {
         UpdateMaxHealth();
@@ -165,11 +170,6 @@ public class PlayerStats : MonoBehaviour
         _currentDamage = (_baseDamage + _damageIncrease) * _damagePercent;
 
         _playerAttack.SetDamage(_currentDamage);
-    }
-
-    private void Update()
-    {
-        _playerHealth.TakeDamage(-_currentHealthRegen * Time.deltaTime);
     }
 
     public float GetMaxHealth()

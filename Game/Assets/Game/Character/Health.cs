@@ -63,7 +63,7 @@ public class Health : MonoBehaviour
         if (_isDead)
             return;
 
-        _health = Mathf.Clamp(_health, 0f, _maxHealth);
+        _health = Mathf.Clamp(_health - amount, 0f, _maxHealth);
 
         if (_health == 0f)
         {
