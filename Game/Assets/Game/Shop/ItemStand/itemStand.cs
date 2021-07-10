@@ -5,6 +5,7 @@ using TMPro;
 public class itemStand : MonoBehaviour
 {
     [SerializeField] private TextMeshPro _costText;
+    [SerializeField] private SpriteRenderer _eKey;
     [SerializeField] private List<GameObject> _items;
     [SerializeField] private Transform _itemLocation;
 
@@ -30,11 +31,23 @@ public class itemStand : MonoBehaviour
     }
     private void Update()
     {
+        if (!_isActive)
+            return;
+
         float distance = Vector2.Distance(transform.position, _playerTransform.position);
+        Color c = _eKey.color;
+
         if (distance > _range)
+        {
+            _eKey.color = new Color(c.r, c.g, c.b, 0);
             _costText.alpha = 0;
+        }
         else
-            _costText.alpha = _range - distance;
+        {
+            float alpha = _range - distance;
+            _eKey.color = new Color(c.r, c.g, c.b, alpha);
+            _costText.alpha = alpha;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -50,8 +63,8 @@ public class itemStand : MonoBehaviour
                 wallet.Total -= _cost;
                 _item.GetComponent<pickup>().enabled = true;
                 _costText.text = "";
-
-                _isActive = false;
+                _eKey.forceRenderingOff = true;
+               _isActive = false;
             }
         }
     }
