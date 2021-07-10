@@ -12,6 +12,10 @@ public class Bat : Breed
     protected float _elapsedFocusTime = 0f;
     protected float _elapsedHitTime = 0f;
 
+    private bool _elevating = false;
+    private float _waitSec = 0f;
+    protected float _elapsedElevationTime = 0f;
+
     public override void UpdateBehavior()
     {
         HandleStates();
@@ -20,10 +24,12 @@ public class Bat : Breed
 
     protected override void Move()
     {
+        if (_elevating)
+            return;
+
         switch (_movementState)
         {
             case States.patrol:
-                
                 _istargetSet = false;
                 _monsterTransform.Translate(new Vector3((Mathf.Sin(Time.realtimeSinceStartup) * 0.6f) * Time.deltaTime,
                                                        0,
@@ -50,7 +56,7 @@ public class Bat : Breed
 
     public override void OnPlayerHit(GameObject g)
     {
-        if (g.tag == "Player" || g.tag == "Ground" || g.tag == "Projectile")
+        if (g.CompareTag("Player"))
         {         
             Vector2 dir = new Vector2();
             if (_monsterTransform.position.x <= _playerTransform.position.x)
@@ -63,17 +69,30 @@ public class Bat : Breed
             else
                 dir.y = -1;
 
-            _rigidbody.velocity = new Vector2(0, 0);
             g.GetComponent<Health>().GetHit(_damage, dir);
         }
-        _hitSomething = true;
+
+        if (!g.CompareTag("Enemy"))
+        {
+            _rigidbody.velocity = new Vector2(0, 0);
+            _hitSomething = true;
+        }
     }
     private void HandleStates()
     {
-        if (Vector2.Distance(_playerTransform.position, _monsterTransform.position) < 2)
+        if (_elevating)
+        {
+            HandleElevation();
+            return;
+        }
+
+        if (_playerTransform.position.y < _monsterTransform.position.y &&
+            Vector2.Distance(_playerTransform.position, _monsterTransform.position) < 2)
         {
             if (_hasCharged)
+            {
                 _movementState = States.attack;
+            }
             else
                 _movementState = States.charging;
         }
@@ -93,36 +112,56 @@ public class Bat : Breed
             _movementState = States.attack;
         }
     }
-
     virtual protected void CustomAttack()
     {
+        if (_elevating)
+        {
+            HandleElevation();
+            return;
+        }
+
         if (_hasAttacked)
         {
             if (_hitSomething)
             {
                 _rigidbody.velocity = new Vector2(0, 0.4f);
-
-                _elapsedHitTime += Time.deltaTime;
-                if (_elapsedHitTime >= _recoverTime)
-                {
-                    _elapsedHitTime = 0f;
-
-                    _hitSomething = false;
-                    _hasCharged = false;
-                    _hasAttacked = false;
-
-                    _movementState = States.patrol;
-                    _rigidbody.velocity = new Vector2(0, 0);
-                }
+                _elevating = true;
+                _hitSomething = false;
+                _hasAttacked = false;
             }
             return;
         }
 
         Vector2 direction = (_targetTransform.position - _monsterTransform.position).normalized;
-
         float speed = 1.25f;
         _rigidbody.velocity = direction * speed;
 
         _hasAttacked = true;
+    }
+    private void HandleElevation()
+    {
+        _waitSec += Time.deltaTime;
+         if (_waitSec >= 1f)
+        {
+            if (_hitSomething || ElevationDone())
+            {
+                _waitSec = 0;
+                _elapsedElevationTime = 0;
+
+                _movementState = States.patrol;
+
+                _hasAttacked = false;
+                _elevating = false;
+            }
+        }
+    }
+    private bool ElevationDone()
+    {
+        _elapsedElevationTime += Time.deltaTime;
+        if (_elapsedElevationTime > 0.5f)
+        {
+            return true;
+        }
+        return false;
     }
 }

@@ -117,7 +117,7 @@ GameObject:
   - component: {fileID: 8895314614185954279}
   m_Layer: 7
   m_Name: ChampBat
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
