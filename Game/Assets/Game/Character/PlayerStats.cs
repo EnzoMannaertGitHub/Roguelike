@@ -14,6 +14,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float _baseMovementSpeed = 13f;
     [SerializeField] private float _baseJumpForce = 100f;
     [SerializeField] private float _baseDamage = 27f;
+    [SerializeField] private float _baseProjectileSpeed = 5f;
 
     // Stat increases
     private float _healthIncrease = 0f;
@@ -27,6 +28,8 @@ public class PlayerStats : MonoBehaviour
     private float _jumpPercent = 1f;
     private float _damageIncrease = 0f;
     private float _damagePercent = 1f;
+    private float _projectileSpeedIncrease = 0f;
+    private float _projectileSpeedPercent = 1f;
 
     // Current stats
     private float _currentMaxHealth = 100f;
@@ -35,6 +38,7 @@ public class PlayerStats : MonoBehaviour
     private float _currentMovementSpeed = 13f;
     private float _currentJumpSpeed = 100f;
     private float _currentDamage = 27f;
+    private float _currentProjectileSpeed = 5f;
 
     private void Start()
     {
@@ -54,8 +58,9 @@ public class PlayerStats : MonoBehaviour
         UpdateHealthRegen();
         UpdateAttackSpeed();
         UpdateMovementSpeed();
-        UpdateJumpSpeed();
+        UpdateJumpForce();
         UpdateDamage();
+        UpdateProjectileSpeed();
     }
 
     public void IncreaseHealthAmount(float amount)
@@ -133,17 +138,17 @@ public class PlayerStats : MonoBehaviour
     {
         _jumpForce += amount;
 
-        UpdateJumpSpeed();
+        UpdateJumpForce();
     }
 
-    public void IncreaseJumpSpeedPercent(float percent)
+    public void IncreaseJumpForcePercent(float percent)
     {
         _jumpPercent += percent;
 
-        UpdateJumpSpeed();
+        UpdateJumpForce();
     }
 
-    public void UpdateJumpSpeed()
+    public void UpdateJumpForce()
     {
         _currentJumpSpeed = (_baseJumpForce + _jumpForce) * _jumpPercent;
 
@@ -169,6 +174,27 @@ public class PlayerStats : MonoBehaviour
         _currentDamage = (_baseDamage + _damageIncrease) * _damagePercent;
 
         _playerAttack.SetDamage(_currentDamage);
+    }
+
+    public void IncreaseProjectileSpeedAmount(float amount)
+    {
+        _projectileSpeedIncrease += amount;
+
+        UpdateProjectileSpeed();
+    }
+
+    public void IncreaseProjectileSpeedPercent(float percent)
+    {
+        _projectileSpeedPercent += percent;
+
+        UpdateProjectileSpeed();
+    }
+
+    public void UpdateProjectileSpeed()
+    {
+        _currentProjectileSpeed = (_baseProjectileSpeed + _projectileSpeedIncrease) * _projectileSpeedPercent;
+
+        _playerAttack.SetProjectileSpeed(_currentProjectileSpeed);
     }
 
     public float GetMaxHealth()
@@ -199,5 +225,10 @@ public class PlayerStats : MonoBehaviour
     public float GetDamage()
     {
         return _currentDamage;
+    }
+
+    public float GetProjectileSpeed()
+    {
+        return _currentProjectileSpeed;
     }
 }

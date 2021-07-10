@@ -10,6 +10,7 @@ public class PlayerAttack : MonoBehaviour
     private bool _CanShoot = true;
     private bool _shoot = false;
     private float _damage = 1f;
+    private float _projectileSpeed = 5f;
     private float _chargeBaseDuration = 0.9f;
     private float _chargeDuration = 0.9f;
     private Coroutine _chargeDelay = null;
@@ -37,6 +38,11 @@ public class PlayerAttack : MonoBehaviour
     public void SetDamage(float newDamage)
     {
         _damage = newDamage;
+    }
+
+    public void SetProjectileSpeed(float newSpeed)
+    {
+        _projectileSpeed = newSpeed;
     }
 
     public void SetAttackSpeed(float newSpeed)
@@ -70,7 +76,7 @@ public class PlayerAttack : MonoBehaviour
         if (projectileScript != null)
         {
             Vector2 direction = gameObject.GetComponent<PlayerMovement>().IsLeft ? new Vector2(-1, 0) : new Vector2(1, 0);
-            projectileScript.InitProjectile(direction);
+            projectileScript.InitProjectile(direction, _damage, _projectileSpeed);
             projectileScript.SetDamage(_damage);
         }
 

@@ -374,13 +374,13 @@ MonoBehaviour:
   _playerController: {fileID: 5917199648963861565}
   _playerHealth: {fileID: 5917199648963861556}
   _playerAttack: {fileID: 5917199648963861554}
-  _playerInventory: {fileID: 0}
   _baseMaxHealth: 100
   _basehealthRegen: 0
   _baseAttackSpeed: 1
   _baseMovementSpeed: 13
   _baseJumpForce: 100
   _baseDamage: 27
+  _baseProjectileSpeed: 5
 --- !u!1 &5917199648993302146
 GameObject:
   m_ObjectHideFlags: 0

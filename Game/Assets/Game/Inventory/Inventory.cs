@@ -24,6 +24,35 @@ public class Inventory : MonoBehaviour
 
     public List<Item> _items = new List<Item>();
 
+    public PlayerStats _playerStats { get; private set; } = null;
+
+    private void Start()
+    {
+        FindPlayerStats();
+    }
+
+    private void Update()
+    {
+        if (_playerStats == null)
+        {
+            FindPlayerStats();
+        }
+    }
+
+    private void FindPlayerStats()
+    {
+        GameObject player = GameObject.FindWithTag("Player");
+        if (player != null)
+        {
+            PlayerStats stats = player.GetComponent<PlayerStats>();
+
+            if (stats != null)
+            {
+                _playerStats = stats;
+            }
+        }
+    }
+
     public bool Additem(Item item)
     {
         if(_items.Count >= _space)

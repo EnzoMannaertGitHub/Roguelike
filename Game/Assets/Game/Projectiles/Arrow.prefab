@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 0
-  _speed: 5
+  _speed: 0
   _range: -1
   _timeToLive: 10
   _rigidBody: {fileID: 6791942424758780581}
