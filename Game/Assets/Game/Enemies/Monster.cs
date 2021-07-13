@@ -6,7 +6,7 @@ public class Monster : MonoBehaviour
     [SerializeField] private GameObject _gold;
     [SerializeField] private int _nrOfGoldDrops;
 
-    private Breed _breed;
+    public Breed _breed { get; private set; }
     private Transform _monsterTransform;
     private bool _initialised = false;
 
