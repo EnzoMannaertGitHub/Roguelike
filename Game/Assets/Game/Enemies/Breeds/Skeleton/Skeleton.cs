@@ -3,6 +3,10 @@ using UnityEngine;
 public class Skeleton : Breed
 {
     private Transform _targetTransform;
+    
+    [SerializeField] private Animator _animator;
+    private bool _attacking = false;
+
     public Skeleton(float damage) : base(damage)
     { }
 
@@ -13,7 +17,16 @@ public class Skeleton : Breed
 
     protected override void Attack()
     {
-        //needs to be implemented
+        _animator.SetTrigger("Attack");
+        _attacking = true;
+    }
+
+    public void StopAttack()
+    {
+        if (_attacking)
+        {
+            _attacking = false;
+        }
     }
 
     protected override void Move()
