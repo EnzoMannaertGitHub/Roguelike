@@ -11,8 +11,12 @@ public class EnemySpawner : MonoBehaviour
 
     List<GameObject> _enemies = new List<GameObject>();
     [SerializeField] private Transform _enemyTransform = null;
-    [SerializeField] private List<GameObject> _spawnPrefabs = new List<GameObject>();   // Prefabs of all enemies
-    [SerializeField] private List<GameObject> _breedObjects = new List<GameObject>();   // Breed GameObjects (MUST BE SAME ORDER)
+
+    [SerializeField] private List<GameObject> _spawnPrefabs = new List<GameObject>();          // Prefabs of all non-champ enemies
+    [SerializeField] private List<GameObject> _spawnPrefabsChamps = new List<GameObject>();   // Prefabs of all champ enemies
+
+    [SerializeField] private List<GameObject> _breedObjects = new List<GameObject>();          // Breed GameObjects (MUST BE SAME ORDER)
+    [SerializeField] private List<GameObject> _breedObjectsChamps = new List<GameObject>();   // Breed GameObjects of champs (MUST BE SAME ORDER)
 
     private Transform _playerTransform = null;
     private PlayerMovement _playerMovement = null;
@@ -78,7 +82,7 @@ public class EnemySpawner : MonoBehaviour
         {
             FindPlayer();
         }
-
+        
         for (int index = 0; index < _spawnPrefabs.Count; index++)
         {
             if (_spawnPositions.Count > index)
