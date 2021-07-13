@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Shop : MonoBehaviour
 {
     [SerializeField] List<Transform> _spawnLocations;
@@ -10,7 +9,8 @@ public class Shop : MonoBehaviour
     {
         foreach(Transform t in _spawnLocations)
         {
-            Instantiate(_itemStand, t.position, t.rotation);
+            Vector3 pos = new Vector3(t.position.x, t.position.y, 0);
+            Instantiate(_itemStand, pos, t.rotation);
         }
     }
 }
