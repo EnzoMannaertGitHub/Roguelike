@@ -54,8 +54,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("arrow hit");
-        if (other.CompareTag("Projectile"))
+        if (other.gameObject.layer == 11 && other.CompareTag("Player"))
         {
             Projectile proj = other.GetComponent<Projectile>();
 

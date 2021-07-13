@@ -1,23 +1,7 @@
-using UnityEngine;
-
-public class BatProjectile : MonoBehaviour
+public class BatProjectile : Projectile
 {
-    [SerializeField] private float _speed = 2.5f;
-    public void shoot(Vector2 direction)
+    protected override void Shoot()
     {
-        gameObject.GetComponent<Rigidbody2D>().velocity = direction * _speed;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "Player")
-        {
-            other.GetComponent<Health>().GetHit(5, gameObject.GetComponent<Rigidbody2D>().velocity);
-            Destroy(gameObject);
-        }
-        if (other.gameObject.layer != 7 && other.gameObject.layer != 11)
-        {
-            Destroy(gameObject);
-        }
+        _rigidBody.velocity = _direction * _speed;
     }
 }

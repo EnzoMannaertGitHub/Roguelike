@@ -81,4 +81,22 @@ public class Health : MonoBehaviour
         _isDead = true;
         Destroy(gameObject);
     }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 11 && other.CompareTag("Enemy"))
+        {
+            Projectile proj = other.GetComponent<Projectile>();
+
+            if (proj != null)
+            {
+                Vector2 projVelocity = proj.GetVelocity();
+                float knockbackHeight = 1f;
+
+                GetHit(proj.GetDamage(), new Vector2(projVelocity.x, knockbackHeight));
+
+                proj.DestroyProjectile();
+            }
+        }
+    }
 }

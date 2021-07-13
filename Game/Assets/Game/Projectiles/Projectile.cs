@@ -126,17 +126,13 @@ public abstract class Projectile : MonoBehaviour
     {
         _lifeSpan = time;
 
-        if (_destroyCoroutine == null)
-        {
-            _destroyCoroutine = StartCoroutine("DestroyDelayed");
-        }
-        else
+        if (_destroyCoroutine != null)
         {
             StopCoroutine(_destroyCoroutine);
             _destroyCoroutine = null;
-
-            _destroyCoroutine = StartCoroutine("DestroyDelayed");
         }
+
+        _destroyCoroutine = StartCoroutine("DestroyDelayed");
     }
 
     private IEnumerator DestroyDelayed()

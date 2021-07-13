@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3086244120482289384}
   m_Layer: 11
   m_Name: BatProjectile
-  m_TagString: Projectile
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,7 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eae80c7f27414bb43a075333036ed5d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 20
   _speed: 4
+  _range: -1
+  _timeToLive: 10
+  _rigidBody: {fileID: 4087868133176201020}
 --- !u!58 &3086244120482289384
 CircleCollider2D:
   m_ObjectHideFlags: 0

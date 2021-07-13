@@ -5,12 +5,9 @@ public class ChampBat : Bat
     protected override void CustomAttack()
     {
         Vector2 direction = (_targetTransform.position - _monsterTransform.position).normalized;
-        float speed = 1.25f;
 
         if (_hasAttacked)
         {
-                _rigidbody.velocity = direction * speed / 4;
-
                 _elapsedHitTime += Time.deltaTime;
                 if (_elapsedHitTime >= _recoverTime)
                 {
@@ -25,8 +22,9 @@ public class ChampBat : Bat
                 }
             return;
         }
+
         GameObject proj = Instantiate(_projectile, _monsterTransform.position, _monsterTransform.rotation);
-        proj.GetComponent<BatProjectile>().shoot(direction);
+        proj.GetComponent<Projectile>().InitProjectile(direction);
         _hasAttacked = true;
     }
 }
