@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
 
     public static LevelManager Instance { get; private set; }
     private int _levelNumber = 1;
+    public int LevelNumber { get { return _levelNumber; } set { _levelNumber = value; } }
     private GameObject _currentLevel;
     // Start is called before the first frame update
     private void Start()

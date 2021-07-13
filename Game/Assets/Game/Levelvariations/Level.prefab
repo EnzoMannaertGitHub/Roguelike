@@ -26911,7 +26911,7 @@ PrefabInstance:
     - target: {fileID: 7950643369438657798, guid: 36545b1abae83004fbbea26938b0632c, type: 3}
       propertyPath: _breedObjectsChamps.Array.data[0]
       value: 
-      objectReference: {fileID: 8895314614185954277, guid: 14221e11560aefa47a062a5d125a8ba7, type: 3}
+      objectReference: {fileID: 3000474215653655275}
     - target: {fileID: 7950643369438657798, guid: 36545b1abae83004fbbea26938b0632c, type: 3}
       propertyPath: _spawnPrefabsChamps.Array.data[0]
       value: 
@@ -26921,6 +26921,11 @@ PrefabInstance:
 --- !u!4 &3000474215667055398 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7950643369438657797, guid: 36545b1abae83004fbbea26938b0632c, type: 3}
+  m_PrefabInstance: {fileID: 5185208204802983459}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3000474215653655275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7950643369392751816, guid: 36545b1abae83004fbbea26938b0632c, type: 3}
   m_PrefabInstance: {fileID: 5185208204802983459}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &3000474215228424917 stripped

@@ -21,6 +21,7 @@ public class EnemySpawner : MonoBehaviour
     private Transform _playerTransform = null;
     private PlayerMovement _playerMovement = null;
     private bool _playerFound = false;
+    private int _numberOfEnemies = 3;
 
     private void Awake()
     {
@@ -49,12 +50,16 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy(int id, Vector3 location)
+    private void SpawnEnemy(int id, Vector3 location, bool isChamp)
     {
         if (!_playerFound)
             return;
 
-        GameObject enemy = Instantiate(_spawnPrefabs[id], location, Quaternion.identity);
+        GameObject enemy;
+        if (isChamp)
+            enemy = Instantiate(_spawnPrefabsChamps[id], location, Quaternion.identity);
+        else
+            enemy = Instantiate(_spawnPrefabs[id], location, Quaternion.identity);
 
         if (_enemyTransform != null)
         {
@@ -64,7 +69,10 @@ public class EnemySpawner : MonoBehaviour
         Monster monsterScript = enemy.GetComponent<Monster>();
         if (monsterScript != null)
         {
-            monsterScript.InitMonster(_breedObjects[id].GetComponent<Breed>(), _playerTransform);
+            if (isChamp)
+                monsterScript.InitMonster(_breedObjectsChamps[id].GetComponent<Breed>(), _playerTransform);
+            else
+                monsterScript.InitMonster(_breedObjects[id].GetComponent<Breed>(), _playerTransform);
         }
 
         EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
@@ -83,16 +91,24 @@ public class EnemySpawner : MonoBehaviour
             FindPlayer();
         }
         
-        for (int index = 0; index < _spawnPrefabs.Count; index++)
+        for (int index = 0; index < _numberOfEnemies; index++)
         {
-            if (_spawnPositions.Count > index)
+            bool isChamp = false;
+            int randomIndex = Random.Range(0, _spawnPositions.Count);
+            int randomEnemy = Random.Range(0, _spawnPrefabs.Count);
+
+            if (LevelManager.Instance.LevelNumber >= 5)
             {
-                SpawnEnemy(index, _spawnPositions[index].position);
+                int spawnChamp = Random.Range(0, 1);
+                if (spawnChamp == 0)
+                {
+                    Debug.Log("Spawning champ");
+                    isChamp = true;
+                    randomEnemy = Random.Range(0, _spawnPrefabsChamps.Count);
+                }
             }
-            else
-            {
-                SpawnEnemy(index, Vector3.zero);
-            }
+
+            SpawnEnemy(randomEnemy, _spawnPositions[randomIndex].position, isChamp);
         }
     }
 
