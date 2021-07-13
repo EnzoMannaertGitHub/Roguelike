@@ -3,30 +3,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    //-------------------
-    // TO BE REPLACED:
-    [SerializeField] private List<Vector3> _spawnPositions = new List<Vector3>();
+    [SerializeField] private List<Transform> _spawnPositions;
     private void Start()
     {
-        if (!_playerFound)
-        {
-            FindPlayer();
-        }
-
-        for (int index = 0; index < _spawnPrefabs.Count; index++)
-        {
-            if (_spawnPositions.Count > index)
-            {
-                SpawnEnemy(index, _spawnPositions[index]);
-            }
-            else
-            {
-                SpawnEnemy(index, Vector3.zero);
-            }
-        }
+        SpawnEnemiesOfCurrentLevel();
     }
-    //-------------------
 
+    List<GameObject> _enemies = new List<GameObject>();
     [SerializeField] private Transform _enemyTransform = null;
     [SerializeField] private List<GameObject> _spawnPrefabs = new List<GameObject>();   // Prefabs of all enemies
     [SerializeField] private List<GameObject> _breedObjects = new List<GameObject>();   // Breed GameObjects (MUST BE SAME ORDER)
@@ -85,5 +68,36 @@ public class EnemySpawner : MonoBehaviour
         {
             enemyHealth.SetPlayerMovement(_playerMovement);
         }
+
+        _enemies.Add(enemy);
+    }
+
+    private void SpawnEnemiesOfCurrentLevel()
+    {
+        if (!_playerFound)
+        {
+            FindPlayer();
+        }
+
+        for (int index = 0; index < _spawnPrefabs.Count; index++)
+        {
+            if (_spawnPositions.Count > index)
+            {
+                SpawnEnemy(index, _spawnPositions[index].position);
+            }
+            else
+            {
+                SpawnEnemy(index, Vector3.zero);
+            }
+        }
+    }
+
+    public void ClearEnemies()
+    {
+        foreach(GameObject go in _enemies)
+        {
+            Destroy(go);
+        }
+        _enemies.Clear();
     }
 }
