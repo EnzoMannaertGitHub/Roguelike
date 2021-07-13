@@ -56,7 +56,7 @@ public class Bat : Breed
 
     public override void OnPlayerHit(GameObject g)
     {
-        if (_elevating)
+        if (_elevating || _playerTransform == null)
             return;
 
         if (g.CompareTag("Player"))
@@ -89,6 +89,13 @@ public class Bat : Breed
             return;
         }
 
+        if (_playerTransform == null)
+        {
+            _rigidbody.velocity = new Vector2(0, 0);
+            _movementState = States.patrol;
+            return;
+        }
+
         if (_playerTransform.position.y < _monsterTransform.position.y &&
             Vector2.Distance(_playerTransform.position, _monsterTransform.position) < 2)
         {
@@ -105,6 +112,7 @@ public class Bat : Breed
             _movementState = States.patrol;
         }
     }
+
     private void Charge()
     {
         _elapsedFocusTime += Time.deltaTime;
@@ -115,6 +123,7 @@ public class Bat : Breed
             _movementState = States.attack;
         }
     }
+
     virtual protected void CustomAttack()
     {
         if (_elevating)
@@ -135,12 +144,16 @@ public class Bat : Breed
             return;
         }
 
+        if (_targetTransform == null)
+            return;
+
         Vector2 direction = (_targetTransform.position - _monsterTransform.position).normalized;
         float speed = 1.25f;
         _rigidbody.velocity = direction * speed;
 
         _hasAttacked = true;
     }
+
     private void HandleElevation()
     {
         _waitSec += Time.deltaTime;
