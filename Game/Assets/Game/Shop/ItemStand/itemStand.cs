@@ -17,17 +17,8 @@ public class itemStand : MonoBehaviour
     private int _Stage = 1;
     private void Start()
     {
-        _cost = Random.Range(0, 5 * _Stage);
-
         _playerTransform = FindObjectOfType<PlayerMovement>().gameObject.transform;
-
-        if (_cost == 0)
-            _costText.text = "FREE";
-        else
-            _costText.text = $"{_cost} $";
-
-        int index = Random.Range(0, _items.Count);
-        _item = Instantiate(_items[index], _itemLocation.position, _itemLocation.rotation);
+        Init();
     }
     private void Update()
     {
@@ -67,5 +58,26 @@ public class itemStand : MonoBehaviour
                _isActive = false;
             }
         }
+    }
+
+    public void Reload()
+    {
+        _isActive = true;
+        Destroy(_item);
+        Init();
+    }
+
+    private void Init()
+    {
+        _Stage = LevelManager.Instance.LevelNumber;
+        _cost = Random.Range(0, 5 * _Stage);
+
+        if (_cost == 0)
+            _costText.text = "FREE";
+        else
+            _costText.text = $"{_cost} $";
+
+        int index = Random.Range(0, _items.Count);
+        _item = Instantiate(_items[index], _itemLocation.position, _itemLocation.rotation);
     }
 }

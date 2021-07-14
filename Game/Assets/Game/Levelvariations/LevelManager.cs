@@ -25,5 +25,7 @@ public class LevelManager : MonoBehaviour
         int random = Random.Range(0, _levelVariations.Count);
         _currentLevel = Instantiate(_levelVariations[random], _levelVariations[random].transform.position, _levelVariations[random].transform.rotation);
         _levelNumber++;
+
+        FindObjectOfType<Shop>().ReloadShop();
     }
 }

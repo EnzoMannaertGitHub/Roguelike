@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
     private Transform _playerTransform = null;
     private PlayerMovement _playerMovement = null;
     private bool _playerFound = false;
-    private int _numberOfEnemies = 3;
+    private int _numberOfEnemiesPerSpawn = 1;
 
     private void Awake()
     {
@@ -90,25 +90,27 @@ public class EnemySpawner : MonoBehaviour
         {
             FindPlayer();
         }
-        
-        for (int index = 0; index < _numberOfEnemies; index++)
+
+        for (int nrOfEnemies = 0; nrOfEnemies < _numberOfEnemiesPerSpawn; nrOfEnemies++)
         {
-            bool isChamp = false;
-            int randomIndex = Random.Range(0, _spawnPositions.Count);
-            int randomEnemy = Random.Range(0, _spawnPrefabs.Count);
-
-            if (LevelManager.Instance.LevelNumber >= 5)
+            for (int index = 0; index < _spawnPositions.Count; index++)
             {
-                int spawnChamp = Random.Range(0, 1);
-                if (spawnChamp == 0)
-                {
-                    Debug.Log("Spawning champ");
-                    isChamp = true;
-                    randomEnemy = Random.Range(0, _spawnPrefabsChamps.Count);
-                }
-            }
+                bool isChamp = false;
+                int randomEnemy = Random.Range(0, _spawnPrefabs.Count);
 
-            SpawnEnemy(randomEnemy, _spawnPositions[randomIndex].position, isChamp);
+                if (LevelManager.Instance.LevelNumber >= 5)
+                {
+                    int spawnChamp = Random.Range(0, 1);
+                    if (spawnChamp == 0)
+                    {
+                        Debug.Log("Spawning champ");
+                        isChamp = true;
+                        randomEnemy = Random.Range(0, _spawnPrefabsChamps.Count);
+                    }
+                }
+
+                SpawnEnemy(randomEnemy, _spawnPositions[index].position, isChamp);
+            }
         }
     }
 
