@@ -19,7 +19,7 @@ abstract public class Breed : MonoBehaviour
     #endregion
 
     #region variables
-    protected States _movementState = States.patrol;
+    public States _movementState { get; protected set; } = States.patrol;
 
     protected bool _istargetSet = false;
 
@@ -33,7 +33,7 @@ abstract public class Breed : MonoBehaviour
     public Transform MonsterTransform { set { _monsterTransform = value; } }
 
     protected Rigidbody2D _rigidbody;
-    public Rigidbody2D Rigidbody { set { _rigidbody = value; } }
+    public Rigidbody2D Rigidbody { get { return _rigidbody; } set { _rigidbody = value; } }
 
     #endregion
 

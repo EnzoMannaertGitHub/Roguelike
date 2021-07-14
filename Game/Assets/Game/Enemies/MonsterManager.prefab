@@ -43,6 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5afe690d56a2924428cf0246620ed961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _horizontalAggroRange: 2
+  _verticalAggroRange: 0.5
+  _attackRange: 0.3
+  _baseSpeed: 3
+  _chargeMultiplier: 2
 --- !u!1 &7950643368841403408
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,9 +231,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPositions:
-  - {x: 2, y: -1, z: 0}
-  - {x: 0.353, y: 0.46, z: 0}
-  - {x: 0.75, y: -1.48, z: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   _enemyTransform: {fileID: 7950643369930416608}
   _spawnPrefabs:
   - {fileID: 7717359055906247974, guid: 1e150b981c7df144fa4c6bdfd59e67c6, type: 3}

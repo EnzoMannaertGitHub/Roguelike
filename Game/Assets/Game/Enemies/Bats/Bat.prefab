@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 7717359055906247969}
   - component: {fileID: 7717359055906247968}
   - component: {fileID: 7717359055906247970}
+  - component: {fileID: 8510345342908353197}
   m_Layer: 7
   m_Name: Bat
   m_TagString: Enemy
@@ -152,6 +153,7 @@ MonoBehaviour:
   _damage: 5
   _gold: {fileID: 6268903044061418940, guid: fdde6ede6aa50c940932fefcf7758257, type: 3}
   _nrOfGoldDrops: 3
+  _breed: {fileID: 8510345342908353197}
 --- !u!50 &7717359055906247969
 Rigidbody2D:
   serializedVersion: 4
@@ -216,3 +218,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &8510345342908353197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7717359055906247974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 384c11d0dfe21164980a6e8d100d9542, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _focusTime: 1
+  _recoverTime: 1

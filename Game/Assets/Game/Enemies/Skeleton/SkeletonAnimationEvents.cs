@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SkeletonAnimationEvents : MonoBehaviour
 {
-    [SerializeField] private Monster _monster;
+    [SerializeField] private Skeleton _skeletonBreed;
 
     public void AnimationDeath()
     {
@@ -11,7 +11,6 @@ public class SkeletonAnimationEvents : MonoBehaviour
 
     public void EndAttack()
     {
-        Skeleton skeleton = (Skeleton)(_monster._breed);
-        skeleton.StopAttack();
+        _skeletonBreed.StopAttack();
     }
 }

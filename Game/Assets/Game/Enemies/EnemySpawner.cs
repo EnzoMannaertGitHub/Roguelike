@@ -15,9 +15,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<GameObject> _spawnPrefabs = new List<GameObject>();          // Prefabs of all non-champ enemies
     [SerializeField] private List<GameObject> _spawnPrefabsChamps = new List<GameObject>();   // Prefabs of all champ enemies
 
-    [SerializeField] private List<GameObject> _breedObjects = new List<GameObject>();          // Breed GameObjects (MUST BE SAME ORDER)
-    [SerializeField] private List<GameObject> _breedObjectsChamps = new List<GameObject>();   // Breed GameObjects of champs (MUST BE SAME ORDER)
-
     private Transform _playerTransform = null;
     private PlayerMovement _playerMovement = null;
     private bool _playerFound = false;
@@ -69,10 +66,7 @@ public class EnemySpawner : MonoBehaviour
         Monster monsterScript = enemy.GetComponent<Monster>();
         if (monsterScript != null)
         {
-            if (isChamp)
-                monsterScript.InitMonster(_breedObjectsChamps[id].GetComponent<Breed>(), _playerTransform);
-            else
-                monsterScript.InitMonster(_breedObjects[id].GetComponent<Breed>(), _playerTransform);
+            monsterScript.InitMonster(_playerTransform);
         }
 
         EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();

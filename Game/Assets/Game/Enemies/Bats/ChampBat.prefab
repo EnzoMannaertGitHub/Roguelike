@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 8895314614185954273}
   - component: {fileID: 8895314614185954272}
   - component: {fileID: 8895314614185954279}
+  - component: {fileID: -1872014851860431049}
   m_Layer: 7
   m_Name: ChampBat
   m_TagString: Enemy
@@ -152,6 +153,7 @@ MonoBehaviour:
   _damage: 5
   _gold: {fileID: 6268903044061418940, guid: fdde6ede6aa50c940932fefcf7758257, type: 3}
   _nrOfGoldDrops: 5
+  _breed: {fileID: -1872014851860431049}
 --- !u!50 &8895314614185954273
 Rigidbody2D:
   serializedVersion: 4
@@ -216,3 +218,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &-1872014851860431049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8895314614185954277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3931465204361df45ab78c5554caf8d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _focusTime: 1
+  _recoverTime: 1
+  _projectile: {fileID: 4191573963499883353, guid: fb4ac7d0694dc6644bd0444fa50d7b32, type: 3}
