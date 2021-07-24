@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
         // Move check
         IsMoving = (inputLength > 0);
 
-        if (_controller.m_Grounded)
+        if (_controller._grounded)
         {
             _canDoubleJump = false;
         }

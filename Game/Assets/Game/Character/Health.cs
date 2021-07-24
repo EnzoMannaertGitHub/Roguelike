@@ -9,10 +9,17 @@ public class Health : MonoBehaviour
     [SerializeField] private SpriteRenderer _playerSprite;
     private bool _isImmune = false;
     private float _imuneTime = 0f;
-    private float _maxImuneTime = 2f;
+    private float _maxImuneTime = .5f;
     private float _drawTime = 0f;
     private bool _isDead = false;
     private bool _godMode = false;
+    private CharacterController2D _controller;
+    private void Start()
+    {
+        _controller = GetComponent<CharacterController2D>();
+        if (_controller == null)
+            Debug.LogError("Health charactercontroller2D not found!");
+    }
 
     public void SetMaxHealth(float newHealth)
     {
@@ -43,6 +50,8 @@ public class Health : MonoBehaviour
 
             if(_imuneTime >= _maxImuneTime)
             {
+                _controller.MovementEnabled = true;
+
                 _isImmune = false;
                 _playerSprite.enabled = true;
                 _drawTime = 0;
@@ -60,6 +69,7 @@ public class Health : MonoBehaviour
             TakeDamage(damage);
             _movement.HandleKnockBack(knockbackDir);
             _isImmune = true;
+            _controller.MovementEnabled = false;
         }
     }
 
