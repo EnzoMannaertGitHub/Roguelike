@@ -34,6 +34,13 @@ public class Bat : Breed
                 transform.Translate(new Vector3((Mathf.Sin(Time.realtimeSinceStartup) * 0.6f) * Time.deltaTime,
                                                        0,
                                                        0));
+
+                _hasCharged = false;
+                _istargetSet = false;
+                _hasAttacked = false;
+                _elevating = false;
+                _elapsedFocusTime = 0;
+                _elapsedElevationTime = 0;
                 break;
             case States.attack:
                 if (!_istargetSet)
@@ -96,7 +103,7 @@ public class Bat : Breed
             return;
         }
 
-        if (_playerTransform.position.y < transform.position.y &&
+        if (_playerTransform.position.y < transform.position.y + 5 &&
             Vector2.Distance(_playerTransform.position, transform.position) < 2)
         {
             if (_hasCharged)
@@ -156,6 +163,9 @@ public class Bat : Breed
 
     private void HandleElevation()
     {
+        if (_hitSomething)
+            Rigidbody.AddForce(new Vector2(0, -25));
+
         _waitSec += Time.deltaTime;
          if (_waitSec >= 1f)
         {

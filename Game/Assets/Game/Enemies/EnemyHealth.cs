@@ -91,8 +91,8 @@ public class EnemyHealth : MonoBehaviour
         {
             KillEnemy();
         }
-
-        _rigidbody.AddForce(knockbackDir * 40);
+        _rigidbody.velocity = new Vector2(0, 0);
+        _rigidbody.AddForce(knockbackDir * 2);
     }
 
     public void KillEnemy()
