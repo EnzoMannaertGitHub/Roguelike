@@ -10,7 +10,7 @@ public class portal : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Player") && collision.gameObject.layer != 0)
+        if (!collision.CompareTag("Player") || collision.gameObject.layer != 0)
             return;
 
         _spawn = new Vector3(14, 8, 0);
