@@ -31,7 +31,7 @@ public class Bat : Breed
         {
             case States.patrol:
                 _istargetSet = false;
-                _monsterTransform.Translate(new Vector3((Mathf.Sin(Time.realtimeSinceStartup) * 0.6f) * Time.deltaTime,
+                transform.Translate(new Vector3((Mathf.Sin(Time.realtimeSinceStartup) * 0.6f) * Time.deltaTime,
                                                        0,
                                                        0));
                 break;
@@ -62,12 +62,12 @@ public class Bat : Breed
         if (g.CompareTag("Player"))
         {         
             Vector2 dir = new Vector2();
-            if (_monsterTransform.position.x <= _playerTransform.position.x)
+            if (transform.position.x <= _playerTransform.position.x)
                 dir.x = 1;
             else
                 dir.x = -1;
 
-            if (_monsterTransform.position.y <= _playerTransform.position.y)
+            if (transform.position.y <= _playerTransform.position.y)
                 dir.y = 1;
             else
                 dir.y = -1;
@@ -96,8 +96,8 @@ public class Bat : Breed
             return;
         }
 
-        if (_playerTransform.position.y < _monsterTransform.position.y &&
-            Vector2.Distance(_playerTransform.position, _monsterTransform.position) < 2)
+        if (_playerTransform.position.y < transform.position.y &&
+            Vector2.Distance(_playerTransform.position, transform.position) < 2)
         {
             if (_hasCharged)
             {
@@ -147,7 +147,7 @@ public class Bat : Breed
         if (_targetTransform == null)
             return;
 
-        Vector2 direction = (_targetTransform.position - _monsterTransform.position).normalized;
+        Vector2 direction = (_targetTransform.position - transform.position).normalized;
         float speed = 1.25f;
         _rigidbody.velocity = direction * speed;
 
