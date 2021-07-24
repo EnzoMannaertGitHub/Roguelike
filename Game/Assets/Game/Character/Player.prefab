@@ -289,15 +289,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a2fb2105140db4788f23dc5389af8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AirControl: 1
-  m_WhatIsGround:
+  _airControl: 1
+  _whatIsGround:
     serializedVersion: 2
     m_Bits: 8
-  m_GroundCheck: {fileID: 5917199649348857046}
-  m_CeilingCheck: {fileID: 5917199647840253774}
-  m_CrouchDisableCollider: {fileID: 0}
-  m_Animator: {fileID: 5917199649054701506}
-  m_Grounded: 1
+  _groundCheck: {fileID: 5917199649348857046}
+  _ceilingCheck: {fileID: 5917199647840253774}
+  _crouchDisableCollider: {fileID: 0}
+  _animator: {fileID: 5917199649054701506}
+  _grounded: 1
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -359,6 +359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e94163911a5baa6459455630776d7c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _cashText: {fileID: 0}
 --- !u!114 &1238721849222737897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -381,6 +382,7 @@ MonoBehaviour:
   _baseJumpForce: 100
   _baseDamage: 27
   _baseProjectileSpeed: 5
+  _godMode: 0
 --- !u!1 &5917199648993302146
 GameObject:
   m_ObjectHideFlags: 0
