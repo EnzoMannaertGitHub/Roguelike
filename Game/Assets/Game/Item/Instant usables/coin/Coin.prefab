@@ -5006,6 +5006,7 @@ MonoBehaviour:
   _layermask:
     serializedVersion: 2
     m_Bits: 8
+  _pickupAnimation: {fileID: 2455717036424439776, guid: a50091c022e6dec44b131b673918bf7b, type: 3}
 --- !u!61 &2083706276503103067
 BoxCollider2D:
   m_ObjectHideFlags: 0

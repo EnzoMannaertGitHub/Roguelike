@@ -14,7 +14,7 @@ public class Wallet : MonoBehaviour
         set 
         { 
             _total = value;
-            _cashText.text = value.ToString() + " $";
+            _cashText.text = value.ToString();
         } 
     }
 }
