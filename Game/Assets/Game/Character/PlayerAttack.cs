@@ -5,6 +5,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject _bulletPrefab;
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private Animator _animator;
+    [SerializeField] private Animator _armAnimator;
     
     private bool _CanShoot = true;
     private bool _shoot = false;
@@ -58,6 +59,7 @@ public class PlayerAttack : MonoBehaviour
 
         _CanShoot = false;
         _animator.SetTrigger("Attack");
+        _armAnimator.SetTrigger("Attack");
         _playerMovement.SetCanMove(false);
     }
 
