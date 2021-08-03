@@ -106,8 +106,15 @@ public class PlayerAttack : MonoBehaviour
         Projectile projectileScript = newArrow.GetComponent<Projectile>();
         if (projectileScript != null)
         {
-            Vector2 direction = gameObject.GetComponent<PlayerMovement>().IsLeft ? new Vector2(-1, 0) : new Vector2(1, 0);
-            projectileScript.InitProjectile(direction, _damage, _projectileSpeed);
+            Ray ray = _mainCam.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hitinfo = new RaycastHit();
+            Physics.Raycast(ray, out hitinfo, 1000, LayerMask.GetMask("Shoot"));
+
+            Vector3 point = hitinfo.point;
+
+            Vector3 aimDirection = (point - transform.position).normalized;
+
+            projectileScript.InitProjectile(aimDirection, _damage, _projectileSpeed);
             projectileScript.SetDamage(_damage);
         }
 
