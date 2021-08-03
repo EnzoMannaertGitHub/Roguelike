@@ -86,22 +86,11 @@ public class PlayerAttack : MonoBehaviour
         Vector3 aimDirection = (point - transform.position).normalized;
         float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
 
-        if (angle > 90)
-        {
-            if (_controller.FacingRight)
-                _armPivot.eulerAngles = new Vector3(0, 180, 0);
-            else
-                _armPivot.eulerAngles = new Vector3(0, 0, 0);
-        }
+        if (_controller.FacingRight)
+            _armPivot.eulerAngles = new Vector3(0, 0, angle);
         else
-        {
-            if (_controller.FacingRight)
-                _armPivot.eulerAngles = new Vector3(0, 0, 0);
-            else
-                _armPivot.eulerAngles = new Vector3(0, 180, 0);
-        }
+            _armPivot.eulerAngles = new Vector3(0, 180, -angle);
 
-        Debug.Log(angle);
     }
 
     public void ShootArrow()
