@@ -6,7 +6,9 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private PlayerMovement _playerMovement;
     [SerializeField] private Animator _animator;
     [SerializeField] private Animator _armAnimator;
-    
+    [SerializeField] private Transform _armPivot;
+    [SerializeField] private CharacterController2D _controller;
+
     private bool _CanShoot = true;
     private bool _shoot = false;
     private float _damage = 1f;
@@ -14,6 +16,14 @@ public class PlayerAttack : MonoBehaviour
     private float _chargeBaseDuration = 0.9f;
     private float _chargeDuration = 0.9f;
     private Coroutine _chargeDelay = null;
+
+    private Camera _mainCam;
+    private void Awake()
+    {
+        _mainCam = Camera.main;
+
+        if (_mainCam == null) Debug.LogError("BulletBehavior.cs: mainCam is null!");
+    }
 
     void Update()
     {
@@ -61,6 +71,37 @@ public class PlayerAttack : MonoBehaviour
         _animator.SetTrigger("Attack");
         _armAnimator.SetTrigger("Attack");
         _playerMovement.SetCanMove(false);
+
+        HandleArmRotation();
+    }
+
+    private void HandleArmRotation()
+    {
+        Ray ray = _mainCam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitinfo = new RaycastHit();
+        Physics.Raycast(ray, out hitinfo, 1000, LayerMask.GetMask("Shoot"));
+
+        Vector3 point = hitinfo.point;
+
+        Vector3 aimDirection = (point - transform.position).normalized;
+        float angle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg;
+
+        if (angle > 90)
+        {
+            if (_controller.FacingRight)
+                _armPivot.eulerAngles = new Vector3(0, 180, 0);
+            else
+                _armPivot.eulerAngles = new Vector3(0, 0, 0);
+        }
+        else
+        {
+            if (_controller.FacingRight)
+                _armPivot.eulerAngles = new Vector3(0, 0, 0);
+            else
+                _armPivot.eulerAngles = new Vector3(0, 180, 0);
+        }
+
+        Debug.Log(angle);
     }
 
     public void ShootArrow()

@@ -17,6 +17,7 @@ public class CharacterController2D : MonoBehaviour
     public bool _grounded = true;                                              // Whether or not the player is grounded.
     private Rigidbody2D _rigidbody2D;
     private bool _facingRight = true;                                          // For determining which way the player is currently facing.
+    public bool FacingRight { get { return _facingRight; } set { _facingRight = value; } }                                   
 
     private bool _isDoubleJumping = false;
     private bool _isJumping;
