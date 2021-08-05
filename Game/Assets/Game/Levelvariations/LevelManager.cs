@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> _levelVariations;
+    [SerializeField] private List<GameObject> _levelVariations = new List<GameObject>();
+    [SerializeField] private GameObject _platform;
 
     public static LevelManager Instance { get; private set; }
     private int _levelNumber = 1;
