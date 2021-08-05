@@ -18,7 +18,7 @@ public class portal : MonoBehaviour
         if (_returnPortal)
         {
             _spawn = new Vector3(3, 1, 0);
-            FindObjectOfType<EnemySpawner>().ClearEnemies();
+            //FindObjectOfType<EnemySpawner>().ClearEnemies();
             LevelManager.Instance.LoadNewLevel();
         }
         _player.transform.position = _spawn;
