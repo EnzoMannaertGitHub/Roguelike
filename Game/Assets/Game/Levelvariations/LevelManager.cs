@@ -23,7 +23,7 @@ public class LevelManager : MonoBehaviour
         {
             CreateFloor(xPos, yPos, floorNr);
 
-            yPos -= Random.Range(4, 5);
+            yPos -= Random.Range(3.5f, 4.0f);
             xPos += Random.Range(2, 4);
 
             _nrOfPlatforms--;
