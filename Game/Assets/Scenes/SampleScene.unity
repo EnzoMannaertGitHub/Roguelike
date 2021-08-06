@@ -2163,8 +2163,8 @@ MonoBehaviour:
   _levelVariations:
   - {fileID: 3000474215828626343, guid: 4bf51833fc94b8f428df730e5ce94b48, type: 3}
   - {fileID: 3000474215828626343, guid: af3157480fd0a464db06bee33735c4f3, type: 3}
-  - {fileID: 3000474215828626343, guid: 70b3ea0e3bc5aef43945d8c4312eb615, type: 3}
-  _platform: {fileID: 8926594263597296253, guid: 591982afa4fc6034fb915b598026c750, type: 3}
+  _platform: {fileID: 8926594263597296253, guid: 069bba42c2567cd4f992f91d3c9a80c3, type: 3}
+  _supportPlatform: {fileID: 8926594263597296253, guid: 591982afa4fc6034fb915b598026c750, type: 3}
   _portal: {fileID: 1268473702}
 --- !u!4 &2056640114
 Transform:

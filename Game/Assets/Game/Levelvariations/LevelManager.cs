@@ -5,6 +5,7 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _levelVariations = new List<GameObject>();
     [SerializeField] private GameObject _platform;
+    [SerializeField] private GameObject _supportPlatform;
     [SerializeField] private GameObject _portal;
 
     private List<GameObject> _levelVariationsInLevel = new List<GameObject>();
@@ -33,6 +34,7 @@ public class LevelManager : MonoBehaviour
 
         _levelNumber++;
         _nrOfPlatforms = 6 + _levelNumber;
+        _portalPlaced = false;
 
         CreateLevel();
 
@@ -48,12 +50,12 @@ public class LevelManager : MonoBehaviour
         {
             CreateFloor(xPos, yPos, floorNr);
 
-            yPos -= Random.Range(2f, 2.5f);
+            yPos -= Random.Range(2.6f, 2.75f);
             xPos += Random.Range(2, 3);
 
             _nrOfPlatforms--;
             floorNr++;
-        } while (_nrOfPlatforms >= 3 + _levelNumber);
+        } while (_nrOfPlatforms >= 3);
     }
 
     private void CreateFloor(float xPos, float yPos, int floorNr)
@@ -72,9 +74,9 @@ public class LevelManager : MonoBehaviour
 
             HandleIslandPlacement(ref sizeOfIsland, ref sizeOfPrevIsland, ref pos, prevIsalnd);
 
-            PlatformPlacement(pos, sizeOfIsland);
+            PlatformPlacement(pos, sizeOfIsland, i);
 
-            PortalPlacement(pos);
+            PortalPlacement(pos, i);
 
             HandleHeightDifference(ref heightDifference, ref pos);
 
@@ -82,34 +84,51 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    private void PlatformPlacement(Vector3 pos, float sizeOfIsland)
+    private void PlatformPlacement(Vector3 pos, float sizeOfIsland, int i)
     {
         //Ceck if there needs to be a platform
+        if (i == _nrOfPlatforms - 1 || _nrOfPlatforms <= 3)
+            return;
+
+        float gap = Random.Range(.75f, 1.25f);
         int randomNumber = Random.Range(0, _nrOfPlatforms - 3);
         if (randomNumber == 0)
         {
-            float platformHeight = Random.Range(1f, 1.25f);
-            Vector3 platformPos = new Vector3(pos.x + (sizeOfIsland / 2f), pos.y + platformHeight, pos.x);
+            float platformHeight = Random.Range(.5f, .75f);
+            Vector3 platformPos = new Vector3(pos.x + (sizeOfIsland / 2f) + gap, pos.y - platformHeight, pos.x);
             _platformInLevel.Add(Instantiate(_platform, platformPos, transform.rotation));
+
+            platformPos.y -= 1f;
+            int random = Random.Range(0, 1);
+            if (random == 1)
+                platformPos.x -= 0.5f;
+            else
+                platformPos.x += 0.5f;
+
+            Instantiate(_supportPlatform, platformPos, transform.rotation);
         }
     }
 
-    private void PortalPlacement(Vector3 pos)
+    private void PortalPlacement(Vector3 pos, int i)
     {
         //Check if portal needs to be placed
-        if (_nrOfPlatforms <= 3 + _levelNumber)
+        if (_nrOfPlatforms <= 3)
         {
             if (!_portalPlaced)
             {
-                _portal.transform.position = new Vector2(pos.x, pos.y + 0.75f);
-                _portalPlaced = true;
+                int rand = Random.Range(0, 2);
+                if (rand == 0 || i == 2)
+                {
+                    _portal.transform.position = new Vector2(pos.x, pos.y + 0.75f);
+                    _portalPlaced = true;
+                }
             }
         }
     }
 
     private void HandleHeightDifference(ref float heightDifference, ref Vector2 pos)
     {
-        float newHeightDiff = Random.Range(-.5f, .5f);
+        float newHeightDiff = Random.Range(-.25f, .25f);
         if (heightDifference < 0 && newHeightDiff < 0)
         {
             newHeightDiff *= -1;
