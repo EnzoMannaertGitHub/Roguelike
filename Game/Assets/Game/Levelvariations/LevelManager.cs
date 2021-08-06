@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
     private GameObject _currentLevel;
     private int _nrOfPlatforms = 6;
     private bool _portalPlaced = false;
+    private bool _platformPlaced = false;
     // Start is called before the first frame update
     private void Start()
     {
@@ -55,12 +56,13 @@ public class LevelManager : MonoBehaviour
 
             _nrOfPlatforms--;
             floorNr++;
+            _platformPlaced = false;
         } while (_nrOfPlatforms >= 3);
     }
 
     private void CreateFloor(float xPos, float yPos, int floorNr)
     {
-        float heightDifference = Random.Range(-.5f, .5f);
+        float heightDifference = Random.Range(-.25f, .25f);
         float sizeOfIsland = 0f;
         float sizeOfPrevIsland = 0f;
         Vector2 pos = new Vector2(xPos, yPos + heightDifference);
@@ -72,7 +74,7 @@ public class LevelManager : MonoBehaviour
             _currentLevel = Instantiate(_levelVariations[islandIndex], pos, transform.rotation);
             _levelVariationsInLevel.Add(_currentLevel);
 
-            HandleIslandPlacement(ref sizeOfIsland, ref sizeOfPrevIsland, ref pos, prevIsalnd);
+            HandleIslandPlacement(ref sizeOfIsland, ref sizeOfPrevIsland, ref pos, prevIsalnd, i);
 
             PlatformPlacement(pos, sizeOfIsland, i);
 
@@ -90,22 +92,29 @@ public class LevelManager : MonoBehaviour
         if (i == _nrOfPlatforms - 1 || _nrOfPlatforms <= 3)
             return;
 
+        bool needPlatform = false;
+        if (i == _nrOfPlatforms -2 && !_platformPlaced)
+        {
+            needPlatform = true;
+        }
+
         float gap = Random.Range(.75f, 1.25f);
         int randomNumber = Random.Range(0, _nrOfPlatforms - 3);
-        if (randomNumber == 0)
+        if (randomNumber == 0 || needPlatform)
         {
             float platformHeight = Random.Range(.5f, .75f);
             Vector3 platformPos = new Vector3(pos.x + (sizeOfIsland / 2f) + gap, pos.y - platformHeight, pos.x);
             _platformInLevel.Add(Instantiate(_platform, platformPos, transform.rotation));
 
             platformPos.y -= 1f;
-            int random = Random.Range(0, 1);
+            int random = Random.Range(0, 2);
             if (random == 1)
                 platformPos.x -= 0.5f;
             else
                 platformPos.x += 0.5f;
 
             Instantiate(_supportPlatform, platformPos, transform.rotation);
+            _platformPlaced = true;
         }
     }
 
@@ -128,7 +137,7 @@ public class LevelManager : MonoBehaviour
 
     private void HandleHeightDifference(ref float heightDifference, ref Vector2 pos)
     {
-        float newHeightDiff = Random.Range(-.1f, .1f);
+        float newHeightDiff = Random.Range(-.25f, .25f);
         if (heightDifference < 0 && newHeightDiff < 0)
         {
             newHeightDiff *= -1;
@@ -141,9 +150,9 @@ public class LevelManager : MonoBehaviour
         pos.y += heightDifference;
     }
 
-    private void HandleIslandPlacement(ref float sizeOfIsland, ref float sizeOfPrevIsland,ref Vector2 pos, GameObject prevIsalnd)
+    private void HandleIslandPlacement(ref float sizeOfIsland, ref float sizeOfPrevIsland,ref Vector2 pos, GameObject prevIsalnd, int i)
     {
-        float gap = Random.Range(1f, 1.25f);
+        float gap = Random.Range(2f, 2.5f);
 
         sizeOfIsland = _currentLevel.GetComponent<BoxCollider2D>().bounds.size.x;
         if (prevIsalnd)
@@ -160,5 +169,13 @@ public class LevelManager : MonoBehaviour
                 _currentLevel.transform.position = pos;
             }
         }
+        
+        if (i == _nrOfPlatforms - 1)
+            return;   
+
+        float platformHeight = Random.Range(.5f, .75f);
+        Vector3 platformPos = new Vector3(pos.x + (sizeOfIsland / 2f) + gap, pos.y + platformHeight, pos.x);
+        _platformInLevel.Add(Instantiate(_platform, platformPos, transform.rotation));
+
     }
 }
