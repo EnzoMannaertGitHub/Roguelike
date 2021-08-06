@@ -128,7 +128,7 @@ public class LevelManager : MonoBehaviour
 
     private void HandleHeightDifference(ref float heightDifference, ref Vector2 pos)
     {
-        float newHeightDiff = Random.Range(-.25f, .25f);
+        float newHeightDiff = Random.Range(-.1f, .1f);
         if (heightDifference < 0 && newHeightDiff < 0)
         {
             newHeightDiff *= -1;
