@@ -78,7 +78,10 @@ public class PlayerAttack : MonoBehaviour
         _CanShoot = false;
         _animator.SetTrigger("Attack");
         _armAnimator.SetTrigger("Attack");
-        _playerMovement.SetCanMove(false);
+
+        if (_playerMovement.GetGroundState())
+            _playerMovement.SetCanMove(false);
+
 
         HandleArmRotation();
     }

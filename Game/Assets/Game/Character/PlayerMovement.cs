@@ -6,13 +6,13 @@ public class PlayerMovement : MonoBehaviour
 
     private float _horizontalMove = 0f;
     private float _runSpeed = 5f;
-    private bool _isRolling = false;
     private float _elapsedRollSec = 0;
     bool _IsJumping = false;
     bool _IsDoubleJumping = false;
     bool _canDoubleJump = false;
     public bool IsLeft;
     public bool IsMoving;
+    public bool IsRolling = false;
     private bool canMove = true;
 
     public void SetCanMove(bool state)
@@ -23,6 +23,12 @@ public class PlayerMovement : MonoBehaviour
         {
             _IsJumping = false;
         }
+    }
+
+    public bool GetGroundState()
+    {
+        return _controller._grounded;
+
     }
 
     void Update()
@@ -72,10 +78,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Roll check
-        if (Input.GetButtonDown("Roll") && !_isRolling)
+        if (Input.GetButtonDown("Roll") && !IsRolling)
         {
             _controller.Roll(IsLeft);
-            _isRolling = true;
+            IsRolling = true;
             _animator.SetTrigger("Roll");
         }
 
@@ -90,12 +96,12 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (_isRolling)
+        if (IsRolling)
         {
             _elapsedRollSec += Time.deltaTime;
             if (_elapsedRollSec >= 0.5f)
             {
-                _isRolling = false;
+                IsRolling = false;
                 _elapsedRollSec = 0;
             }
         }

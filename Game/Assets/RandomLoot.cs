@@ -73,21 +73,36 @@ public class RandomLoot : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.GetComponent<RegularArrow>() == true)
-        {
+        if(other.gameObject.GetComponent<RegularArrow>() == true || other.gameObject.name == "Player") { 
+        
             Destroy(other.gameObject);
-
-
-            for (int i = 0; i < _heldMoney; i++)
-            {
-                Vector3 pos = transform.position;
-                float randX = Random.Range(pos.x - 0.15f, pos.x + 0.15f);
-                Instantiate(_moneyGO, new Vector3(randX, pos.y, 0), transform.rotation);
-            }
-
+            SpawnGold();
             Destroy(gameObject);
         }
+       
 
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+      if (collision.gameObject.name == "Player")
+        {
+            if (collision.gameObject.GetComponent<PlayerMovement>().IsRolling == true)
+            {
+
+                SpawnGold();
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void SpawnGold()
+    {
+        for (int i = 0; i < _heldMoney; i++)
+        {
+            Vector3 pos = transform.position;
+            float randX = Random.Range(pos.x - 0.15f, pos.x + 0.15f);
+            Instantiate(_moneyGO, new Vector3(randX, pos.y, 0), transform.rotation);
+        }
     }
 
 }
