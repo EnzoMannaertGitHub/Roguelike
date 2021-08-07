@@ -811,27 +811,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5917199648631812585, guid: 0e25e40505772f846bf59418cda1888a, type: 3}
   m_PrefabInstance: {fileID: 5917199648572605321}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &574895021 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7991819368028762142, guid: 5e3b1d3887e93d64587533323c2d5fbe, type: 3}
-  m_PrefabInstance: {fileID: 61101540}
-  m_PrefabAsset: {fileID: 0}
---- !u!70 &574895022
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 574895021}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
-  m_Direction: 0
 --- !u!224 &576870302 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8303928442707012245, guid: 75079812f8e905744b83d2046d04f5c2, type: 3}
@@ -2190,6 +2169,7 @@ MonoBehaviour:
   - {fileID: 3000474215828626343, guid: af3157480fd0a464db06bee33735c4f3, type: 3}
   - {fileID: 3000474215828626343, guid: 70b3ea0e3bc5aef43945d8c4312eb615, type: 3}
   _platform: {fileID: 8926594263597296253, guid: 591982afa4fc6034fb915b598026c750, type: 3}
+  _supportPlatform: {fileID: 0}
   _portal: {fileID: 0}
 --- !u!4 &2056640114
 Transform:

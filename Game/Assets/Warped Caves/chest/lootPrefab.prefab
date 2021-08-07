@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6913967066188239453}
   - component: {fileID: 5843865451046809544}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: visual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 2312248841386588605}
   - component: {fileID: 8899769936674339739}
   - component: {fileID: 1908980607946618130}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: lootPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,15 +127,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 013148276cc7ff74ab2e37341d75a718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _BigLoot:
+  _bigLoot:
   - {fileID: 2800000, guid: cf5d326cd2621eb4886ef7e7ecc4f8a2, type: 3}
-  _StandardLoot:
+  _standardLoot:
   - {fileID: 2800000, guid: 3fe36b323cdb16d4d8a2e9cb3661747f, type: 3}
   - {fileID: 2800000, guid: 3db9ef8c452030b488391c88aa2ac6a7, type: 3}
   - {fileID: 2800000, guid: 9b922a590c9ec274f835489354862167, type: 3}
   - {fileID: 2800000, guid: 19217fbe8b45bb74894a692114cd854a, type: 3}
   _maxMoney: 10
   _moneyGO: {fileID: 6268903044061418940, guid: fdde6ede6aa50c940932fefcf7758257, type: 3}
+  _bigLootChace: 5
 --- !u!70 &1908980607946618130
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -146,7 +147,7 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
