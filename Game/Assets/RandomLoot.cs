@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomLoot : MonoBehaviour
@@ -64,37 +62,16 @@ public class RandomLoot : MonoBehaviour
         }
 
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.GetComponent<RegularArrow>() == true || other.gameObject.name == "Player") { 
-        
+        if(other.gameObject.GetComponent<RegularArrow>() == true)
+        { 
             Destroy(other.gameObject);
             SpawnGold();
             Destroy(gameObject);
         }
-       
-
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-      if (collision.gameObject.name == "Player")
-        {
-            if (collision.gameObject.GetComponent<PlayerMovement>().IsRolling == true)
-            {
-
-                SpawnGold();
-                Destroy(gameObject);
-            }
-        }
-    }
-
     private void SpawnGold()
     {
         for (int i = 0; i < _heldMoney; i++)

@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject _platform;
     [SerializeField] private GameObject _supportPlatform;
     [SerializeField] private GameObject _portal;
+    [SerializeField] private GameObject _randomLoot;
 
     private List<GameObject> _levelVariationsInLevel = new List<GameObject>();
     private List<GameObject> _platformInLevel = new List<GameObject>();
@@ -81,6 +82,8 @@ public class LevelManager : MonoBehaviour
             PortalPlacement(pos, i);
 
             HandleHeightDifference(ref heightDifference, ref pos);
+
+            LootPlacement();
 
             prevIsalnd = _currentLevel;
         }
@@ -177,5 +180,18 @@ public class LevelManager : MonoBehaviour
         Vector3 platformPos = new Vector3(pos.x + (sizeOfIsland / 2f) + gap, pos.y + platformHeight, pos.x);
         _platformInLevel.Add(Instantiate(_platform, platformPos, transform.rotation));
 
+    }
+
+    private void LootPlacement()
+    {
+        int randomNumber = Random.Range(0, 5);
+        if (randomNumber == 1)
+        {
+            List<GameObject> locations = _currentLevel.GetComponent<Island>().LootSpawns;
+            int locationIndex = Random.Range(0, locations.Count);
+            Vector3 pos = locations[locationIndex].transform.position;
+            pos.y += .2f;
+            Instantiate(_randomLoot, pos, transform.rotation);
+        }
     }
 }
