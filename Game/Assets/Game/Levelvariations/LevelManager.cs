@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject _portal;
     [SerializeField] private GameObject _randomLoot;
     [SerializeField] private GameObject _bottomDecoration;
+    [SerializeField] private EnemySpawner _enemyManager;
 
     private List<GameObject> _levelVariationsInLevel = new List<GameObject>();
     private List<GameObject> _platformInLevel = new List<GameObject>();
@@ -30,6 +31,8 @@ public class LevelManager : MonoBehaviour
 
     public void LoadNewLevel()
     {
+        _enemyManager.ClearEnemies();
+        _enemyManager.SpawnPositions.Clear();
         foreach (var island in _levelVariationsInLevel)
             Destroy(island);
         foreach (var platform in _platformInLevel)
@@ -60,6 +63,8 @@ public class LevelManager : MonoBehaviour
             floorNr++;
             _platformPlaced = false;
         } while (_nrOfPlatforms >= 3);
+
+        _enemyManager.SpawnEnemiesOfCurrentLevel();
     }
 
     private void CreateFloor(float xPos, float yPos, int floorNr)
@@ -185,8 +190,21 @@ public class LevelManager : MonoBehaviour
         Vector3 platformPos = new Vector3(pos.x + (sizeOfIsland / 2f) + gap, pos.y + platformHeight, pos.x);
         _platformInLevel.Add(Instantiate(_platform, platformPos, transform.rotation));
 
-    }
+        var locations = _currentLevel.GetComponent<Island>().EnemySpawns;
+        if (_levelNumber <= 2)
+        {
+            int randomNumber = Random.Range(0, locations.Count - 1);
+            _enemyManager.SpawnPositions.Add(locations[randomNumber].transform);
+        }
+        else
+        {
+            foreach(var loc in locations)
+            {
+                _enemyManager.SpawnPositions.Add(loc.transform);
+            }
+        }
 
+    }
     private void LootPlacement()
     {
         int randomNumber = Random.Range(0, 5);

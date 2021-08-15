@@ -27495,6 +27495,7 @@ MonoBehaviour:
   _portal: {fileID: 6995779}
   _randomLoot: {fileID: 7991819368028762142, guid: 5e3b1d3887e93d64587533323c2d5fbe, type: 3}
   _bottomDecoration: {fileID: 2145314380}
+  _enemyManager: {fileID: 1757969909}
 --- !u!4 &2056640114
 Transform:
   m_ObjectHideFlags: 0
@@ -29349,9 +29350,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7950643369438657798, guid: 36545b1abae83004fbbea26938b0632c, type: 3}
+      propertyPath: _spawnPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950643369438657798, guid: 36545b1abae83004fbbea26938b0632c, type: 3}
       propertyPath: _spawnPositions.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7950643369438657798, guid: 36545b1abae83004fbbea26938b0632c, type: 3}
+      propertyPath: _spawnPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 9119303481704533433, guid: 74caca4e0aa6b2c4fb9f6f956847ce36, type: 3}
+    - target: {fileID: 7950643369438657798, guid: 36545b1abae83004fbbea26938b0632c, type: 3}
+      propertyPath: _spawnPrefabsChamps.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950643369438657798, guid: 36545b1abae83004fbbea26938b0632c, type: 3}
+      propertyPath: _spawnPrefabsChamps.Array.data[0]
+      value: 
+      objectReference: {fileID: 8895314614185954277, guid: 14221e11560aefa47a062a5d125a8ba7, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36545b1abae83004fbbea26938b0632c, type: 3}
 --- !u!1001 &8303928442302247731
