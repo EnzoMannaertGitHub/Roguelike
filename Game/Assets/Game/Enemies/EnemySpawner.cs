@@ -89,12 +89,11 @@ public class EnemySpawner : MonoBehaviour
                 bool isChamp = false;
                 int randomEnemy = Random.Range(0, _spawnPrefabs.Count);
 
-                if (LevelManager.Instance.LevelNumber >= 5)
+                if (LevelManager.Instance.LevelNumber >= 2)
                 {
                     int spawnChamp = Random.Range(0, 1);
                     if (spawnChamp == 0)
                     {
-                        Debug.Log("Spawning champ");
                         isChamp = true;
                         randomEnemy = Random.Range(0, _spawnPrefabsChamps.Count);
                     }
