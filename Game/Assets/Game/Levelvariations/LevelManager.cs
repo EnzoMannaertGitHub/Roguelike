@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject _supportPlatform;
     [SerializeField] private GameObject _portal;
     [SerializeField] private GameObject _randomLoot;
+    [SerializeField] private GameObject _bottomDecoration;
 
     private List<GameObject> _levelVariationsInLevel = new List<GameObject>();
     private List<GameObject> _platformInLevel = new List<GameObject>();
@@ -174,7 +175,11 @@ public class LevelManager : MonoBehaviour
         }
         
         if (i == _nrOfPlatforms - 1)
-            return;   
+        {
+            var decorationPos = _bottomDecoration.transform.position;
+            _bottomDecoration.transform.position = new Vector3(decorationPos.x, pos.y - 2.3f - 16.5f, 0);
+            return;
+        }
 
         float platformHeight = Random.Range(.5f, .75f);
         Vector3 platformPos = new Vector3(pos.x + (sizeOfIsland / 2f) + gap, pos.y + platformHeight, pos.x);

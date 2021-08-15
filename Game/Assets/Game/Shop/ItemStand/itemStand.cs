@@ -70,9 +70,9 @@ public class itemStand : MonoBehaviour
     private void Init()
     {
         _Stage = LevelManager.Instance.LevelNumber;
-        _cost = Random.Range(0, 5 * _Stage);
+        _cost = Random.Range(14, 36 * _Stage);
 
-        if (_cost == 0)
+        if (_cost == 14)
             _costText.text = "FREE";
         else
             _costText.text = $"{_cost} $";
