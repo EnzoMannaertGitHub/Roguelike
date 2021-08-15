@@ -2624,10 +2624,6 @@ PrefabInstance:
       propertyPath: _cashText
       value: 
       objectReference: {fileID: 184205141}
-    - target: {fileID: 1238721849222737897, guid: 0e25e40505772f846bf59418cda1888a, type: 3}
-      propertyPath: _baseAttackSpeed
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 5917199648963861554, guid: 0e25e40505772f846bf59418cda1888a, type: 3}
       propertyPath: _armPivot
       value: 

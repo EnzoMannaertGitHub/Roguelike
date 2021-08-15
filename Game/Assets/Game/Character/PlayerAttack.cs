@@ -13,6 +13,8 @@ public class PlayerAttack : MonoBehaviour
     private bool _shoot = false;
     private float _damage = 1f;
     private float _projectileSpeed = 5f;
+    private float _chargeBaseDuration = 0.9f;
+    private float _chargeDuration = 0.9f;
     private Coroutine _chargeDelay = null;
     private Vector3 aimDirection;
     private Camera _mainCam;
@@ -63,8 +65,9 @@ public class PlayerAttack : MonoBehaviour
 
     public void SetAttackSpeed(float newSpeed)
     {
+        _chargeDuration = _chargeBaseDuration / newSpeed;
+
         _animator.SetFloat("AttackSpeed", newSpeed);
-        _armAnimator.SetFloat("AttackSpeed", newSpeed);
     }    
 
     private void HandleShooting()
@@ -98,6 +101,7 @@ public class PlayerAttack : MonoBehaviour
             _armPivot.eulerAngles = new Vector3(0, 0, angle);
         else
             _armPivot.eulerAngles = new Vector3(0, 180, -angle);
+
     }
 
     public void ShootArrow()
