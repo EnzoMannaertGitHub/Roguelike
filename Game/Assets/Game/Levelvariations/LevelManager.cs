@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject _supportPlatform;
     [SerializeField] private GameObject _portal;
     [SerializeField] private GameObject _randomLoot;
+    [SerializeField] private EnemySpawner _monstermanger;
 
     private List<GameObject> _levelVariationsInLevel = new List<GameObject>();
     private List<GameObject> _platformInLevel = new List<GameObject>();
@@ -59,6 +60,8 @@ public class LevelManager : MonoBehaviour
             floorNr++;
             _platformPlaced = false;
         } while (_nrOfPlatforms >= 3);
+
+        _monstermanger.SpawnEnemiesOfCurrentLevel();
     }
 
     private void CreateFloor(float xPos, float yPos, int floorNr)
@@ -85,6 +88,8 @@ public class LevelManager : MonoBehaviour
 
             LootPlacement();
 
+            HandleEnemySpawns();
+
             prevIsalnd = _currentLevel;
         }
     }
@@ -96,7 +101,7 @@ public class LevelManager : MonoBehaviour
             return;
 
         bool needPlatform = false;
-        if (i == _nrOfPlatforms -2 && !_platformPlaced)
+        if (i == _nrOfPlatforms - 2 && !_platformPlaced)
         {
             needPlatform = true;
         }
@@ -153,7 +158,7 @@ public class LevelManager : MonoBehaviour
         pos.y += heightDifference;
     }
 
-    private void HandleIslandPlacement(ref float sizeOfIsland, ref float sizeOfPrevIsland,ref Vector2 pos, GameObject prevIsalnd, int i)
+    private void HandleIslandPlacement(ref float sizeOfIsland, ref float sizeOfPrevIsland, ref Vector2 pos, GameObject prevIsalnd, int i)
     {
         float gap = Random.Range(2f, 2.5f);
 
@@ -172,9 +177,9 @@ public class LevelManager : MonoBehaviour
                 _currentLevel.transform.position = pos;
             }
         }
-        
+
         if (i == _nrOfPlatforms - 1)
-            return;   
+            return;
 
         float platformHeight = Random.Range(.5f, .75f);
         Vector3 platformPos = new Vector3(pos.x + (sizeOfIsland / 2f) + gap, pos.y + platformHeight, pos.x);
@@ -192,6 +197,22 @@ public class LevelManager : MonoBehaviour
             Vector3 pos = locations[locationIndex].transform.position;
             pos.y += .2f;
             Instantiate(_randomLoot, pos, transform.rotation);
+        }
+    }
+    private void HandleEnemySpawns()
+    {
+        List<GameObject> locations = _currentLevel.GetComponent<Island>().EnemySpawns;
+        if (_levelNumber < 2)
+        {
+            int randomSpawn = Random.Range(0, locations.Count);
+            _monstermanger.SpawnPositions.Add(locations[randomSpawn].transform);
+        }
+        else
+        {
+            foreach (var loc in locations)
+            {
+                _monstermanger.SpawnPositions.Add(loc.transform);
+            }
         }
     }
 }

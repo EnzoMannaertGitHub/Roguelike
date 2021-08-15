@@ -4,10 +4,7 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<Transform> _spawnPositions;
-    private void Start()
-    {
-        SpawnEnemiesOfCurrentLevel();
-    }
+    public List<Transform> SpawnPositions { get { return _spawnPositions; } set { _spawnPositions = value; } }
 
     List<GameObject> _enemies = new List<GameObject>();
     [SerializeField] private Transform _enemyTransform = null;
@@ -78,7 +75,7 @@ public class EnemySpawner : MonoBehaviour
         _enemies.Add(enemy);
     }
 
-    private void SpawnEnemiesOfCurrentLevel()
+    public void SpawnEnemiesOfCurrentLevel()
     {
         if (!_playerFound)
         {
