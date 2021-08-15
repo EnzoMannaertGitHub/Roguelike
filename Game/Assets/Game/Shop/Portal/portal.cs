@@ -4,6 +4,7 @@ public class portal : MonoBehaviour
     private GameObject _player;
     private Vector3 _spawn;
     [SerializeField] bool _returnPortal = false;
+    [SerializeField] EnemySpawner _enemySpawner;
     private void Start()
     {
         _player = FindObjectOfType<PlayerMovement>().gameObject;
@@ -18,7 +19,7 @@ public class portal : MonoBehaviour
         if (_returnPortal)
         {
             _spawn = new Vector3(3, 1, 0);
-            //FindObjectOfType<EnemySpawner>().ClearEnemies();
+            _enemySpawner.ClearEnemies();
             LevelManager.Instance.LoadNewLevel();
         }
         _player.transform.position = _spawn;
