@@ -4,7 +4,10 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<Transform> _spawnPositions;
-    public List<Transform> SpawnPositions { get { return _spawnPositions; } set { _spawnPositions = value; } }
+    private void Start()
+    {
+        SpawnEnemiesOfCurrentLevel();
+    }
 
     List<GameObject> _enemies = new List<GameObject>();
     [SerializeField] private Transform _enemyTransform = null;
@@ -75,7 +78,7 @@ public class EnemySpawner : MonoBehaviour
         _enemies.Add(enemy);
     }
 
-    public void SpawnEnemiesOfCurrentLevel()
+    private void SpawnEnemiesOfCurrentLevel()
     {
         if (!_playerFound)
         {
@@ -89,11 +92,12 @@ public class EnemySpawner : MonoBehaviour
                 bool isChamp = false;
                 int randomEnemy = Random.Range(0, _spawnPrefabs.Count);
 
-                if (LevelManager.Instance.LevelNumber >= 2)
+                if (LevelManager.Instance.LevelNumber >= 5)
                 {
                     int spawnChamp = Random.Range(0, 1);
                     if (spawnChamp == 0)
                     {
+                        Debug.Log("Spawning champ");
                         isChamp = true;
                         randomEnemy = Random.Range(0, _spawnPrefabsChamps.Count);
                     }
