@@ -48,6 +48,7 @@ MonoBehaviour:
   _attackRange: 0.3
   _baseSpeed: 3
   _chargeMultiplier: 2
+  _animator: {fileID: 0}
 --- !u!1 &7950643368841403408
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,19 +231,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25ac386cab4d6b4d8fae427de03d286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPositions:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  _spawnPositions: []
   _enemyTransform: {fileID: 7950643369930416608}
   _spawnPrefabs:
   - {fileID: 7717359055906247974, guid: 1e150b981c7df144fa4c6bdfd59e67c6, type: 3}
-  - {fileID: 8895314614185954277, guid: 14221e11560aefa47a062a5d125a8ba7, type: 3}
   - {fileID: 9119303481704533433, guid: 74caca4e0aa6b2c4fb9f6f956847ce36, type: 3}
-  _breedObjects:
-  - {fileID: 7950643369204455840}
-  - {fileID: 7950643369392751816}
-  - {fileID: 7950643368744305910}
+  _spawnPrefabsChamps:
+  - {fileID: 8895314614185954277, guid: 14221e11560aefa47a062a5d125a8ba7, type: 3}
 --- !u!1 &7950643369930416623
 GameObject:
   m_ObjectHideFlags: 0
