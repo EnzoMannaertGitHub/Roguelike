@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject _portal;
     [SerializeField] private GameObject _randomLoot;
     [SerializeField] private EnemySpawner _monstermanger;
+    [SerializeField] private GameObject _bottomDecoration;
 
     private List<GameObject> _levelVariationsInLevel = new List<GameObject>();
     private List<GameObject> _platformInLevel = new List<GameObject>();
@@ -20,6 +21,7 @@ public class LevelManager : MonoBehaviour
     private int _nrOfPlatforms = 6;
     private bool _portalPlaced = false;
     private bool _platformPlaced = false;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -179,7 +181,11 @@ public class LevelManager : MonoBehaviour
         }
 
         if (i == _nrOfPlatforms - 1)
+        {
+            var decorationPos = _bottomDecoration.transform.position;
+            _bottomDecoration.transform.position = new Vector3(decorationPos.x, decorationPos.y - 2.3f, 0);
             return;
+        }
 
         float platformHeight = Random.Range(.5f, .75f);
         Vector3 platformPos = new Vector3(pos.x + (sizeOfIsland / 2f) + gap, pos.y + platformHeight, pos.x);
