@@ -33,4 +33,9 @@ public class MainMenuScript : MonoBehaviour
         _playerMov.IsEnteringCave = true;
         _startTransition = true;
     }
+
+    public void QuitGame()
+    {
+        QuitGame();
+    }
 }
