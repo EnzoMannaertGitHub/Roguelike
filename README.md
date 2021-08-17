@@ -1,2 +1,2 @@
-# Roguelike
+# Cavelike
 A game project
