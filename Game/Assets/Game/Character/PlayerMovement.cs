@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public bool IsMoving;
     public bool IsRolling = false;
     private bool canMove = true;
+    private bool _isEnteringCave = false;
+    public bool IsEnteringCave { get { return _isEnteringCave; } set { _isEnteringCave = value; } }
 
     public void SetCanMove(bool state)
     {
@@ -91,11 +93,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void UpdateAnimations(float horizontalSpeed)
     {
-        _animator.SetFloat("SpeedX", horizontalSpeed);
+        if (IsEnteringCave)
+        {
+            _animator.SetFloat("SpeedX", _runSpeed);
+            return;
+        }
+            _animator.SetFloat("SpeedX", horizontalSpeed);
     }
 
     void FixedUpdate()
     {
+        if (IsEnteringCave)
+        {
+            _controller.Move(_runSpeed * Time.fixedDeltaTime, false, false, false);
+            return;
+        }
+
         if (IsRolling)
         {
             _elapsedRollSec += Time.deltaTime;

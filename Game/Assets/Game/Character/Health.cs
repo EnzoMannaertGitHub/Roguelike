@@ -22,20 +22,24 @@ public class Health : MonoBehaviour
         _controller = GetComponent<CharacterController2D>();
         if (_controller == null)
             Debug.LogError("Health charactercontroller2D not found!");
-
-        
     }
 
     public void SetMaxHealth(float newHealth)
     {
         _maxHealth = newHealth;
-        PlayerHealthBar.SetMaxHealth(newHealth);
+        if (PlayerHealthBar)
+            PlayerHealthBar.SetMaxHealth(newHealth);
     }
 
     public void SetHealth(float newHealth)
     {
         _health = newHealth;
-        PlayerHealthBar.SetHealth(newHealth);
+
+        if (PlayerHealthBar)
+        {
+            PlayerHealthBar.SetMaxHealth(newHealth);
+            PlayerHealthBar.SetHealth(newHealth);
+        }
 
     }
 
