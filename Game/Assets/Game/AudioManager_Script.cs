@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
-
 public class AudioManager_Script : MonoBehaviour
 {
     private static AudioManager_Script _instance;
@@ -10,7 +8,6 @@ public class AudioManager_Script : MonoBehaviour
     private bool _isMuted = false;
     [SerializeField] private AudioSource[] _gameSound;
     [SerializeField] private AudioSource[] _loopingSounds;
-    [SerializeField] private Slider _soundslider;
 
     void Awake()
     {

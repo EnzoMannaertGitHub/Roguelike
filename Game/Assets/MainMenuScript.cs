@@ -29,9 +29,12 @@ public class MainMenuScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(_cam);
-        _playerMov.IsEnteringCave = true;
-        _startTransition = true;
+        if (!collision.CompareTag("Player") || collision.gameObject.layer != 0)
+            return;
+
+            Destroy(_cam);
+            _playerMov.IsEnteringCave = true;
+            _startTransition = true;
     }
 
     public void QuitGame()
