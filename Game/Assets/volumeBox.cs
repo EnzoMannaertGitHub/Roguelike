@@ -47,11 +47,11 @@ public class volumeBox : MonoBehaviour
 
     public void SetSctive()
     {
-        GetComponent<SpriteRenderer>().color = Color.white;
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
 
     }
     public void SetNotActive()
     {
-        GetComponent<SpriteRenderer>().color = Color.black;
+        GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, .5f);
     }
 }
