@@ -98,6 +98,28 @@ public class Skeleton : Breed
 
     public override void OnPlayerHit(GameObject g)
     {
-        //needs to be implemented
+        if (_playerTransform == null)
+            return;
+
+        if (g.CompareTag("Player") && _movementState == States.attack)
+        {
+            Vector2 dir = new Vector2();
+            if (transform.position.x <= _playerTransform.position.x)
+                dir.x = 1;
+            else
+                dir.x = -1;
+
+            if (transform.position.y <= _playerTransform.position.y)
+                dir.y = 1;
+            else
+                dir.y = -1;
+
+            g.GetComponent<Health>().GetHit(_damage, dir);
+        }
+
+        if (!g.CompareTag("Enemy"))
+        {
+            _rigidbody.velocity = new Vector2(0, 0);
+        }
     }
 }

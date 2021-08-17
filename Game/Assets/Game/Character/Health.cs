@@ -14,21 +14,29 @@ public class Health : MonoBehaviour
     private bool _isDead = false;
     private bool _godMode = false;
     private CharacterController2D _controller;
+
+    public HealthBar PlayerHealthBar;
+    
     private void Start()
     {
         _controller = GetComponent<CharacterController2D>();
         if (_controller == null)
             Debug.LogError("Health charactercontroller2D not found!");
+
+        
     }
 
     public void SetMaxHealth(float newHealth)
     {
         _maxHealth = newHealth;
+        PlayerHealthBar.SetMaxHealth(newHealth);
     }
 
     public void SetHealth(float newHealth)
     {
         _health = newHealth;
+        PlayerHealthBar.SetHealth(newHealth);
+
     }
 
     public void SetGodMode(bool state)
@@ -78,7 +86,7 @@ public class Health : MonoBehaviour
         if (_isDead || _godMode)
             return;
 
-        _health = Mathf.Clamp(_health - amount, 0f, _maxHealth);
+        SetHealth(Mathf.Clamp(_health - amount, 0f, _maxHealth));
 
         if (_health == 0f)
         {
