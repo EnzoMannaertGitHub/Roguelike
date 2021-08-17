@@ -6,6 +6,8 @@ public class MainMenuScript : MonoBehaviour
 {
     [SerializeField] private CinemachineVirtualCamera _cam;
     [SerializeField] private PlayerMovement _playerMov;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _spawn;
     private bool _startTransition = false;
     private float _elapsedSec = 0f;
     // Start is called before the first frame update
@@ -24,6 +26,12 @@ public class MainMenuScript : MonoBehaviour
             {
                 SceneManager.LoadScene(1);
             }
+            return;
+        }
+
+        if (_player.transform.position.y <= 0)
+        {
+            _player.transform.position = _spawn.transform.position;
         }
     }
 
