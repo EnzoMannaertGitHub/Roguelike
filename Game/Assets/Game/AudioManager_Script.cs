@@ -18,7 +18,6 @@ public class AudioManager_Script : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        DontDestroyOnLoad(gameObject);
     }
 
     public void ChangeVolume(float newSoundVolume)
