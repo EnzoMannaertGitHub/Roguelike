@@ -7,13 +7,13 @@ public class Skeleton : Breed
     [SerializeField] private float _chargeMultiplier = 2f;
     [SerializeField] protected Animator _animator = null;
 
-    public float _chargeSpeedMultiplier { get; private set; } = 2f;
     private float _currentSpeed = 3f;
     public bool _hitPlayer { get; private set; } = false;
     private bool _isCharging = false;
+    private bool _attacking = false;
 
     public bool _playerSeen = false;
-    private bool _attacking = false;
+    public float _chargeSpeedMultiplier { get; private set; } = 2f;
 
     private void Start()
     {
@@ -26,6 +26,11 @@ public class Skeleton : Breed
 
     public override void UpdateBehavior()
     {
+        if (_rigidbody == null)
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+        }
+
         switch (_movementState)
         {
             case States.patrol:
@@ -36,11 +41,6 @@ public class Skeleton : Breed
                 break;
             case States.attack:
                 break;
-        }
-
-        if (_rigidbody == null)
-        {
-            _rigidbody = GetComponent<Rigidbody2D>();
         }
 
         _animator.SetFloat("SpeedX", _rigidbody.velocity.x);
