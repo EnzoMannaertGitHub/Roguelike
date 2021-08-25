@@ -132,6 +132,13 @@ public class LevelManager : MonoBehaviour
             else
                 platformPos.x += 0.5f;
 
+            foreach(var platform in _platformInLevel)
+            {
+                if (Vector2.Distance(platformPos, platform.transform.position) <= 1)
+                {
+                    return;
+                }
+            }
             Instantiate(_supportPlatform, platformPos, transform.rotation);
             _platformPlaced = true;
         }
