@@ -8,13 +8,9 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] private PlayerMovement _playerMov;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _spawn;
+    [SerializeField] private GameObject _canvas;
     private bool _startTransition = false;
     private float _elapsedSec = 0f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -25,6 +21,9 @@ public class MainMenuScript : MonoBehaviour
             if (_elapsedSec >= 2f)
             {
                 SceneManager.LoadScene(1);
+                _playerMov.IsEnteringCave = false;
+                _canvas.SetActive(true);
+                _cam.Follow = _player.transform;
             }
             return;
         }
@@ -40,7 +39,7 @@ public class MainMenuScript : MonoBehaviour
         if (!collision.CompareTag("Player") || collision.gameObject.layer != 0)
             return;
 
-            Destroy(_cam);
+            _cam.Follow = null;
             _playerMov.IsEnteringCave = true;
             _startTransition = true;
     }

@@ -9,6 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject _portal;
     [SerializeField] private GameObject _randomLoot;
     [SerializeField] private GameObject _bottomDecoration;
+    [SerializeField] private GameObject _player;
     [SerializeField] private EnemySpawner _enemyManager;
 
     private List<GameObject> _levelVariationsInLevel = new List<GameObject>();
@@ -25,6 +26,10 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         Instance = this;
+
+        _player = FindObjectOfType<PlayerMovement>().gameObject;
+        if (_player == null)
+            Debug.LogError("LevelManager::start player not found!");
 
         CreateLevel();
     }
@@ -92,6 +97,11 @@ public class LevelManager : MonoBehaviour
             LootPlacement();
 
             prevIsalnd = _currentLevel;
+        }
+
+        if (floorNr == 0)
+        {
+            HandlePlayerSpawn();
         }
     }
 
@@ -216,5 +226,12 @@ public class LevelManager : MonoBehaviour
             pos.y += .2f;
             Instantiate(_randomLoot, pos, transform.rotation);
         }
+    }
+
+    private void HandlePlayerSpawn()
+    {
+        int random = Random.Range(0, _levelVariationsInLevel.Count);
+        var pos = _levelVariationsInLevel[random].transform.position;
+        _player.transform.position = new Vector2(pos.x, pos.y + 2);
     }
 }
