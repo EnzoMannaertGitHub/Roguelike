@@ -80,13 +80,15 @@ public class Bat : Breed
                 dir.y = -1;
 
             g.GetComponent<Health>().GetHit(_damage, dir);
+            _hitSomething = true;
         }
 
-        if (!g.CompareTag("Enemy"))
+        if (g.CompareTag("Level"))
         {
             _rigidbody.velocity = new Vector2(0, 0);
             _hitSomething = true;
         }
+
     }
     private void HandleStates()
     {
