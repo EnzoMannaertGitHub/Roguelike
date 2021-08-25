@@ -47,6 +47,24 @@ public class Skeleton : Breed
         _animator.SetFloat("SpeedMultiplier", _isCharging ? _chargeMultiplier : 1f);
     }
 
+    public void FacePlayer()
+    {
+        if (_playerTransform.position.x > transform.position.x)
+        {
+            Vector3 rotation = transform.rotation.eulerAngles;
+            rotation.y = 0f;
+
+            transform.rotation = Quaternion.Euler(rotation);
+        }
+        else
+        {
+            Vector3 rotation = transform.rotation.eulerAngles;
+            rotation.y = -180f;
+
+            transform.rotation = Quaternion.Euler(rotation);
+        }
+    }
+
     public void StartCharge()
     {
         if (_movementState == States.patrol)
@@ -88,10 +106,20 @@ public class Skeleton : Breed
         if (direction.x > 0f)
         {
             _rigidbody.velocity = new Vector2(1f, 0f) * _currentSpeed;
+
+            Vector3 rotation = transform.rotation.eulerAngles;
+            rotation.y = 0f;
+
+            transform.rotation = Quaternion.Euler(rotation);
         }
         else
         {
             _rigidbody.velocity = new Vector2(-1f, 0f) * _currentSpeed;
+
+            Vector3 rotation = transform.rotation.eulerAngles;
+            rotation.y = -180f;
+
+            transform.rotation = Quaternion.Euler(rotation);
         }
     }
 

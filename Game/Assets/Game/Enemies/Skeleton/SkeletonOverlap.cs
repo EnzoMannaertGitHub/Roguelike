@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 
-public class SkeletonAttack : MonoBehaviour
+public class SkeletonOverlap : MonoBehaviour
 {
     [SerializeField] private Skeleton _skeleton = null;
-
-    private Collider2D playerCollider = null;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -13,28 +11,13 @@ public class SkeletonAttack : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && _skeleton != null)
+        if (collision.CompareTag("Player"))
         {
-            _skeleton.TriggerAttack();
-            playerCollider = collision;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && _skeleton != null)
-        {
-            playerCollider = null;
-        }
-    }
-
-    public void CheckPlayerHit()
-    {
-        if (playerCollider != null)
-        {
-            Health playerHealth = playerCollider.GetComponent<Health>();
+            Health playerHealth = collision.GetComponent<Health>();
             if (playerHealth == null)
                 return;
+
+            _skeleton.FacePlayer();
 
             Vector2 dir = new Vector2();
             if (transform.position.x <= _skeleton.GetPlayerTransform().position.x)
