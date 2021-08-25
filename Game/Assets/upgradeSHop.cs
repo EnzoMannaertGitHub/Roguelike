@@ -64,6 +64,8 @@ public class upgradeSHop : MonoBehaviour
 
     public void SetSctive()
     {
+        if (_cost > 20)
+            return;
         _isActive = true;
         _costText.text = $"Upgrade {_cost} $";
         _eKey.forceRenderingOff = false;
