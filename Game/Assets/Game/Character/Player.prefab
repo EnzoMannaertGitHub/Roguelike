@@ -316,6 +316,7 @@ MonoBehaviour:
   _animator: {fileID: 5917199649054701506}
   IsLeft: 0
   IsMoving: 0
+  IsRolling: 0
 --- !u!114 &5917199648963861554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,8 +334,8 @@ MonoBehaviour:
   _playerMovement: {fileID: 5917199648963861552}
   _animator: {fileID: 5917199649054701506}
   _armAnimator: {fileID: 250458124106701213}
-  _armPivot: {fileID: 0}
-  _controller: {fileID: 0}
+  _armPivot: {fileID: 2389080379581396522}
+  _controller: {fileID: 5917199648963861565}
 --- !u!114 &5917199648963861556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,6 +350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movement: {fileID: 5917199648963861552}
   _playerSprite: {fileID: 5917199649054701507}
+  PlayerHealthBar: {fileID: 0}
 --- !u!114 &1041111549
 MonoBehaviour:
   m_ObjectHideFlags: 0
