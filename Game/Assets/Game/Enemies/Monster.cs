@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
@@ -7,10 +7,11 @@ public class Monster : MonoBehaviour
     [SerializeField] protected int _nrOfGoldDrops;
 
     [SerializeField] private Breed _breed;
+    [SerializeField] private bool _debugMode = false;
     protected Transform _monsterTransform;
     protected bool _initialised = false;
 
-    protected Transform _playerTransform;
+    [SerializeField] protected Transform _playerTransform;
 
     public void InitMonster(Transform playerTransform)
     {
@@ -27,11 +28,14 @@ public class Monster : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!_initialised)
+        if (!_debugMode)
         {
-            Debug.LogError(gameObject.name + " not initialised.");
-            _initialised = true;
-            return;
+            if (!_initialised)
+            {
+                Debug.LogError(gameObject.name + " not initialised.");
+                _initialised = true;
+                return;
+            }
         }
 
         _breed.UpdateBehavior();

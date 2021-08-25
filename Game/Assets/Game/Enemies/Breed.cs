@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 abstract public class Breed : MonoBehaviour
 {
     public enum States
@@ -12,7 +12,7 @@ abstract public class Breed : MonoBehaviour
     {
         _damage = 0;
     }
-   public Breed(float damage)
+    public Breed(float damage)
     {
         _damage = damage;
     }
@@ -26,7 +26,7 @@ abstract public class Breed : MonoBehaviour
     protected float _damage;
     public float Damage { set { _damage = value; } }
 
-    protected Transform _playerTransform;
+    [SerializeField] protected Transform _playerTransform;
     public Transform PlayerTransform { set { _playerTransform = value; } }
 
     protected Transform _monsterTransform;

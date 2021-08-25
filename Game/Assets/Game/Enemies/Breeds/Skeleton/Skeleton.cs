@@ -1,10 +1,8 @@
-using UnityEngine;
+﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Skeleton : Breed
 {
-    [SerializeField] private float _horizontalAggroRange = 4f;
-    [SerializeField] private float _verticalAggroRange = 2f;
-    [SerializeField] private float _attackRange = 2f;
     [SerializeField] private float _baseSpeed = 3f;
     [SerializeField] private float _chargeMultiplier = 2f;
     [SerializeField] protected Animator _animator = null;
@@ -13,6 +11,9 @@ public class Skeleton : Breed
     private float _currentSpeed = 3f;
     public bool _hitPlayer { get; private set; } = false;
     private bool _isCharging = false;
+
+    public bool _playerSeen = false;
+    private bool _attacking = false;
 
     private void Start()
     {
@@ -25,26 +26,53 @@ public class Skeleton : Breed
 
     public override void UpdateBehavior()
     {
-        if (_movementState == States.patrol)
+        switch (_movementState)
         {
-            if (Mathf.Abs(_playerTransform.position.x - transform.position.x) <= _horizontalAggroRange && Mathf.Abs(_playerTransform.position.y - transform.position.y) <= _verticalAggroRange)
-            {
-                _movementState = States.charging;
-                _currentSpeed = _baseSpeed * _chargeSpeedMultiplier;
-            }
-            else
-            {
+            case States.patrol:
                 Move();
-            }
+                break;
+            case States.charging:
+                ChargeAttack();
+                break;
+            case States.attack:
+                break;
         }
 
-        if (_movementState == States.charging)
+        if (_rigidbody == null)
         {
-            ChargeAttack();
+            _rigidbody = GetComponent<Rigidbody2D>();
         }
 
         _animator.SetFloat("SpeedX", _rigidbody.velocity.x);
         _animator.SetFloat("SpeedMultiplier", _isCharging ? _chargeMultiplier : 1f);
+    }
+
+    public void StartCharge()
+    {
+        if (_movementState == States.patrol)
+        {
+            _movementState = States.charging;
+            _currentSpeed = _baseSpeed * _chargeSpeedMultiplier;
+            _isCharging = true;
+        }
+    }
+
+    public void StopCharge()
+    {
+        if (_movementState == States.charging)
+        {
+            _movementState = States.patrol;
+            _currentSpeed = _baseSpeed;
+            _isCharging = false;
+        }
+    }
+
+    public void TriggerAttack()
+    {
+        if (!_attacking)
+        {
+            Attack();
+        }
     }
 
     private void ChargeAttack()
@@ -56,15 +84,6 @@ public class Skeleton : Breed
         }
 
         Vector3 direction = _playerTransform.position - transform.position;
-        direction.z = 0f;
-
-        if (direction.magnitude <= _attackRange)
-        {
-            Attack();
-            return;
-        }
-
-        _isCharging = true;
 
         if (direction.x > 0f)
         {
@@ -83,12 +102,14 @@ public class Skeleton : Breed
         _currentSpeed = _baseSpeed;
         _isCharging = false;
         _animator.SetTrigger("Attack");
+        _attacking = true;
     }
 
     public void StopAttack()
     {
         _movementState = States.patrol;
         _hitPlayer = false;
+        _attacking = false;
     }
 
     protected override void Move()
@@ -96,30 +117,17 @@ public class Skeleton : Breed
         //needs to be implemented
     }
 
+    public float GetDamage()
+    {
+        return _damage;
+    }
+
+    public Transform GetPlayerTransform()
+    {
+        return _playerTransform;
+    }
+
     public override void OnPlayerHit(GameObject g)
     {
-        if (_playerTransform == null)
-            return;
-
-        if (g.CompareTag("Player") && _movementState == States.attack)
-        {
-            Vector2 dir = new Vector2();
-            if (transform.position.x <= _playerTransform.position.x)
-                dir.x = 1;
-            else
-                dir.x = -1;
-
-            if (transform.position.y <= _playerTransform.position.y)
-                dir.y = 1;
-            else
-                dir.y = -1;
-
-            g.GetComponent<Health>().GetHit(_damage, dir);
-        }
-
-        if (!g.CompareTag("Enemy"))
-        {
-            _rigidbody.velocity = new Vector2(0, 0);
-        }
     }
 }
