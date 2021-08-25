@@ -1,12 +1,15 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     private float _maxHealth = 100f;
-    private float _health;
+    private float _health = 100f;
     
     [SerializeField] private PlayerMovement _movement;
     [SerializeField] private SpriteRenderer _playerSprite;
+    [SerializeField] private Image HealthSlider;
+
     private bool _isImmune = false;
     private float _imuneTime = 0f;
     private float _maxImuneTime = .5f;
@@ -14,8 +17,6 @@ public class Health : MonoBehaviour
     private bool _isDead = false;
     private bool _godMode = false;
     private CharacterController2D _controller;
-
-    public HealthBar PlayerHealthBar;
     
     private void Start()
     {
@@ -27,18 +28,15 @@ public class Health : MonoBehaviour
     public void SetMaxHealth(float newHealth)
     {
         _maxHealth = newHealth;
-        if (PlayerHealthBar)
-            PlayerHealthBar.SetMaxHealth(newHealth);
     }
 
     public void SetHealth(float newHealth)
     {
         _health = newHealth;
 
-        if (PlayerHealthBar)
+        if (HealthSlider)
         {
-            PlayerHealthBar.SetMaxHealth(newHealth);
-            PlayerHealthBar.SetHealth(newHealth);
+            HealthSlider.fillAmount = newHealth / _maxHealth;
         }
 
     }
