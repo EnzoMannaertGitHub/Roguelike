@@ -7,13 +7,13 @@ public class Skeleton : Breed
     [SerializeField] private float _chargeMultiplier = 2f;
     [SerializeField] protected Animator _animator = null;
 
-    public float _chargeSpeedMultiplier { get; private set; } = 2f;
     private float _currentSpeed = 3f;
     public bool _hitPlayer { get; private set; } = false;
     private bool _isCharging = false;
+    private bool _attacking = false;
 
     public bool _playerSeen = false;
-    private bool _attacking = false;
+    public float _chargeSpeedMultiplier { get; private set; } = 2f;
 
     private void Start()
     {
@@ -26,6 +26,11 @@ public class Skeleton : Breed
 
     public override void UpdateBehavior()
     {
+        if (_rigidbody == null)
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+        }
+
         switch (_movementState)
         {
             case States.patrol:
@@ -38,13 +43,26 @@ public class Skeleton : Breed
                 break;
         }
 
-        if (_rigidbody == null)
-        {
-            _rigidbody = GetComponent<Rigidbody2D>();
-        }
-
         _animator.SetFloat("SpeedX", _rigidbody.velocity.x);
         _animator.SetFloat("SpeedMultiplier", _isCharging ? _chargeMultiplier : 1f);
+    }
+
+    public void FacePlayer()
+    {
+        if (_playerTransform.position.x > transform.position.x)
+        {
+            Vector3 rotation = transform.rotation.eulerAngles;
+            rotation.y = 0f;
+
+            transform.rotation = Quaternion.Euler(rotation);
+        }
+        else
+        {
+            Vector3 rotation = transform.rotation.eulerAngles;
+            rotation.y = -180f;
+
+            transform.rotation = Quaternion.Euler(rotation);
+        }
     }
 
     public void StartCharge()
@@ -88,10 +106,20 @@ public class Skeleton : Breed
         if (direction.x > 0f)
         {
             _rigidbody.velocity = new Vector2(1f, 0f) * _currentSpeed;
+
+            Vector3 rotation = transform.rotation.eulerAngles;
+            rotation.y = 0f;
+
+            transform.rotation = Quaternion.Euler(rotation);
         }
         else
         {
             _rigidbody.velocity = new Vector2(-1f, 0f) * _currentSpeed;
+
+            Vector3 rotation = transform.rotation.eulerAngles;
+            rotation.y = -180f;
+
+            transform.rotation = Quaternion.Euler(rotation);
         }
     }
 
