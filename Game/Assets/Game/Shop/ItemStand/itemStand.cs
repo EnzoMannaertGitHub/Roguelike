@@ -18,7 +18,6 @@ public class itemStand : MonoBehaviour
     private void Start()
     {
         _playerTransform = FindObjectOfType<PlayerMovement>().gameObject.transform;
-        Init();
     }
     private void Update()
     {
@@ -61,17 +60,25 @@ public class itemStand : MonoBehaviour
         }
     }
 
-    public void Reload()
+    public void Reload(bool IsActive)
     {
-        _isActive = true;
+        _isActive = IsActive;
         Destroy(_item);
         Init();
     }
 
     private void Init()
     {
+        if (!_isActive)
+        {
+            if(_item != null)
+                _item.SetActive(false);
+            return;
+        }
         _Stage = LevelManager.Instance.LevelNumber;
         _cost = Random.Range(14, 36 * _Stage);
+
+        _eKey.forceRenderingOff = false;
 
         if (_cost == 14)
             _costText.text = "FREE";
@@ -79,6 +86,11 @@ public class itemStand : MonoBehaviour
             _costText.text = $"{_cost} $";
 
         int index = Random.Range(0, _items.Count);
+
+        var c = _eKey.color;
+        _eKey.color = new Color(c.r, c.g, c.b, 255);
+
         _item = Instantiate(_items[index], _itemLocation.position, _itemLocation.rotation);
+        _item.SetActive(_isActive);
     }
 }

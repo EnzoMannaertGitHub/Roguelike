@@ -61,4 +61,11 @@ public class upgradeSHop : MonoBehaviour
 
         _costText.text = $"Upgrade {_cost} $";
     }
+
+    public void SetSctive()
+    {
+        _isActive = true;
+        _costText.text = $"Upgrade {_cost} $";
+        _eKey.forceRenderingOff = false;
+    }
 }

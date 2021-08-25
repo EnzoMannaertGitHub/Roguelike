@@ -43,6 +43,8 @@ public class LevelManager : MonoBehaviour
         foreach (var platform in _platformInLevel)
             Destroy(platform);
 
+        _levelVariationsInLevel.Clear();
+        _platformInLevel.Clear();
         _levelNumber++;
         _nrOfPlatforms = 6 + _levelNumber;
         _portalPlaced = false;

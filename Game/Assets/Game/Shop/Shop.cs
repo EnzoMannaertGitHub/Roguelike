@@ -5,6 +5,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private List<Transform> _spawnLocations;
     [SerializeField] private GameObject _itemStand;
     [SerializeField] private GameObject _shopSpawn;
+    [SerializeField] private upgradeSHop _upgradeStand;
     private int _numberOfItems = 2;
     private GameObject _player;
     List<GameObject> _itemStands = new List<GameObject>();
@@ -17,10 +18,15 @@ public class Shop : MonoBehaviour
         int item = 0;
         foreach(var i in _itemStands)
         {
-            if (item >= _numberOfItems)
-                i.SetActive(false);
-            else
+            if (item < _numberOfItems)
+            {
                 i.SetActive(true);
+                i.GetComponentInChildren<itemStand>().Reload(true);
+            }
+            else
+            {
+                i.GetComponentInChildren<itemStand>().Reload(false);
+            }
             item++;
         }
 
@@ -41,27 +47,31 @@ public class Shop : MonoBehaviour
     public void ReloadShop()
     {
         ClearItemStands();
+        _upgradeStand.SetSctive();
     }
 
     public void UpgradeShop()
     {
+        Debug.Log("dfd");
         _numberOfItems++;
-        int item = 0;
-        foreach (var i in _itemStands)
-        {
-            if (item >= _numberOfItems)
-                i.SetActive(false);
-            else
-                i.SetActive(true);
-            item++;
-        }
+        ClearItemStands();
     }
     
     private void ClearItemStands()
     {
-        foreach (GameObject i in _itemStands)
+        int item = 0;
+        foreach (var i in _itemStands)
         {
-            i.GetComponentInChildren<itemStand>().Reload();
+            if (item < _numberOfItems)
+            {
+                i.SetActive(true);
+                i.GetComponentInChildren<itemStand>().Reload(true);
+            }
+            else
+            {
+                i.GetComponentInChildren<itemStand>().Reload(false);
+            }
+            item++;
         }
     }
 
