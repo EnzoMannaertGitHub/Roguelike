@@ -5,6 +5,7 @@ public class Shop : MonoBehaviour
     [SerializeField] private List<Transform> _spawnLocations;
     [SerializeField] private GameObject _itemStand;
     [SerializeField] private GameObject _shopSpawn;
+    private int _numberOfItems = 2;
     private GameObject _player;
     List<GameObject> _itemStands = new List<GameObject>();
     private bool _isInShop = false;
@@ -13,6 +14,15 @@ public class Shop : MonoBehaviour
     private void Start()
     {
         InstantiateItemStands();
+        int item = 0;
+        foreach(var i in _itemStands)
+        {
+            if (item >= _numberOfItems)
+                i.SetActive(false);
+            else
+                i.SetActive(true);
+            item++;
+        }
 
         _player = FindObjectOfType<PlayerMovement>().gameObject;
     }
@@ -31,6 +41,20 @@ public class Shop : MonoBehaviour
     public void ReloadShop()
     {
         ClearItemStands();
+    }
+
+    public void UpgradeShop()
+    {
+        _numberOfItems++;
+        int item = 0;
+        foreach (var i in _itemStands)
+        {
+            if (item >= _numberOfItems)
+                i.SetActive(false);
+            else
+                i.SetActive(true);
+            item++;
+        }
     }
     
     private void ClearItemStands()

@@ -5,7 +5,7 @@ public class Wallet : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _cashText = null;
 
-    private int _total = 0;
+    [SerializeField] private int _total = 0;
     public int Total { 
         get 
         { 

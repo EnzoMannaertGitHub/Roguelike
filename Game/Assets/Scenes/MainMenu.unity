@@ -1778,6 +1778,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1041111549, guid: 0e25e40505772f846bf59418cda1888a, type: 3}
+      propertyPath: _total
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1041111549, guid: 0e25e40505772f846bf59418cda1888a, type: 3}
       propertyPath: _cashText
       value: 
       objectReference: {fileID: 1511335384}

@@ -61,7 +61,7 @@ public class LevelManager : MonoBehaviour
         {
             CreateFloor(xPos, yPos, floorNr);
 
-            yPos -= Random.Range(2.6f, 2.75f);
+            yPos -= Random.Range(2.4f, 2.5f);
             xPos += Random.Range(2, 3);
 
             _nrOfPlatforms--;
@@ -178,7 +178,7 @@ public class LevelManager : MonoBehaviour
 
     private void HandleIslandPlacement(ref float sizeOfIsland, ref float sizeOfPrevIsland,ref Vector2 pos, GameObject prevIsalnd, int i)
     {
-        float gap = Random.Range(2f, 2.5f);
+        float gap = Random.Range(1.75f, 2f);
 
         sizeOfIsland = _currentLevel.GetComponent<BoxCollider2D>().bounds.size.x;
         if (prevIsalnd)

@@ -1,20 +1,14 @@
 using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
 using TMPro;
-public class itemStand : MonoBehaviour
+public class upgradeSHop : MonoBehaviour
 {
     [SerializeField] private TextMeshPro _costText;
     [SerializeField] private SpriteRenderer _eKey;
-    [SerializeField] private List<GameObject> _items;
-    [SerializeField] private Transform _itemLocation;
-
+    [SerializeField] private Shop _shop;
     private Transform _playerTransform;
     private int _cost;
     private bool _isActive = true;
-    private GameObject _item;
     private float _range = 1.5f;
-    private int _Stage = 1;
     private void Start()
     {
         _playerTransform = FindObjectOfType<PlayerMovement>().gameObject.transform;
@@ -45,40 +39,26 @@ public class itemStand : MonoBehaviour
     {
         if (!_isActive)
             return;
-        
+
         if (collision.CompareTag("Player") && Input.GetAxis("Interact") > 0.5f)
         {
             Wallet wallet = collision.gameObject.GetComponent<Wallet>();
             if (wallet.Total >= _cost)
             {
                 wallet.Total -= _cost;
-                _item.GetComponent<pickup>().enabled = true;
-                _item.GetComponent<pickup>().Interact();
                 _costText.text = "";
                 _eKey.forceRenderingOff = true;
-               _isActive = false;
+                _isActive = false;
+                _cost *= 2;
+                _shop.UpgradeShop();
             }
         }
     }
 
-    public void Reload()
-    {
-        _isActive = true;
-        Destroy(_item);
-        Init();
-    }
-
     private void Init()
     {
-        _Stage = LevelManager.Instance.LevelNumber;
-        _cost = Random.Range(14, 36 * _Stage);
+        _cost = 5;
 
-        if (_cost == 14)
-            _costText.text = "FREE";
-        else
-            _costText.text = $"{_cost} $";
-
-        int index = Random.Range(0, _items.Count);
-        _item = Instantiate(_items[index], _itemLocation.position, _itemLocation.rotation);
+        _costText.text = $"Upgrade {_cost} $";
     }
 }
