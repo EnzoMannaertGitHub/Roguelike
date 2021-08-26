@@ -39,7 +39,7 @@ public abstract class Projectile : MonoBehaviour
     {
         if (other.gameObject.layer == 3)
         {
-            Destroy(gameObject);
+            DestroyProjectile(true);
         }
     }
 
