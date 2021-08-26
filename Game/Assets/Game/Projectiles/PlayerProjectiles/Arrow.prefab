@@ -97,6 +97,7 @@ MonoBehaviour:
   _speed: 0
   _range: -1
   _timeToLive: 10
+  _destroyParticles: {fileID: 7613612984316332098, guid: 4a46711b9669cb845b88bb100576c83f, type: 3}
   _rigidBody: {fileID: 6791942424758780581}
 --- !u!1 &6980395642577473113
 GameObject:

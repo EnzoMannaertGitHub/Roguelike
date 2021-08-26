@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -8,6 +8,8 @@ public abstract class Projectile : MonoBehaviour
     [SerializeField] protected float _speed = 10f;
     [SerializeField] protected float _range = -1f;
     [SerializeField] protected float _timeToLive = 10f;
+    [SerializeField] private GameObject _destroyParticles;
+    [SerializeField] private int _particleAmount = 20;
 
     [SerializeReference] protected Rigidbody2D _rigidBody;
     protected Camera _mainCam;
@@ -33,11 +35,11 @@ public abstract class Projectile : MonoBehaviour
 
     protected abstract void Shoot();
 
-    protected void OnTriggerEnter2D (Collider2D other)
+    protected void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == 3)
         {
-            Destroy(gameObject);
+            DestroyProjectile(true);
         }
     }
 
@@ -48,7 +50,7 @@ public abstract class Projectile : MonoBehaviour
 
         if (Vector3.Distance(transform.position, _startPos) >= _range)
         {
-            DestroyProjectile();
+            DestroyProjectile(false);
         }
     }
 
@@ -65,7 +67,7 @@ public abstract class Projectile : MonoBehaviour
         {
             SetDamage(damage);
         }
-        else 
+        else
         {
             SetDamage(_damage);
         }
@@ -74,7 +76,7 @@ public abstract class Projectile : MonoBehaviour
         {
             SetSpeed(speed);
         }
-        else 
+        else
         {
             SetSpeed(_speed);
         }
@@ -83,16 +85,16 @@ public abstract class Projectile : MonoBehaviour
         {
             SetRange(range);
         }
-        else 
+        else
         {
             SetRange(_range);
         }
-        
+
         if (timeToLive != 0f)
         {
             SetTimeToLive(timeToLive);
         }
-        else 
+        else
         {
             SetTimeToLive(_timeToLive);
         }
@@ -139,16 +141,23 @@ public abstract class Projectile : MonoBehaviour
     {
         yield return new WaitForSeconds(_lifeSpan);
 
-        DestroyProjectile();
+        DestroyProjectile(false);
         _destroyCoroutine = null;
     }
 
-    public void DestroyProjectile()
+    public void DestroyProjectile(bool collided)
     {
         if (_destroyCoroutine != null)
         {
             StopCoroutine(_destroyCoroutine);
             _destroyCoroutine = null;
+        }
+
+        if (collided && _destroyParticles != null)
+        {
+            GameObject go = Instantiate(_destroyParticles, transform.position, transform.rotation);
+            go.GetComponent<ParticleSystem>().Emit(_particleAmount);
+            Destroy(go, 3f);
         }
 
         Destroy(gameObject);

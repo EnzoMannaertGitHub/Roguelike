@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class EnemyHealth : MonoBehaviour
@@ -10,7 +10,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Rigidbody2D _rigidbody;
 
-    
+
     private float _currentHealth = 0f;
     private bool _isDead = false;
 
@@ -65,7 +65,7 @@ public class EnemyHealth : MonoBehaviour
 
                 TakeDamage(proj.GetDamage(), new Vector2(projVelocity.x, knockbackHeight));
 
-                proj.DestroyProjectile();
+                proj.DestroyProjectile(true);
             }
         }
     }
