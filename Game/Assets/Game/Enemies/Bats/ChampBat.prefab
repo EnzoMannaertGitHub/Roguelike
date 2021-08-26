@@ -150,10 +150,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177bd42c110361f4ea3ccf07121a0ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 5
+  _damage: 20
   _gold: {fileID: 6268903044061418940, guid: fdde6ede6aa50c940932fefcf7758257, type: 3}
   _nrOfGoldDrops: 5
   _breed: {fileID: -1872014851860431049}
+  _debugMode: 0
+  _playerTransform: {fileID: 0}
 --- !u!50 &8895314614185954273
 Rigidbody2D:
   serializedVersion: 4
@@ -230,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3931465204361df45ab78c5554caf8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerTransform: {fileID: 0}
   _focusTime: 1
   _recoverTime: 1
   _projectile: {fileID: 4191573963499883353, guid: fb4ac7d0694dc6644bd0444fa50d7b32, type: 3}

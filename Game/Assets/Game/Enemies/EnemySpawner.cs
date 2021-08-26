@@ -94,7 +94,6 @@ public class EnemySpawner : MonoBehaviour
                     int spawnChamp = Random.Range(0, 1);
                     if (spawnChamp == 0)
                     {
-                        Debug.Log("Spawning champ");
                         isChamp = true;
                         randomEnemy = Random.Range(0, _spawnPrefabsChamps.Count);
                     }
