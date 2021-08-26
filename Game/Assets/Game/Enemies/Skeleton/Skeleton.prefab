@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 177bd42c110361f4ea3ccf07121a0ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 10
+  _damage: 15
   _gold: {fileID: 6268903044061418940, guid: fdde6ede6aa50c940932fefcf7758257, type: 3}
   _nrOfGoldDrops: 3
   _breed: {fileID: 2623152476789107312}
