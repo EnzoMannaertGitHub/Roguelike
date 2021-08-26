@@ -1,11 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     private float _maxHealth = 100f;
     private float _health = 100f;
-    
+
     [SerializeField] private PlayerMovement _movement;
     [SerializeField] private SpriteRenderer _playerSprite;
     [SerializeField] private Image HealthSlider;
@@ -17,7 +17,7 @@ public class Health : MonoBehaviour
     private bool _isDead = false;
     private bool _godMode = false;
     private CharacterController2D _controller;
-    
+
     private void Start()
     {
         _controller = GetComponent<CharacterController2D>();
@@ -48,7 +48,7 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
-        if(_isImmune)
+        if (_isImmune)
         {
             _imuneTime += Time.deltaTime;
             _drawTime += Time.deltaTime;
@@ -58,7 +58,7 @@ public class Health : MonoBehaviour
                 _playerSprite.enabled = !_playerSprite.isVisible;
             }
 
-            if(_imuneTime >= _maxImuneTime)
+            if (_imuneTime >= _maxImuneTime)
             {
                 _controller.MovementEnabled = true;
 
@@ -74,7 +74,7 @@ public class Health : MonoBehaviour
         if (_isDead || _godMode)
             return;
 
-        if(!_isImmune)
+        if (!_isImmune)
         {
             TakeDamage(damage);
             _movement.HandleKnockBack(knockbackDir);
@@ -115,7 +115,7 @@ public class Health : MonoBehaviour
 
                 GetHit(proj.GetDamage(), new Vector2(projVelocity.x, knockbackHeight));
 
-                proj.DestroyProjectile();
+                proj.DestroyProjectile(true);
             }
         }
     }
