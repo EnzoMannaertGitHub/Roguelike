@@ -43,7 +43,7 @@ public class Skeleton : Breed
                 break;
         }
 
-        _animator.SetFloat("SpeedX", _rigidbody.velocity.x);
+        _animator.SetFloat("SpeedX", Mathf.Abs(_rigidbody.velocity.x));
         _animator.SetFloat("SpeedMultiplier", _isCharging ? _chargeMultiplier : 1f);
     }
 

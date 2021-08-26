@@ -15,9 +15,6 @@ public class SkeletonAttack : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            if (_skeleton != null)
-                _skeleton.TriggerAttack();
-
             playerCollider = collision;
         }
     }
