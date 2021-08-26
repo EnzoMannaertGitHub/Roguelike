@@ -35664,11 +35664,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7950643369204455841, guid: 36545b1abae83004fbbea26938b0632c, type: 3}
       propertyPath: _focusTime
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7950643369204455841, guid: 36545b1abae83004fbbea26938b0632c, type: 3}
       propertyPath: _recoverTime
-      value: 0.5
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 7950643369438657795, guid: 36545b1abae83004fbbea26938b0632c, type: 3}
       propertyPath: m_Name
