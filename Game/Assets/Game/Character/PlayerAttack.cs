@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private GameObject _fireSocket;
@@ -7,6 +7,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private Animator _armAnimator;
     [SerializeField] private Transform _armPivot;
+    [SerializeField] private ParticleSystem _shootParticles;
     [SerializeField] private CharacterController2D _controller;
 
     private bool _CanShoot = true;
@@ -65,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
     {
         _animator.SetFloat("AttackSpeed", newSpeed);
         _armAnimator.SetFloat("AttackSpeed", newSpeed);
-    }    
+    }
 
     private void HandleShooting()
     {
@@ -106,6 +107,8 @@ public class PlayerAttack : MonoBehaviour
             return;
 
         _CanShoot = true;
+
+        _shootParticles.Emit(10);
 
         var fireSocketTransform = _fireSocket.transform;
         GameObject newArrow = Instantiate(_bulletPrefab, fireSocketTransform.position, Quaternion.identity);
