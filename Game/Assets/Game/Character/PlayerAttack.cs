@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private CharacterController2D _controller;
 
     private bool _CanShoot = true;
+    public bool CanShoot { get { return _CanShoot; } }
     private bool _shoot = false;
     private float _damage = 1f;
     private float _projectileSpeed = 5f;

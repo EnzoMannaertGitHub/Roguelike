@@ -8,6 +8,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] private Transform _ceilingCheck;                          // A position marking where to check for ceilings
     [SerializeField] private Collider2D _crouchDisableCollider;                // A collider that will be disabled when crouching
     [SerializeField] private Animator _animator;
+    [SerializeField] private PlayerAttack _playerAttack;
 
     private float _movementSpeed = 10f;                                        // Speed at which the player moves horizontally
     private float _jumpForce = 10f;                                            // Amount of force added when the player jumps.
@@ -35,6 +36,8 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnLandEvent == null)
             OnLandEvent = new UnityEvent();
+
+        _playerAttack = GetComponent<PlayerAttack>();
     }
 
     public void SetMovementSpeed(float movementSpeed)
@@ -86,13 +89,13 @@ public class CharacterController2D : MonoBehaviour
             _rigidbody2D.velocity = new Vector2(move * _movementSpeed, _rigidbody2D.velocity.y);
 
             // If the input is moving the player right and the player is facing left...
-            if (move > 0 && !_facingRight)
+            if (move > 0 && !_facingRight && _playerAttack.CanShoot)
             {
                 // ... flip the player.
                 Flip();
             }
             // Otherwise if the input is moving the player left and the player is facing right...
-            else if (move < 0 && _facingRight)
+            else if (move < 0 && _facingRight && _playerAttack.CanShoot)
             {
                 // ... flip the player.
                 Flip();
