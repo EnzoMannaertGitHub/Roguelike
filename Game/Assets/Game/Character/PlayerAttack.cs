@@ -29,14 +29,6 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             _shoot = true;
-
-            Ray ray = _mainCam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hitinfo = new RaycastHit();
-            Physics.Raycast(ray, out hitinfo, 1000, LayerMask.GetMask("Shoot"));
-
-            Vector3 point = hitinfo.point;
-
-            aimDirection = (point - transform.position).normalized;
         }
         if (Input.GetButtonUp("Fire1"))
         {
@@ -73,6 +65,27 @@ public class PlayerAttack : MonoBehaviour
         if (!_CanShoot)
             return;
 
+        Ray ray = _mainCam.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hitinfo = new RaycastHit();
+        Physics.Raycast(ray, out hitinfo, 1000, LayerMask.GetMask("Shoot"));
+
+        Vector3 point = hitinfo.point;
+
+        aimDirection = (point - transform.position).normalized;
+        if (aimDirection.x < 0)
+        {
+            Vector3 theScale = transform.localScale;
+            theScale.x = -1;
+            transform.localScale = theScale;
+            _armPivot.localScale = theScale;
+        }
+        else
+        {
+            Vector3 theScale = transform.localScale;
+            theScale.x = 1;
+            transform.localScale = theScale;
+            _armPivot.localScale = theScale;
+        }
         _CanShoot = false;
         _animator.SetTrigger("Attack");
         _armAnimator.SetTrigger("Attack");
