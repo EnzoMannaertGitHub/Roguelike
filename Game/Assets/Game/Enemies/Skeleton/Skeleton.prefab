@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: 5125700824765424749}
   - component: {fileID: 7930940555022466740}
   - component: {fileID: 2623152476789107312}
-  - component: {fileID: 8907047926327149237}
+  - component: {fileID: 7952115502892712484}
   m_Layer: 7
   m_Name: Skeleton
   m_TagString: Enemy
@@ -393,8 +393,8 @@ MonoBehaviour:
   _chargeMultiplier: 2
   _animator: {fileID: 9119303482150243478}
   _playerSeen: 0
---- !u!61 &8907047926327149237
-BoxCollider2D:
+--- !u!70 &7952115502892712484
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -407,18 +407,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.01, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.12, y: 0.32}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.15, y: 0.32}
+  m_Direction: 0
 --- !u!1 &9119303482150243480
 GameObject:
   m_ObjectHideFlags: 0
