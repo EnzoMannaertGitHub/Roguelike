@@ -77,14 +77,14 @@ public class PlayerAttack : MonoBehaviour
             Vector3 theScale = transform.localScale;
             theScale.x = -1;
             transform.localScale = theScale;
-            _armPivot.localScale = theScale;
+            _controller.FacingRight = false;
         }
         else
         {
             Vector3 theScale = transform.localScale;
             theScale.x = 1;
             transform.localScale = theScale;
-            _armPivot.localScale = theScale;
+            _controller.FacingRight = true;
         }
         _CanShoot = false;
         _animator.SetTrigger("Attack");
@@ -92,7 +92,6 @@ public class PlayerAttack : MonoBehaviour
 
         if (_playerMovement.GetGroundState())
             _playerMovement.SetCanMove(false);
-
 
         HandleArmRotation();
     }
