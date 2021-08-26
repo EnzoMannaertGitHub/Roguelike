@@ -12,6 +12,9 @@ public class volumeBox : MonoBehaviour
     {
         if (!collision.CompareTag("Player"))
             return;
+        if (collision.gameObject.layer == 0)
+            return;
+
         if (_percentage == 0)
         {
             AudioManager_Script.Instance.ChangeVolume(0);
