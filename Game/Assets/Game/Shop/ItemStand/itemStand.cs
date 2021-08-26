@@ -50,7 +50,7 @@ public class itemStand : MonoBehaviour
             Wallet wallet = collision.gameObject.GetComponent<Wallet>();
             if (wallet.Total >= _cost)
             {
-                wallet.Total -= _cost;
+                wallet.AddCash(-_cost);
                 _item.GetComponent<pickup>().enabled = true;
                 _item.GetComponent<pickup>().Interact();
                 _costText.text = "";

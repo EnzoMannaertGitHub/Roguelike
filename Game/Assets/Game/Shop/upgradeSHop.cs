@@ -45,7 +45,7 @@ public class upgradeSHop : MonoBehaviour
             Wallet wallet = collision.gameObject.GetComponent<Wallet>();
             if (wallet.Total >= _cost)
             {
-                wallet.Total -= _cost;
+                wallet.AddCash(-_cost);
                 _costText.text = "";
                 _eKey.forceRenderingOff = true;
                 _isActive = false;

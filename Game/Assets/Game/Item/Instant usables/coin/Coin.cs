@@ -14,7 +14,7 @@ public class Coin : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<Wallet>().Total += _value;
+            collision.GetComponent<Wallet>().AddCash(_value);
             Vector3 pos = transform.position;
             Instantiate(_pickupAnimation, new Vector3(pos.x, pos.y + 0.1f, 0), transform.rotation);
             Destroy(gameObject);
