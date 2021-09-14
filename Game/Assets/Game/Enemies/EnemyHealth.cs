@@ -10,7 +10,6 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Rigidbody2D _rigidbody;
 
-
     private float _currentHealth = 0f;
     private bool _isDead = false;
 
@@ -19,8 +18,10 @@ public class EnemyHealth : MonoBehaviour
     private float _flickerTime = 0f;
     private float _maxImuneTime = 2f;
 
+    private Health _health;
     private void Start()
     {
+        _health = FindObjectOfType<Health>();
         _currentHealth = _maxHealth;
     }
 
@@ -97,6 +98,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void KillEnemy()
     {
+        _health.End.EnemiesKilled++;
         _isDead = true;
         GetComponent<Monster>().CallOnDestroy();
         Destroy(gameObject);

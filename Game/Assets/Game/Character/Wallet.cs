@@ -47,6 +47,12 @@ public class Wallet : MonoBehaviour
 
     public void AddCash(int amount)
     {
+        Endscreen end = GetComponent<Health>().End;
+        if (amount > 0)
+            end.GoldCollected += amount;
+        else
+            end.GoldSpent += amount;
+
         _total += amount;
         _cashText.text = _total.ToString();
 

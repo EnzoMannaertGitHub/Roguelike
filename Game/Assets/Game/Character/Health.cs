@@ -17,14 +17,15 @@ public class Health : MonoBehaviour
     private bool _isDead = false;
     private bool _godMode = false;
     private CharacterController2D _controller;
-
+    private Endscreen _end;
+    public Endscreen End { get { return _end; } set { _end = value; } }
     private void Start()
     {
         _controller = GetComponent<CharacterController2D>();
         if (_controller == null)
             Debug.LogError("Health charactercontroller2D not found!");
     }
-
+    
     public void SetMaxHealth(float newHealth)
     {
         _maxHealth = newHealth;
@@ -100,6 +101,7 @@ public class Health : MonoBehaviour
     {
         _isDead = true;
         Destroy(gameObject);
+        _end.EndGame();
     }
 
     public void OnTriggerEnter2D(Collider2D other)

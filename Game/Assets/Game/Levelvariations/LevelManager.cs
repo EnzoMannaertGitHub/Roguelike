@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        FindObjectOfType<Health>().End =  FindObjectOfType<Endscreen>();
         Instance = this;
 
         _player = FindObjectOfType<PlayerMovement>().gameObject;
