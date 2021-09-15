@@ -46,6 +46,10 @@ public class Health : MonoBehaviour
     {
         _godMode = state;
     }
+    public void ResetHealthToMax()
+    {
+        _health = _maxHealth;
+    }
 
     private void Update()
     {
