@@ -1,11 +1,13 @@
-using UnityEngine;
+using UnityEngine; 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private CharacterController2D _controller;
     [SerializeField] private Animator _animator;
+    [SerializeField] private float _runSpeed = 2f;
+    [SerializeField] private float _maxRunSpeed = 6f;
+    [SerializeField] private float _runReduce = 3f;
 
     private float _horizontalMove = 0f;
-    private float _runSpeed = 5f;
     private float _elapsedRollSec = 0;
     bool _IsJumping = false;
     bool _IsDoubleJumping = false;
@@ -15,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     public bool IsRolling = false;
     private bool canMove = true;
     private bool _isEnteringCave = false;
+    private bool _isRunning = false;
     public bool IsEnteringCave { get { return _isEnteringCave; } set { _isEnteringCave = value; } }
 
     public void SetCanMove(bool state)
@@ -40,8 +43,31 @@ public class PlayerMovement : MonoBehaviour
             _horizontalMove = 0f;
             return;
         }
+        var axisFloat = Input.GetAxisRaw("Horizontal");
+        Debug.Log(_isRunning);
+        if(axisFloat != 0)
+        {
+            if (Mathf.Abs(_horizontalMove) < ((_isRunning ? _maxRunSpeed * 2 : _maxRunSpeed)))
+                _horizontalMove += axisFloat * ((_isRunning ? _runSpeed * 2: _runSpeed) * Time.deltaTime);
+            else
+                _horizontalMove = axisFloat * _maxRunSpeed;
+        }
+        else if(axisFloat == 0)
+        {
+            if (_horizontalMove > 1 || _horizontalMove < -1)
+                _horizontalMove -= Mathf.Sign(_horizontalMove) * (_runReduce * Time.deltaTime);
+            else
+                _horizontalMove = 0;             
+        }
+        //if going opposite direction
+        if(Mathf.Sign(_horizontalMove) != Mathf.Sign(axisFloat))
+        {
+            Debug.Log("flipedieflip");
+            _horizontalMove -= Mathf.Sign(_horizontalMove) * (_runReduce * Time.deltaTime);
+        }
 
-        _horizontalMove = Input.GetAxisRaw("Horizontal") * _runSpeed;
+        
+
         float inputLength = Mathf.Abs(_horizontalMove);
 
         // Left check
@@ -77,6 +103,16 @@ public class PlayerMovement : MonoBehaviour
             _IsJumping = false;
             _IsDoubleJumping = false;
             _canDoubleJump = true;
+        }
+        //run check
+        if (Input.GetButtonDown("Run"))
+        {
+            _isRunning = true;
+        }
+        else if (Input.GetButtonUp("Run"))
+        {
+            _isRunning = false;
+
         }
 
         //Roll check
