@@ -1737,7 +1737,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5917199648963861552, guid: 0e25e40505772f846bf59418cda1888a, type: 3}
       propertyPath: _maxRunSpeed
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5917199648963861554, guid: 0e25e40505772f846bf59418cda1888a, type: 3}
       propertyPath: _armPivot

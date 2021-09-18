@@ -62,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
         //if going opposite direction
         if(Mathf.Sign(_horizontalMove) != Mathf.Sign(axisFloat))
         {
-            Debug.Log("flipedieflip");
             _horizontalMove -= Mathf.Sign(_horizontalMove) * (_runReduce * Time.deltaTime);
         }
 
@@ -141,7 +140,10 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsEnteringCave)
         {
-            _controller.Move(_runSpeed * Time.fixedDeltaTime, false, false, false);
+            if (Mathf.Abs(_horizontalMove) > 1)
+                _controller.Move(_horizontalMove * Time.fixedDeltaTime, false, _IsJumping, _IsDoubleJumping);
+            else
+                _controller.Move(5 * Time.fixedDeltaTime, false, _IsJumping, _IsDoubleJumping);
             return;
         }
 
@@ -156,6 +158,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else
             _controller.Move(_horizontalMove * Time.fixedDeltaTime, false, _IsJumping, _IsDoubleJumping);
+
+
+
     }
 
     public void HandleKnockBack(Vector2 direction)
