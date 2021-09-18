@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f82a2ea01fef9344bcbdb0a73b91717, type: 3}
   m_Name: HealthIncrease
   m_EditorClassIdentifier: 
-  name: Damage Up
-  icon: {fileID: 21300000, guid: a8a7141849b504fdf918e543db616a5d, type: 3}
+  name: HealthIncrease
+  icon: {fileID: 21300000, guid: c5d66fc27ab57054c938ec2d9a6c77b0, type: 3}
   _health: 20
   _healthPercent: 0
   _healthRegen: 0

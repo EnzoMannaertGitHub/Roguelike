@@ -28064,6 +28064,7 @@ MonoBehaviour:
   _randomLoot: {fileID: 7991819368028762142, guid: 5e3b1d3887e93d64587533323c2d5fbe, type: 3}
   _bottomDecoration: {fileID: 2145314380}
   _player: {fileID: 0}
+  _HearthGameobject: {fileID: 6268903044061418940, guid: 087f233e7acb53c488b9735d1db03693, type: 3}
   _enemyManager: {fileID: 1757969909}
 --- !u!4 &2056640114
 Transform:

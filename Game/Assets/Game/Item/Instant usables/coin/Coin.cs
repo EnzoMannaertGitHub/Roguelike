@@ -12,7 +12,7 @@ public class Coin : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && collision.gameObject.layer != 8)
         {
             collision.GetComponent<Wallet>().AddCash(_value);
             Vector3 pos = transform.position;

@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject _randomLoot;
     [SerializeField] private GameObject _bottomDecoration;
     [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _HearthGameobject;
     [SerializeField] private EnemySpawner _enemyManager;
 
     private List<GameObject> _levelVariationsInLevel = new List<GameObject>();
@@ -243,5 +244,13 @@ public class LevelManager : MonoBehaviour
         int random = Random.Range(0, _levelVariationsInLevel.Count);
         var pos = _levelVariationsInLevel[random].transform.position;
         _player.transform.position = new Vector2(pos.x, pos.y + 2);
+
+        if(_levelNumber > 1)
+        {
+            var hearthGo = Instantiate(_HearthGameobject);
+            hearthGo.transform.position = new Vector2(pos.x + 2, pos.y + 2);
+        }
+       
+
     }
 }

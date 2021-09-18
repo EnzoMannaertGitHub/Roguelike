@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f82a2ea01fef9344bcbdb0a73b91717, type: 3}
   m_Name: JumpHeight
   m_EditorClassIdentifier: 
-  name: Damage Up
-  icon: {fileID: 21300000, guid: a8a7141849b504fdf918e543db616a5d, type: 3}
+  name: Jump height
+  icon: {fileID: 21300000, guid: 98613851872c87c4e9e350e7bb92a6e2, type: 3}
   _health: 0
   _healthPercent: 0
   _healthRegen: 0
@@ -21,8 +21,8 @@ MonoBehaviour:
   _attackSpeed: 0
   _movementSpeed: 0
   _movementPercent: 0
-  _jumpForce: 0.3
-  _jumpPercent: 0.1
+  _jumpForce: 0.02
+  _jumpPercent: 0.02
   _damageIncrease: 0
   _damagePercent: 0
   _projectileSpeedIncrease: 0
