@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class Wallet : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _cashText = null;
-    [SerializeField] private float _total = 0;
+    [SerializeField] private float _total = 10000;
     [SerializeField] private TextMeshProUGUI _addText;
     [SerializeField] private PlayerStats _playerStats;
     private Transform _startPos;

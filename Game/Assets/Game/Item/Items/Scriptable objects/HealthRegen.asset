@@ -16,7 +16,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: c5d66fc27ab57054c938ec2d9a6c77b0, type: 3}
   _health: 0
   _healthPercent: 0
-  _healthRegen: 3
+  _healthRegen: 1
   _healthRegenPercent: 0
   _attackSpeed: 0
   _movementSpeed: 0

@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
             _horizontalMove = 0f;
             return;
         }
+
         var axisFloat = Input.GetAxisRaw("Horizontal");
         Debug.Log(_isRunning);
         if(axisFloat != 0)
@@ -59,13 +60,12 @@ public class PlayerMovement : MonoBehaviour
             else
                 _horizontalMove = 0;             
         }
+
         //if going opposite direction
         if(Mathf.Sign(_horizontalMove) != Mathf.Sign(axisFloat))
         {
             _horizontalMove -= Mathf.Sign(_horizontalMove) * (_runReduce * Time.deltaTime);
         }
-
-        
 
         float inputLength = Mathf.Abs(_horizontalMove);
 
@@ -140,10 +140,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IsEnteringCave)
         {
-            if (Mathf.Abs(_horizontalMove) > 1)
-                _controller.Move(_horizontalMove * Time.fixedDeltaTime, false, _IsJumping, _IsDoubleJumping);
-            else
-                _controller.Move(5 * Time.fixedDeltaTime, false, _IsJumping, _IsDoubleJumping);
+                _controller.Move(_maxRunSpeed * Time.fixedDeltaTime, false, false, false);
             return;
         }
 
