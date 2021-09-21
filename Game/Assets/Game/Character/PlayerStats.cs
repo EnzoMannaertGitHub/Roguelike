@@ -33,6 +33,7 @@ public class PlayerStats : MonoBehaviour
     private float _damagePercent = 1f;
     private float _projectileSpeedIncrease = 0f;
     private float _projectileSpeedPercent = 1f;
+    private int _extraProjectiles = 0;
 
     // Current stats
     private float _currentMaxHealth = 100f;
@@ -42,6 +43,7 @@ public class PlayerStats : MonoBehaviour
     private float _currentJumpSpeed = 100f;
     private float _currentDamage = 27f;
     private float _currentProjectileSpeed = 5f;
+    private int _currentProjectiles = 1;
 
     private void Start()
     {
@@ -199,6 +201,14 @@ public class PlayerStats : MonoBehaviour
         _currentProjectileSpeed = (_baseProjectileSpeed + _projectileSpeedIncrease) * _projectileSpeedPercent;
 
         _playerAttack.SetProjectileSpeed(_currentProjectileSpeed);
+    }
+
+    public void IncreaseProjectilesAmount(int amount)
+    {
+        _extraProjectiles += amount;
+        _currentProjectiles = 1 + _extraProjectiles;
+
+        _playerAttack.SetProjectileAmount(_currentProjectiles);
     }
 
     public float GetMaxHealth()

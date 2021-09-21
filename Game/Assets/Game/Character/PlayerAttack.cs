@@ -10,14 +10,18 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private ParticleSystem _shootParticles;
     [SerializeField] private CharacterController2D _controller;
 
+
     private bool _CanShoot = true;
     public bool CanShoot { get { return _CanShoot; } }
     private bool _shoot = false;
     private float _damage = 1f;
     private float _projectileSpeed = 5f;
+    private int _projectiles = 1;
     private Coroutine _chargeDelay = null;
     private Vector3 aimDirection;
     private Camera _mainCam;
+    private float _arrowSpaceBetween = 0.06f;
+
     private void Awake()
     {
         _mainCam = Camera.main;
@@ -59,6 +63,11 @@ public class PlayerAttack : MonoBehaviour
     {
         _animator.SetFloat("AttackSpeed", newSpeed);
         _armAnimator.SetFloat("AttackSpeed", newSpeed);
+    }
+
+    public void SetProjectileAmount(int amount)
+    {
+        _projectiles = amount;
     }
 
     private void HandleShooting()
@@ -123,14 +132,21 @@ public class PlayerAttack : MonoBehaviour
 
         _shootParticles.Emit(10);
 
-        var fireSocketTransform = _fireSocket.transform;
-        GameObject newArrow = Instantiate(_bulletPrefab, fireSocketTransform.position, Quaternion.identity);
-
-        Projectile projectileScript = newArrow.GetComponent<Projectile>();
-        if (projectileScript != null)
+        float heightOffset = ((_projectiles % 2) == 1) ? (-(_projectiles - 1) / 2 * _arrowSpaceBetween) : (-_projectiles / 2 * _arrowSpaceBetween);
+        for (int i = 0; i < _projectiles; i++)
         {
-            projectileScript.InitProjectile(aimDirection, _damage, _projectileSpeed);
-            projectileScript.SetDamage(_damage);
+            var fireSocketTransform = _fireSocket.transform;
+            Vector3 position = fireSocketTransform.position + fireSocketTransform.up * heightOffset;
+            GameObject newArrow = Instantiate(_bulletPrefab, position, Quaternion.identity);
+
+            Projectile projectileScript = newArrow.GetComponent<Projectile>();
+            if (projectileScript != null)
+            {
+                projectileScript.InitProjectile(aimDirection, _damage, _projectileSpeed);
+                projectileScript.SetDamage(_damage);
+            }
+
+            heightOffset += _arrowSpaceBetween;
         }
 
         _playerMovement.SetCanMove(true);
