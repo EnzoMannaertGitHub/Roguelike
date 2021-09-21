@@ -11,7 +11,7 @@ public class SkeletonAggro : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && collision.gameObject.layer != 11)
         {
             if (_skeleton != null)
                 _skeleton.TriggerAttack();

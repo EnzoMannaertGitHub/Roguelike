@@ -1,14 +1,13 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class EnemyHealth : MonoBehaviour
 {
+    [SerializeField] private GameObject _gameObject = null;
+    [SerializeField] private Rigidbody2D _rigidBody = null;
     [SerializeField] private float _maxHealth = 100f;
-    private PlayerMovement _playerMovement;
     [SerializeField] private float _minKnockbackHeight = 2f;
     [SerializeField] private float _maxKnockbackHeight = 5f;
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private Rigidbody2D _rigidbody;
 
     private float _currentHealth = 0f;
     private bool _isDead = false;
@@ -21,13 +20,18 @@ public class EnemyHealth : MonoBehaviour
     private Health _health;
     private void Start()
     {
+        if (_gameObject == null)
+        {
+            _gameObject = gameObject;
+        }
+
+        if (_rigidBody == null)
+        {
+            _rigidBody = _gameObject.GetComponent<Rigidbody2D>();
+        }
+
         _health = FindObjectOfType<Health>();
         _currentHealth = _maxHealth;
-    }
-
-    public void SetPlayerMovement(PlayerMovement movement)
-    {
-        _playerMovement = movement;
     }
 
     private void Update()
@@ -92,15 +96,15 @@ public class EnemyHealth : MonoBehaviour
         {
             KillEnemy();
         }
-        _rigidbody.velocity = new Vector2(0, 0);
-        _rigidbody.AddForce(knockbackDir * 2);
+        _rigidBody.velocity = new Vector2(0, 0);
+        _rigidBody.AddForce(knockbackDir * 2);
     }
 
     public void KillEnemy()
     {
         _health.End.EnemiesKilled++;
         _isDead = true;
-        GetComponent<Monster>().CallOnDestroy();
-        Destroy(gameObject);
+        _gameObject.GetComponent<Monster>().CallOnDestroy();
+        Destroy(_gameObject.gameObject);
     }
 }

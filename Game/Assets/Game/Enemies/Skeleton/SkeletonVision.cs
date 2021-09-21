@@ -11,7 +11,7 @@ public class SkeletonVision : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && _skeleton != null)
+        if (collision.CompareTag("Player") && collision.gameObject.layer != 11 && _skeleton != null)
         {
             _skeleton._playerSeen = true;
             _skeleton.StartCharge();
@@ -20,7 +20,7 @@ public class SkeletonVision : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && collision.gameObject.layer != 11)
         {
             _skeleton._playerSeen = false;
             _skeleton.StopCharge();

@@ -66,12 +66,6 @@ public class EnemySpawner : MonoBehaviour
             monsterScript.InitMonster(_playerTransform);
         }
 
-        EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-        if (enemyHealth != null)
-        {
-            enemyHealth.SetPlayerMovement(_playerMovement);
-        }
-
         _enemies.Add(enemy);
     }
 
@@ -106,7 +100,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void ClearEnemies()
     {
-        foreach(GameObject go in _enemies)
+        foreach (GameObject go in _enemies)
         {
             Destroy(go);
         }

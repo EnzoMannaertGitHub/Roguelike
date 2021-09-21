@@ -4873,6 +4873,7 @@ GameObject:
   - component: {fileID: 2119917180767302439}
   - component: {fileID: 6775030391640976743}
   - component: {fileID: 8595043269280051524}
+  - component: {fileID: 4437549058454188989}
   m_Layer: 7
   m_Name: OverlapTrigger
   m_TagString: Untagged
@@ -4933,6 +4934,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skeleton: {fileID: 2623152476789107312}
+--- !u!114 &4437549058454188989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5549685796293878634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0250ac183c0dde149a61a687031bc0eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameObject: {fileID: 9119303481704533433}
+  _rigidBody: {fileID: 0}
+  _maxHealth: 100
+  _minKnockbackHeight: 2
+  _maxKnockbackHeight: 5
+  _spriteRenderer: {fileID: 9119303482150243477}
 --- !u!1 &6554618781085327372
 GameObject:
   m_ObjectHideFlags: 0
@@ -5159,7 +5178,6 @@ GameObject:
   - component: {fileID: 9119303481704533432}
   - component: {fileID: 6287599095792363903}
   - component: {fileID: 5125700824765424749}
-  - component: {fileID: 7930940555022466740}
   - component: {fileID: 2623152476789107312}
   - component: {fileID: 7952115502892712484}
   m_Layer: 7
@@ -5224,23 +5242,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &7930940555022466740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9119303481704533433}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0250ac183c0dde149a61a687031bc0eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _minKnockbackHeight: 2
-  _maxKnockbackHeight: 5
-  _spriteRenderer: {fileID: 9119303482150243477}
-  _rigidbody: {fileID: 5125700824765424749}
 --- !u!114 &2623152476789107312
 MonoBehaviour:
   m_ObjectHideFlags: 0
