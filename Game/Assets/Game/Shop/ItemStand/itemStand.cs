@@ -8,6 +8,7 @@ public class itemStand : MonoBehaviour
     [SerializeField] private SpriteRenderer _eKey;
     [SerializeField] private List<GameObject> _items;
     [SerializeField] private Transform _itemLocation;
+    [SerializeField] private ParticleSystem _particles;
 
     private Transform _playerTransform;
     private int _cost;
@@ -44,7 +45,7 @@ public class itemStand : MonoBehaviour
     {
         if (!_isActive)
             return;
-        
+
         if (collision.CompareTag("Player") && Input.GetAxis("Interact") > 0.5f)
         {
             Wallet wallet = collision.gameObject.GetComponent<Wallet>();
@@ -53,9 +54,10 @@ public class itemStand : MonoBehaviour
                 wallet.AddCash(-_cost);
                 _item.GetComponent<pickup>().enabled = true;
                 _item.GetComponent<pickup>().Interact();
+                _particles.Emit(10);
                 _costText.text = "";
                 _eKey.forceRenderingOff = true;
-               _isActive = false;
+                _isActive = false;
             }
         }
     }
@@ -71,7 +73,7 @@ public class itemStand : MonoBehaviour
     {
         if (!_isActive)
         {
-            if(_item != null)
+            if (_item != null)
                 _item.SetActive(false);
             return;
         }
