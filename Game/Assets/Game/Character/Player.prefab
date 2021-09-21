@@ -296,6 +296,7 @@ MonoBehaviour:
   _ceilingCheck: {fileID: 5917199647840253774}
   _crouchDisableCollider: {fileID: 0}
   _animator: {fileID: 5917199649054701506}
+  _playerAttack: {fileID: 0}
   _grounded: 1
   OnLandEvent:
     m_PersistentCalls:
@@ -314,6 +315,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _controller: {fileID: 5917199648963861565}
   _animator: {fileID: 5917199649054701506}
+  _runSpeed: 2
+  _maxRunSpeed: 6
+  _runReduce: 3
   IsLeft: 0
   IsMoving: 0
   IsRolling: 0
@@ -367,6 +371,7 @@ MonoBehaviour:
   _cashText: {fileID: 0}
   _total: 0
   _addText: {fileID: 0}
+  _playerStats: {fileID: 1238721849222737897}
 --- !u!114 &1238721849222737897
 MonoBehaviour:
   m_ObjectHideFlags: 0

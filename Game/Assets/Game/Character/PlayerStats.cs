@@ -33,6 +33,7 @@ public class PlayerStats : MonoBehaviour
     private float _damagePercent = 1f;
     private float _projectileSpeedIncrease = 0f;
     private float _projectileSpeedPercent = 1f;
+    private float _cashMultiplier = 1f;
     private int _extraProjectiles = 0;
 
     // Current stats
@@ -211,6 +212,11 @@ public class PlayerStats : MonoBehaviour
         _playerAttack.SetProjectileAmount(_currentProjectiles);
     }
 
+    public void IncreaseCashMultiplier(float percent)
+    {
+        _cashMultiplier += percent;
+    }
+
     public float GetMaxHealth()
     {
         return _currentMaxHealth;
@@ -244,5 +250,10 @@ public class PlayerStats : MonoBehaviour
     public float GetProjectileSpeed()
     {
         return _currentProjectileSpeed;
+    }
+
+    public float GetCashMultiplier()
+    {
+        return _cashMultiplier;
     }
 }

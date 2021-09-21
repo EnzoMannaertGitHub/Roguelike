@@ -16,6 +16,7 @@ public class WeaponAttachments : Item
     [SerializeField] private float _damagePercent = 0f;
     [SerializeField] private float _projectileSpeedIncrease = 0f;
     [SerializeField] private float _projectileSpeedPercent = 0f;
+    [SerializeField] private float _cashIncreasePercent = 0f;
     [SerializeField] private int _extraProjectiles = 0;
 
     public override void Use()
@@ -72,6 +73,10 @@ public class WeaponAttachments : Item
         if (_projectileSpeedPercent != 0f)
         {
             playerStats.IncreaseProjectileSpeedPercent(_projectileSpeedPercent);
+        }
+        if (_cashIncreasePercent != 0f)
+        {
+            playerStats.IncreaseCashMultiplier(_cashIncreasePercent);
         }
         if (_extraProjectiles != 0)
         {
@@ -135,6 +140,10 @@ public class WeaponAttachments : Item
         if (_projectileSpeedPercent != 0f)
         {
             playerStats.IncreaseProjectileSpeedPercent(-_projectileSpeedPercent);
+        }
+        if (_cashIncreasePercent != 0f)
+        {
+            playerStats.IncreaseCashMultiplier(-_cashIncreasePercent);
         }
         if (_extraProjectiles != 0)
         {

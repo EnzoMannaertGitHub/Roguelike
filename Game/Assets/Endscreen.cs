@@ -11,23 +11,23 @@ public class Endscreen : MonoBehaviour
 
     private int _enemiesKilled;
 
-    public  int EnemiesKilled
+    public int EnemiesKilled
     {
         get { return _enemiesKilled; }
         set { _enemiesKilled = value; }
     }
 
-    private int _goldCollected;
+    private float _goldCollected;
 
-    public int GoldCollected
+    public float GoldCollected
     {
         get { return _goldCollected; }
         set { _goldCollected = value; }
     }
 
-    private int _goldSpent;
+    private float _goldSpent;
 
-    public int GoldSpent
+    public float GoldSpent
     {
         get { return _goldSpent; }
         set { _goldSpent = value; }
@@ -37,8 +37,8 @@ public class Endscreen : MonoBehaviour
     {
         _endScreen.SetActive(true);
         _enemiesKilledText.SetText(_enemiesKilled.ToString());
-        _goldCollectedText.SetText(_goldCollected.ToString());
-        _goldSpentText.SetText((_goldSpent / 2).ToString());
+        _goldCollectedText.SetText(Mathf.FloorToInt(_goldCollected).ToString());
+        _goldSpentText.SetText((Mathf.RoundToInt(_goldSpent) / 2).ToString());
         _totalText.SetText((_enemiesKilled + _goldCollected + (_goldSpent / 2)).ToString());
     }
 

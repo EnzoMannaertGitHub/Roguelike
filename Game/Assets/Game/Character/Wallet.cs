@@ -5,8 +5,9 @@ using UnityEngine.UI;
 public class Wallet : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _cashText = null;
-    [SerializeField] private int _total = 0;
+    [SerializeField] private float _total = 0;
     [SerializeField] private TextMeshProUGUI _addText;
+    [SerializeField] private PlayerStats _playerStats;
     private Transform _startPos;
     private bool _addAnimationStarted = false;
     private float _elapsedAnimSec = 0f;
@@ -17,12 +18,12 @@ public class Wallet : MonoBehaviour
         _startPos = _addText.transform;
         _startColor = _addText.color;
     }
-    public int Total 
-    { 
-        get 
-        { 
-            return _total; 
-        } 
+    public int Total
+    {
+        get
+        {
+            return Mathf.FloorToInt(_total);
+        }
 
     }
 
@@ -48,33 +49,38 @@ public class Wallet : MonoBehaviour
     public void AddCash(int amount)
     {
         Endscreen end = GetComponent<Health>().End;
+        float cashAmount = amount * _playerStats.GetCashMultiplier();
+
         if (amount > 0)
-            end.GoldCollected += amount;
+            end.GoldCollected += cashAmount;
         else
             end.GoldSpent += amount;
 
-        _total += amount;
-        _cashText.text = _total.ToString();
+        int previousTotal = Mathf.FloorToInt(_total);
+        _total += cashAmount;
+        _cashText.text = Mathf.FloorToInt(_total).ToString();
+
+        int cashEarned = Mathf.FloorToInt(_total) - previousTotal;
 
         if (_addAnimationStarted)
         {
-            if (amount < 0)
+            if (cashAmount < 0)
                 _addText.text = $"{(int.Parse(_addText.text) + amount).ToString()}";
             else
-                _addText.text = $"+{(int.Parse(_addText.text) + amount).ToString()}";
+                _addText.text = $"+{(int.Parse(_addText.text) + cashEarned).ToString()}";
         }
         else
         {
             _addAnimationStarted = true;
-            if (amount < 0)
+            if (cashAmount < 0)
             {
                 _addText.color = Color.red;
-                _addText.text = $"{amount.ToString()}";
+                _addText.text = $"{Mathf.FloorToInt(amount).ToString()}";
             }
             else
             {
                 _addText.color = _startColor; ;
-                _addText.text = $"+{amount.ToString()}";
+                _addText.text = $"+{Mathf.FloorToInt(cashEarned).ToString()}";
             }
             var col = _addText.color;
             _addText.color = new Color(col.r, col.g, col.b, 1f);
