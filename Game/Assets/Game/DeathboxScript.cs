@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DeathboxScript : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject other = collision.gameObject;
         if (other.CompareTag("Player"))
