@@ -203,7 +203,7 @@ public class LevelManager : MonoBehaviour
         if (i == _nrOfPlatforms - 1)
         {
             var decorationPos = _bottomDecoration.transform.position;
-            _bottomDecoration.transform.position = new Vector3(decorationPos.x, pos.y - 2.3f, 0);
+            _bottomDecoration.transform.position = new Vector3(decorationPos.x, pos.y - 4f, 0);
             return;
         }
 
