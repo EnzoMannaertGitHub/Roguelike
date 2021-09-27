@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f82a2ea01fef9344bcbdb0a73b91717, type: 3}
   m_Name: AddCashMultiplier
   m_EditorClassIdentifier: 
-  name: FireRate Up
+  name: Cash Up
   icon: {fileID: 21300000, guid: 4e42c96f8da7238449b468267ecf9ac6, type: 3}
   _health: 0
   _healthPercent: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f82a2ea01fef9344bcbdb0a73b91717, type: 3}
   m_Name: HealthIncrease
   m_EditorClassIdentifier: 
-  name: HealthIncrease
+  name: Health Up
   icon: {fileID: 21300000, guid: c5d66fc27ab57054c938ec2d9a6c77b0, type: 3}
   _health: 20
   _healthPercent: 0
@@ -27,3 +27,5 @@ MonoBehaviour:
   _damagePercent: 0
   _projectileSpeedIncrease: 0
   _projectileSpeedPercent: 0
+  _cashIncreasePercent: 0
+  _extraProjectiles: 0
