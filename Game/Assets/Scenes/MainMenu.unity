@@ -390,6 +390,7 @@ GameObject:
   - component: {fileID: 101002618}
   - component: {fileID: 101002617}
   - component: {fileID: 101002616}
+  - component: {fileID: 101002619}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -461,9 +462,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainMenuScript, Assembly-CSharp
-        m_MethodName: QuitGame
+      - m_Target: {fileID: 101002619}
+        m_TargetAssemblyTypeName: QuitGame, Assembly-CSharp
+        m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -511,6 +512,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 101002614}
   m_CullTransparentMesh: 1
+--- !u!114 &101002619
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101002614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76ce24abd13d474498292514bc99e008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &104491525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1773,7 +1786,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1041111549, guid: 0e25e40505772f846bf59418cda1888a, type: 3}
       propertyPath: _total
-      value: 0
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 1041111549, guid: 0e25e40505772f846bf59418cda1888a, type: 3}
       propertyPath: _addText
@@ -2903,6 +2916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inventoryUI: {fileID: 375036646}
+  _itemUI: {fileID: 0}
   Itemsparent: {fileID: 151657785}
 --- !u!114 &1148538213
 MonoBehaviour:

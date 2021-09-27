@@ -29,6 +29,9 @@ public class Wallet : MonoBehaviour
 
     private void Update()
     {
+        if (!_addText)
+            return;
+
         if (_addAnimationStarted)
         {
             _elapsedAnimSec += Time.deltaTime;
@@ -46,7 +49,7 @@ public class Wallet : MonoBehaviour
         }
     }
 
-    public void AddCash(int amount)
+    public void AddCash(float amount)
     {
         Endscreen end = GetComponent<Health>().End;
         float cashAmount = amount * _playerStats.GetCashMultiplier();
